@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-
-// Helper function to get correct image path for Vercel
-const getImagePath = (imageName) => {
-  return process.env.PUBLIC_URL + '/' + imageName;
-};
+import { getImagePath, getAssetPath } from '../utils/imageUtils';
 
 const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -86,7 +82,7 @@ const Home = () => {
   </a>
   
   <a 
-    href={getImagePath("Aurick_Anwar_Resume.pdf")} 
+    href={getAssetPath("Aurick_Anwar_Resume.pdf")} 
     download="Aurick_Anwar_Resume.pdf" 
     className="stat-button"
   >

@@ -1,10 +1,6 @@
 import React from 'react';
 import './Projects.css';
-
-// Helper function to get correct image path for Vercel
-const getImagePath = (imageName) => {
-  return process.env.PUBLIC_URL + '/' + imageName;
-};
+import { getImagePath, getAssetPath } from '../utils/imageUtils';
 
 const Projects = () => {
   const projects = [
@@ -104,12 +100,12 @@ const Projects = () => {
                 <div className="project-overlay">
                   <div className={`project-links ${project.reportUrl ? 'double' : 'single'}`}>
                     {project.stlUrl ? (
-                      <a href={getImagePath(project.stlUrl)} className="project-link" target="_blank" rel="noopener noreferrer">
+                      <a href={getAssetPath(project.stlUrl)} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">🧩</i>
                         STL File
                       </a>
                     ) : project.demoUrl ? (
-                      <a href={project.demoUrl.startsWith('http') ? project.demoUrl : getImagePath(project.demoUrl)} className="project-link" target="_blank" rel="noopener noreferrer">
+                      <a href={project.demoUrl.startsWith('http') ? project.demoUrl : getAssetPath(project.demoUrl)} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">🎥</i>
                         Demo
                       </a>
