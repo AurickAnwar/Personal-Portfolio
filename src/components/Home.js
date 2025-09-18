@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import { getImagePath, getAssetPath } from '../utils/imageUtils';
 
 const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
@@ -54,7 +53,7 @@ const Home = () => {
             <div className="image-placeholder">
             <div className="profile-circle">
   <img
-    src={getImagePath("aurick-anwar-photo.jpg")}
+    src="/aurick-anwar-photo.jpg"
     alt="Aurick Anwar"
     className="profile-image"
     onError={(e) => {
@@ -82,7 +81,7 @@ const Home = () => {
   </a>
   
   <a 
-    href={getAssetPath("Aurick_Anwar_Resume.pdf")} 
+    href="/Aurick_Anwar_Resume.pdf" 
     download="Aurick_Anwar_Resume.pdf" 
     className="stat-button"
   >
