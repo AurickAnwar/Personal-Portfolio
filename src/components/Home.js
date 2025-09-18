@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
+// Helper function to get correct image path for Vercel
+const getImagePath = (imageName) => {
+  return process.env.PUBLIC_URL + '/' + imageName;
+};
+
 const Home = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,7 +58,7 @@ const Home = () => {
             <div className="image-placeholder">
             <div className="profile-circle">
   <img
-    src="/aurick-anwar-photo.jpg"
+    src={getImagePath("aurick-anwar-photo.jpg")}
     alt="Aurick Anwar"
     className="profile-image"
     onError={(e) => {
@@ -81,7 +86,7 @@ const Home = () => {
   </a>
   
   <a 
-    href="/Aurick_Anwar_Resume.pdf" 
+    href={getImagePath("Aurick_Anwar_Resume.pdf")} 
     download="Aurick_Anwar_Resume.pdf" 
     className="stat-button"
   >
