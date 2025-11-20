@@ -21,15 +21,18 @@ const Projects = () => {
       githubUrl: "https://github.com/AurickAnwar/Python-Projects-w-OpenCV/blob/main/Pedestrian%20and%20Car%20Detection%20System.py",
       reportUrl: "https://docs.google.com/document/d/1CIpkooX8EVqJkrTwUZ0tDHImPGGr1oqaoGuMrc3TTdc/edit?tab=t.0"
     },
+
+    // ⭐ Updated project (Assembly file instead of GitHub)
     {
       id: 3,
-      title: "Facial Recognition",
-      description: "Created a very basic facial recognition system using OpenCv on python and XML to detect the face.",
-      image: "/facial recognition.jpg",
-      technologies: ["Python", "OpenCV", "XML"],
-      githubUrl: "https://github.com/AurickAnwar/Python-Projects-w-OpenCV/blob/main/Face%20Recognition.py"
+      title: "Robotic Arm Gripper (CAD)",
+      description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
+      image: "/RoboticGrip.png",
+      technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
+      assemblyUrl: "/Robotic Gripper.iam"
     },
-    // CAD Projects (3) — IDs 4-6
+
+    // CAD Projects (3)
     {
       id: 4,
       title: "Robotic Arm (CAD)",
@@ -54,7 +57,8 @@ const Projects = () => {
       technologies: ["Fusion 360", "Mesh", "Simulation"],
       stlUrl: "/Catapult.stl"
     },
-    // Arduino Projects (3) — IDs 7-9
+
+    // Arduino Projects (3)
     {
       id: 7,
       title: "Dancing Robot Capstone Project",
@@ -65,7 +69,7 @@ const Projects = () => {
     },
     {
       id: 8,
-      title: "Smart Home ",
+      title: "Smart Home",
       description: "3D modelled a house model on Fusion 360 and built a smart home using Arduino using an Ultrasonic Sensor, LCD Module, Servo Motor and Fan",
       image: "/SmartHome.jpg",
       technologies: ["Arduino", "Fusion 360", "Laser Cut", "Ultrasonic Sensor", "LEDs", "Fan", "Sensor Shield", "Piezzo Buzzer"],
@@ -90,7 +94,7 @@ const Projects = () => {
             Here are some of my recent projects that showcase my skills and experience
           </p>
         </div>
-        
+
         <div className="projects-grid">
           {projects.map((project, index) => (
             <div key={project.id} className="project-card fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
@@ -98,49 +102,49 @@ const Projects = () => {
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  onError={(e) => {
-                    console.log('Image failed to load:', e.target.src);
-                    console.log('Project:', project.title);
-                  }}
-                  onLoad={() => {
-                    console.log('Image loaded successfully:', project.image);
-                  }}
                 />
+                
                 <div className="project-overlay">
                   <div className={`project-links ${project.reportUrl ? 'double' : 'single'}`}>
+
+                    {/* ORDER OF PRIORITY: STL → Assembly → Demo → GitHub */}
                     {project.stlUrl ? (
                       <a href={project.stlUrl} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <i className="icon">🧩</i>
-                        STL File
+                        <i className="icon">🧩</i> STL File
+                      </a>
+                    ) : project.assemblyUrl ? (
+                      <a href={project.assemblyUrl} className="project-link" target="_blank" rel="noopener noreferrer">
+                        <i className="icon">🧩</i> Assembly File
                       </a>
                     ) : project.demoUrl ? (
                       <a href={project.demoUrl} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <i className="icon">🎥</i>
-                        Demo
+                        <i className="icon">🎥</i> Demo
                       </a>
                     ) : (
                       <a href={project.githubUrl} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <i className="icon">📁</i>
-                        GitHub
+                        <i className="icon">📁</i> GitHub
                       </a>
                     )}
+
                     {project.reportUrl && (
                       <a href={project.reportUrl} className="project-link" target="_blank" rel="noopener noreferrer">
-                        <i className="icon">📄</i>
-                        Report
+                        <i className="icon">📄</i> Report
                       </a>
                     )}
                   </div>
                 </div>
               </div>
+
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
+
                 <div className="project-technologies">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">{tech}</span>
+                  {project.technologies.map((tech, idx) => (
+                    <span key={idx} className="tech-tag">{tech}</span>
                   ))}
                 </div>
+
               </div>
             </div>
           ))}
