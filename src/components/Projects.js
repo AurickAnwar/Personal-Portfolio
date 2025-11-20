@@ -29,7 +29,7 @@ const Projects = () => {
       description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
       image: "/RoboticGrip.png",
       technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
-      assemblyUrl: "/Robotic Gripper.iam"
+      assemblyUrl: "/Robotic-Gripper.iam"
     },
 
     // CAD Projects (3)
