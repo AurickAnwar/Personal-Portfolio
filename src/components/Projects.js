@@ -35,11 +35,11 @@ const Projects = () => {
     // CAD Projects (3)
     {
       id: 4,
-      title: "Robotic Arm (CAD)",
-      description: "Created a simple robotic arm using Fusion 360.",
-      image: "/RobotArm.png",
-      technologies: ["Fusion 360"],
-      stlUrl: "/Robotic Arm.stl"
+      title: "3D Modelled Drone",
+      description: "Designed and 3D modelled a drone using Autodesk Inventor. Was designed to be a simple prototype for a drone.",
+      image: "/Drone.png",
+      technologies: ["Autodesk Inventor", "Assembly", "Constraints", "Design"],
+      assemblyUrl: "/Drone.iam"
     },
     {
       id: 5,
