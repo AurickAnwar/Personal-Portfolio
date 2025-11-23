@@ -51,11 +51,11 @@ const Projects = () => {
     },
     {
       id: 6,
-      title: "Catapult",
-      description: "3D Modeled and animated a catapult using Fusion 360.",
-      image: "/Catapult.png",
-      technologies: ["Fusion 360", "Mesh", "Simulation"],
-      stlUrl: "/Catapult.stl"
+      title: "Audi S2 Steering Wheel Replica",
+      description: "3D Modeled an Audi S2 steering wheel using Fusion 360 and used different digital fabrication techniques such as Carbon Fiber and Aluminum to create the replica.",
+      image: "/AudiS2Steering.png",
+      technologies: ["Fusion 360", "Fabrication", "Prototyping"],
+      stlUrl: "/Audi S2 Steering Wheel.stl"
     },
 
     // Arduino Projects (3)
