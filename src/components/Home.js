@@ -8,7 +8,7 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   
   const fullText = "Hi my name is Aurick. I am a first year Engineering 1 Student at McMaster university";
-  const subtitle = "Aspiring Robotics Engineer";
+  const subtitle = "Aspiring Mechatronics Engineer";
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
@@ -38,7 +38,7 @@ const Home = () => {
               {subtitle}
             </h2>
             <p className="home-description">
-              I am extremely passionate about robotics and AI. I am always looking for new opportunities to learn and grow. I have been programming for 3 years now and I have a strong foundation in Python and C++. I have used many different libraries and frameworks such as Pytorch, Tensorflow, OpenCV, and more. I love using CAD software such as Autodesk Inventor, Fusion 360 and AutoCAD to design projects such as robots and other machines. I have been working with Arduino and Raspberry Pi to simple projects such as a robot car and a smart home system.
+              Engineering has been my pathway since middle school. I'm passionate about robotics, automation and, building  technologies that can help improve the lives of others. Whether it's aerospace concepts, embedded systems, or mechanical design, I'm always looking for new opportunities to learn and grow. My goals for this year is to learn PCB design and software development to help me build my own projects. 
             </p>
             <div className="home-buttons">
               <Link to="/projects" className="btn">
@@ -53,7 +53,7 @@ const Home = () => {
             <div className="image-placeholder">
             <div className="profile-circle">
   <img
-    src="/aurick-anwar-photo.jpg"
+    src="/aurick_anwar_photo.jpg"
     alt="Aurick Anwar"
     className="profile-image"
     onError={(e) => {
@@ -81,8 +81,8 @@ const Home = () => {
   </a>
   
   <a 
-    href="/Aurick_Anwar_Resume.pdf" 
-    download="Aurick_Anwar_Resume.pdf" 
+    href="/resume-AurickAnwar.pdf" 
+    download="resume-AurickAnwar.pdf" 
     className="stat-button"
   >
     <div className="stat-icon">🗎</div>
