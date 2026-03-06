@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import HeroOceanBg from './HeroOceanBg';
 import './Home.css';
 
 const Home = () => {
@@ -7,7 +8,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   
-  const fullText = "Hi my name is Aurick. I am a first year Engineering 1 Student at McMaster university";
+  const fullText = "Hi my name is Aurick. I am a first year Engineering 1 Student at McMaster University.";
   const subtitle = "Aspiring Mechatronics Engineer";
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Home = () => {
 
   return (
     <section className="home section">
+      <HeroOceanBg />
       <div className="container">
         <div className="home-content">
           <div className="home-text fade-in-up">
@@ -51,17 +53,17 @@ const Home = () => {
           </div>
           <div className="home-image fade-in">
             <div className="image-placeholder">
-            <div className="profile-circle">
-  <img
-    src="/aurick_anwar_photo.jpg"
-    alt="Aurick Anwar"
-    className="profile-image"
-    onError={(e) => {
-      console.log('Image failed to load:', e.target.src);
-      e.target.style.display = 'none';
-    }}
-  />
-</div>
+              <div className="profile-circle">
+                <img
+                  src="/aurick_anwar_photo.jpg"
+                  alt="Aurick Anwar"
+                  className="profile-image"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

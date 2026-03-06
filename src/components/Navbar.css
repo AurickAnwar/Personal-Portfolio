@@ -4,11 +4,11 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(3, 7, 18, 0.92);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  border-bottom: 2px solid #00ff00;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  border-bottom: 2px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
   font-family: 'Courier New', monospace;
 }
 
@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.04), transparent);
   animation: dataStream 3s linear infinite;
   pointer-events: none;
 }
@@ -30,11 +30,11 @@
 }
 
 .navbar.scrolled {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(3, 7, 18, 0.96);
   box-shadow: 
-    0 0 30px rgba(0, 255, 0, 0.4),
+    0 0 30px rgba(56, 189, 248, 0.25),
     0 2px 20px rgba(0, 0, 0, 0.5);
-  border-bottom-color: #00cc00;
+  border-bottom-color: #38BDF8;
 }
 
 .nav-content {
@@ -49,30 +49,30 @@
 .nav-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #00ff00;
+  color: #38BDF8;
   text-decoration: none;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
   position: relative;
 }
 
 .nav-logo::before {
   content: '> ';
-  color: #00ff00;
+  color: #7DD3FC;
   font-weight: bold;
 }
 
 .nav-logo::after {
   content: '_';
   animation: blink 1s infinite;
-  color: #00ff00;
+  color: #38BDF8;
 }
 
 .nav-logo:hover {
-  color: #00cc00;
-  text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  color: #E2F3FF;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
   animation: glitch 0.3s ease-in-out;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .nav-link {
-  color: #00ff00;
+  color: #38BDF8;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -121,18 +121,18 @@
 }
 
 .nav-link:hover {
-  color: #00cc00;
-  background: rgba(0, 255, 0, 0.1);
-  border-color: #00ff00;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  color: #E2F3FF;
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
   animation: glitch 0.2s ease-in-out;
 }
 
 .nav-link.active {
-  color: #00ff00;
-  background: rgba(0, 255, 0, 0.1);
-  border-color: #00ff00;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+  color: #38BDF8;
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
 .nav-link.active::before {
@@ -150,28 +150,28 @@
   cursor: pointer;
   gap: 4px;
   padding: 0.5rem;
-  border: 1px solid #00ff00;
+  border: 1px solid rgba(56, 189, 248, 0.5);
   border-radius: 4px;
-  background: rgba(0, 255, 0, 0.05);
+  background: rgba(56, 189, 248, 0.05);
 }
 
 .nav-toggle:hover {
-  background: rgba(0, 255, 0, 0.1);
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  background: rgba(56, 189, 248, 0.1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .bar {
   width: 25px;
   height: 3px;
-  background: #00ff00;
+  background: #38BDF8;
   transition: all 0.3s ease;
   border-radius: 2px;
-  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
 }
 
 .nav-toggle.active .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
-  background: #00cc00;
+  background: #7DD3FC;
 }
 
 .nav-toggle.active .bar:nth-child(2) {
@@ -180,7 +180,7 @@
 
 .nav-toggle.active .bar:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
-  background: #00cc00;
+  background: #7DD3FC;
 }
 
 /* Mobile styles */
@@ -203,8 +203,8 @@
     padding-top: 2rem;
     gap: 2rem;
     transition: left 0.3s ease;
-    border-top: 2px solid #00ff00;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    border-top: 2px solid rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
   }
   
   .nav-menu.active {
@@ -214,15 +214,15 @@
   .nav-link {
     font-size: 1.2rem;
     padding: 1rem 2rem;
-    border: 1px solid #00ff00;
+    border: 1px solid rgba(56, 189, 248, 0.5);
     border-radius: 4px;
-    background: rgba(0, 255, 0, 0.05);
+    background: rgba(56, 189, 248, 0.05);
     min-width: 200px;
     text-align: center;
   }
   
   .nav-link:hover {
-    background: rgba(0, 255, 0, 0.1);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    background: rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
   }
 }

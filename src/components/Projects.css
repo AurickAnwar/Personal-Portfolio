@@ -13,8 +13,8 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(0, 255, 127, 0.03) 0%, transparent 50%);
+    radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(14, 165, 233, 0.04) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
@@ -30,20 +30,20 @@
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #00ff00 0%, #00cc00 50%, #009900 100%);
+  background: linear-gradient(135deg, #E2F3FF 0%, #38BDF8 50%, #0EA5E9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
   position: relative;
 }
 
 .section-title::after {
   content: '_';
   animation: blink 1s infinite;
-  color: #00ff00;
+  color: #38BDF8;
 }
 
 @keyframes blink {
@@ -53,11 +53,11 @@
 
 .section-subtitle {
   font-size: 1.2rem;
-  color: #00cc00;
+  color: #7DD3FC;
   max-width: 600px;
   margin: 0 auto;
   opacity: 0.9;
-  text-shadow: 0 0 10px rgba(0, 204, 0, 0.3);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .projects-grid {
@@ -69,13 +69,13 @@
 }
 
 .project-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #00ff00;
+  background: rgba(10, 22, 40, 0.85);
+  border: 2px solid rgba(56, 189, 248, 0.5);
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 .project-card::before {
@@ -85,7 +85,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(0, 255, 0, 0.05), transparent);
+  background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.06), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1;
@@ -98,9 +98,9 @@
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 
-    0 0 30px rgba(0, 255, 0, 0.4),
-    0 0 60px rgba(0, 255, 0, 0.2);
-  border-color: #00cc00;
+    0 0 30px rgba(56, 189, 248, 0.35),
+    0 0 60px rgba(14, 165, 233, 0.2);
+  border-color: #38BDF8;
   animation: glitch 0.3s ease-in-out;
 }
 
@@ -117,7 +117,7 @@
   position: relative;
   height: 250px;
   overflow: hidden;
-  border-bottom: 2px solid #00ff00;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.4);
 }
 
 .project-image img {
@@ -139,7 +139,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(3, 7, 18, 0.88);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,10 +170,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(0, 255, 0, 0.1);
-  border: 2px solid #00ff00;
+  background: rgba(56, 189, 248, 0.1);
+  border: 2px solid rgba(56, 189, 248, 0.6);
   border-radius: 4px;
-  color: #00ff00;
+  color: #38BDF8;
   text-decoration: none;
   font-weight: 600;
   text-transform: uppercase;
@@ -183,9 +183,9 @@
 }
 
 .project-link:hover {
-  background: #00ff00;
-  color: #000;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  background: rgba(56, 189, 248, 0.25);
+  color: #E2F3FF;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
   transform: translateY(-2px);
 }
 
@@ -202,19 +202,19 @@
 .project-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #00ff00;
+  color: #38BDF8;
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .project-description {
-  color: #00cc00;
+  color: #7DD3FC;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   opacity: 0.9;
-  text-shadow: 0 0 5px rgba(0, 204, 0, 0.2);
+  text-shadow: 0 0 5px rgba(56, 189, 248, 0.2);
 }
 
 .project-technologies {
@@ -225,10 +225,10 @@
 
 .tech-tag {
   padding: 0.25rem 0.75rem;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00ff00;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.5);
   border-radius: 4px;
-  color: #00ff00;
+  color: #7DD3FC;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -237,9 +237,9 @@
 }
 
 .tech-tag:hover {
-  background: #00ff00;
-  color: #000;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  background: rgba(56, 189, 248, 0.25);
+  color: #E2F3FF;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
   transform: translateY(-1px);
 }
 
