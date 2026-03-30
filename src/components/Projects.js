@@ -25,37 +25,40 @@ const Projects = () => {
     // ⭐ Updated project (Assembly file instead of GitHub)
     {
       id: 3,
-      title: "Robotic Arm Gripper (CAD)",
-      description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
-      image: "/RoboticGrip.png",
-      technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
-      assemblyUrl: "/Robotic-Gripper.iam"
+      title: "Scissor Bot",
+      description: "Built an extension grabber mechanism that can retrieve items from the floor. Two push buttons are used to control the gripper's open and close state. We 3D modelled and built a scissor mechanism to extend the gripper's reach.",
+      image: "/ScissorsBot.jpg",
+      technologies: ["Arduino", "Autodesk Inventor", "3D Printing"],
+      demoUrl: "https://www.youtube.com/watch?v=-lGsktbrvjc"
+      
     },
 
     // CAD Projects (3)
     {
       id: 4,
+      title: "Robotic Arm Gripper (CAD)",
+      description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
+      image: "/RoboticGrip.png",
+      technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
+      assemblyUrl: "/Robotic-Gripper.iam"
+      
+    },
+    {
+      id: 5,
       title: "3D Modelled Drone",
       description: "Designed and 3D modelled a drone using Autodesk Inventor. Was designed to be a simple prototype for a drone.",
       image: "/Drone.png",
       technologies: ["Autodesk Inventor", "Assembly", "Constraints", "Design"],
       assemblyUrl: "/Drone.iam"
+      
     },
     {
-      id: 5,
+      id: 6,
       title: "Phone Stand",
       description: "3D Modeled and printed a phone stand using Fusion 360.",
       image: "/PhoneStand.png",
       technologies: ["Fusion 360", "3D Printing", "Cura"],
       stlUrl: "/Phone Stand.stl"
-    },
-    {
-      id: 6,
-      title: "Audi S2 Steering Wheel Replica",
-      description: "3D Modeled an Audi S2 steering wheel using Fusion 360 and used different digital fabrication techniques such as Carbon Fiber and Aluminum to create the replica.",
-      image: "/AudiS2Steering.png",
-      technologies: ["Fusion 360", "Fabrication", "Prototyping"],
-      stlUrl: "/Audi S2 Steering Wheel.stl"
     },
 
     // Arduino Projects (3)
