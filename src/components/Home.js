@@ -9,7 +9,7 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   
   const fullText = "Hi my name is Aurick. I am a first year Engineering 1 Student at McMaster University.";
-  const subtitle = "Aspiring Mechatronics Engineer";
+  const subtitle = "Incoming Software Engineering Intern at HermesAI";
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
