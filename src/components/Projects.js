@@ -6,14 +6,6 @@ const Projects = () => {
     // Python Projects (5)
     {
       id: 1,
-      title: "Google Home",
-      description: "Programmed a google home replica on OpenCv python and speech recognition. It was able to run and we could say anything to the system and they would return a response.",
-      image: "/STT.png",
-      technologies: ["Python", "TextToSpeech", "OpenCV", "SpeechToText"],
-      githubUrl: "https://github.com/AurickAnwar/Google-Home-Replica"
-    },
-    {
-      id: 2,
       title: "Real-Time Object Detection System",
       description: "Built a real-time object detection system using OpenCv on python and YOLOv11. It was able to detect objects in real-time and display the bounding box of the object.",
       image: "/ObjectDetection.jpg",
@@ -21,10 +13,8 @@ const Projects = () => {
       githubUrl: "https://github.com/AurickAnwar/Object-Detection-AI-Model-With-YOLOv11"
       
     },
-
-    // ⭐ Updated project (Assembly file instead of GitHub)
     {
-      id: 3,
+      id: 2,
       title: "Car and Pedestrian Detection",
       description: "Designed an AI detection car system using OpenCv on python and made an algorithm to display a counter for when each car/pedestrian passes by.",
       image: "/Car Detection.png",
@@ -35,32 +25,46 @@ const Projects = () => {
       
     },
 
+    // ⭐ Updated project (Assembly file instead of GitHub)
+    {
+      id: 3,
+      title: "Facial Recognition",
+      description: "Built a facial recognition system using OpenCv on python and Haar Cascades. It was able to detect faces in real-time and display the bounding box of the face. Also was able to recognize the number of faces present and the FPS of the camera.",
+      image: "/Facial Recognition.jpg",
+      technologies: ["Python", "OpenCV", "Haar Cascades"],
+      githubUrl: "https://github.com/AurickAnwar/Facial-Recognition-with-OpenCV"
+      
+      
+      
+    },
+
     // CAD Projects (3)
     {
       id: 4,
-      title: "Robotic Arm Gripper (CAD)",
-      description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
-      image: "/RoboticGrip.png",
-      technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
-      assemblyUrl: "/Robotic-Gripper.iam"
+      title: "Google Home",
+      description: "Programmed a google home replica on OpenCv python and speech recognition. It was able to run and we could say anything to the system and they would return a response.",
+      image: "/STT.png",
+      technologies: ["Python", "TextToSpeech", "OpenCV", "SpeechToText"],
+      githubUrl: "https://github.com/AurickAnwar/Google-Home-Replica"
       
     },
     {
       id: 5,
-      title: "3D Modelled Drone",
-      description: "Designed and 3D modelled a drone using Autodesk Inventor. Was designed to be a simple prototype for a drone.",
-      image: "/Drone.png",
-      technologies: ["Autodesk Inventor", "Assembly", "Constraints", "Design"],
-      assemblyUrl: "/Drone.iam"
+      title: "Impact Severity Machine Learning Model",
+      description: "Built a machine learning model using PyTorch to predict the severity of an impact based on the accelerometer data. The model was able to predict the severity of an impact with an accuracy of 96.4%. This model I plan on implementing in my startup for Magnified Systems.",
+      image: "/CrashSeverity.jpg",
+      technologies: ["Python", "PyTorch", "Machine Learning", "IMU Sensor Data"],
+      githubUrl: "https://github.com/AurickAnwar/Impact-Analysis-ML"
       
     },
     {
       id: 6,
-      title: "Phone Stand",
-      description: "3D Modeled and printed a phone stand using Fusion 360.",
-      image: "/PhoneStand.png",
-      technologies: ["Fusion 360", "3D Printing", "Cura"],
-      stlUrl: "/Phone Stand.stl"
+      title: "Push Button LED PCB",
+      description: "Designed a push button LED PCB using KiCad",
+      image: "/LEDPCB.png",
+      technologies: ["KiCad", "PCB", "LEDs", "Push Button"],
+      pcbUrl: "/ledlight.kicad_pcb",
+      schematicUrl: "/ledlight.kicad_sch"
     },
 
     // Arduino Projects (3)
@@ -71,8 +75,8 @@ const Projects = () => {
       image: "/ScissorsBot.jpg",
       technologies: ["Arduino", "Autodesk Inventor", "3D Printing"],
       demoUrl: "https://www.youtube.com/watch?v=-lGsktbrvjc"
-      
     },
+      
     {
       id: 8,
       title: "Smart Home",
@@ -80,16 +84,15 @@ const Projects = () => {
       image: "/SmartHome.jpg",
       technologies: ["Arduino", "Fusion 360", "Laser Cut", "Ultrasonic Sensor", "LEDs", "Fan", "Sensor Shield", "Piezzo Buzzer"],
       demoUrl: "/SmartHome.mov"
-      
     },
     {
       id: 9,
-      title: "Push Button LED PCB",
-      description: "Designed a push button LED PCB using KiCad",
-      image: "/LEDPCB.png",
-      technologies: ["KiCad", "PCB", "LEDs", "Push Button"],
-      pcbUrl: "/ledlight.kicad_pcb",
-      schematicUrl: "/ledlight.kicad_sch"
+      title: "Robotic Arm Gripper (CAD)",
+      description: "Used a base plate end effector and added a gripper to the end of the arm to pick up and drop off objects.",
+      image: "/RoboticGrip.png",
+      technologies: ["Autodesk Inventor", "Assembly", "Constraints"],
+      assemblyUrl: "/Robotic-Gripper.iam"
+      
       
     }
   ];

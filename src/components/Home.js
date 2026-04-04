@@ -9,7 +9,9 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   
   const fullText = "Hi my name is Aurick. I am a first year Engineering 1 Student at McMaster University.";
-  const subtitle = "Incoming Software Engineering Intern at HermesAI.";
+  const subtitle = "Founder @Magnified Systems.";
+  const subtitle2 = "Incoming SWE Intern @HermesAI.";
+  
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
@@ -38,9 +40,12 @@ const Home = () => {
             </h1>
             <h2 className="home-subtitle">
               {subtitle}
+            <h2 className="home-subtitle2">
+              {subtitle2}
+            </h2>
             </h2>
             <p className="home-description">
-              Engineering has been my pathway since middle school. I'm passionate about robotics, automation and, building  technologies that can help improve the lives of others. Whether it's aerospace concepts, embedded systems, or mechanical design, I'm always looking for new opportunities to learn and grow. My goals for this year is to learn PCB design and software development to help me build my own projects. 
+              Engineering has been my pathway since middle school. I'm passionate about robotics, automation and, building  technologies that can help improve the lives of others. Whether it's aerospace concepts, embedded systems, or mechanical design, I'm always looking for new opportunities to learn and grow. My goals for this year is to learn PCB design and get good with ROS2. 
             </p>
             <div className="home-buttons">
               <Link to="/projects" className="btn">

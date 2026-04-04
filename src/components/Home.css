@@ -98,17 +98,27 @@
 
 .home-subtitle {
   font-size: 1.5rem;
-  color: #AFC9E6;
+  color: #4ADE80;
   margin-bottom: 1.5rem;
-  font-weight: 400;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow: 0 0 8px rgba(175, 201, 230, 0.2);
 }
+.home-subtitle2{
+  font-size: 1.5rem;
+  color: #4ADE80;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(175, 201, 230, 0.2);
+  
+}
 
 .home-description {
   font-size: 1.1rem;
-  color: #8FA8C4;
+  color: #E6EDF3;
   margin-bottom: 2.5rem;
   line-height: 1.7;
   opacity: 0.95;
@@ -148,40 +158,6 @@
   box-shadow: 
     0 0 30px rgba(56, 189, 248, 0.4),
     inset 0 0 30px rgba(125, 211, 252, 0.15);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    box-shadow: 
-      0 0 30px rgba(56, 189, 248, 0.4),
-      inset 0 0 30px rgba(125, 211, 252, 0.15);
-  }
-  50% { 
-    box-shadow: 
-      0 0 50px rgba(56, 189, 248, 0.6),
-      inset 0 0 50px rgba(125, 211, 252, 0.25);
-  }
-}
-
-.profile-circle::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(125, 211, 252, 0.25), transparent);
-  animation: rotate 3s linear infinite;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .profile-initials {
@@ -282,6 +258,8 @@
   border-radius: 50%;
   border: 2px solid rgba(56, 189, 248, 0.6);
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  position: relative;
+  z-index: 1;
 }
 .stat-button {
   text-align: center;
@@ -413,37 +391,6 @@
       inset 0 0 50px rgba(0, 255, 0, 0.4);
   }
 } */
-
-.profile-circle::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(125, 211, 252, 0.25), transparent);
-  animation: rotate 3s linear infinite;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.profile-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid rgba(56, 189, 248, 0.6);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-  position: relative;
-  z-index: 2;
-}
 
 .home-title {
   font-size: 2.2rem;   /* was ~3.5rem */
