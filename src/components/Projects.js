@@ -30,7 +30,7 @@ const Projects = () => {
       id: 3,
       title: "Facial Recognition",
       description: "Built a facial recognition system using OpenCv on python and Haar Cascades. It was able to detect faces in real-time and display the bounding box of the face. Also was able to recognize the number of faces present and the FPS of the camera.",
-      image: "/Facial Recognition.jpg",
+      image: "/FacialRecognition.jpg",
       technologies: ["Python", "OpenCV", "Haar Cascades"],
       githubUrl: "https://github.com/AurickAnwar/Facial-Recognition-with-OpenCV"
       
