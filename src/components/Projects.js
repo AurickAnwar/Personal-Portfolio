@@ -6,21 +6,24 @@ const Projects = () => {
     // Python Projects (5)
     {
       id: 1,
-      title: "Real-Time Object Detection System",
-      description: "Built a real-time object detection system using OpenCv on python and YOLOv11. It was able to detect objects in real-time and display the bounding box of the object.",
-      image: "/ObjectDetection.jpg",
-      technologies: ["Python", "OpenCV", "YOLOv11"],
-      githubUrl: "https://github.com/AurickAnwar/Object-Detection-AI-Model-With-YOLOv11"
+      title: "AI Computer Control System with Hand Gesture Tracking",
+      description: "Built a real-time computer vision system that uses hand gesture recognition to control a computer. Leveraging MediaPipe and OpenCV, the system tracks hand landmarks to enable touchless interaction, including volume control, cursor movement, and gesture-based commands.",
+      image: "/HandGestureControl.jpg",
+      technologies: ['MediaPipe', 'OpenCV', 'PyAutoGUI'],
+      githubUrl: "https://github.com/AurickAnwar/Real-Time-Hand-Gesture-Controller",
+      demoUrl: "https://www.youtube.com/watch?v=87QTKgbuSko&"
+      
       
     },
     {
       id: 2,
-      title: "Car and Pedestrian Detection",
-      description: "Designed an AI detection car system using OpenCv on python and made an algorithm to display a counter for when each car/pedestrian passes by.",
-      image: "/Car Detection.png",
-      technologies: ["Python", "OpenCV", "NumPy"],
-      githubUrl: "https://github.com/AurickAnwar/Python-Projects-w-OpenCV/blob/main/Pedestrian%20and%20Car%20Detection%20System.py",
-      reportUrl: "https://docs.google.com/document/d/1CIpkooX8EVqJkrTwUZ0tDHImPGGr1oqaoGuMrc3TTdc/edit?tab=t.0"
+      title: "Real-Time Object Detection System",
+      description: "Built a real-time object detection system using OpenCv on python and YOLOv11. It was able to detect objects in real-time and display the bounding box of the object.",
+      image: "/ObjectDetection.jpg",
+      technologies: ["Python", "OpenCV", "YOLOv11"],
+      githubUrl: "https://github.com/AurickAnwar/Object-Detection-AI-Model-With-YOLOv11",
+      demoUrl: "https://www.youtube.com/watch?v=tMhFKEpCgqw"
+     
       
       
     },
@@ -28,11 +31,13 @@ const Projects = () => {
     // ⭐ Updated project (Assembly file instead of GitHub)
     {
       id: 3,
-      title: "Facial Recognition",
-      description: "Built a facial recognition system using OpenCv on python and Haar Cascades. It was able to detect faces in real-time and display the bounding box of the face. Also was able to recognize the number of faces present and the FPS of the camera.",
-      image: "/FacialRecognition.jpg",
-      technologies: ["Python", "OpenCV", "Haar Cascades"],
-      githubUrl: "https://github.com/AurickAnwar/Facial-Recognition-with-OpenCV"
+      title: "Car and Pedestrian Detection",
+      description: "Designed an AI detection car system using OpenCv on python and made an algorithm to display a counter for when each car/pedestrian passes by.",
+      image: "/Car Detection.png",
+      technologies: ["Python", "OpenCV", "NumPy"],
+      githubUrl: "https://github.com/AurickAnwar/Python-Projects-w-OpenCV/blob/main/Pedestrian%20and%20Car%20Detection%20System.py",
+      reportUrl: "https://docs.google.com/document/d/1CIpkooX8EVqJkrTwUZ0tDHImPGGr1oqaoGuMrc3TTdc/edit?tab=t.0"
+     
       
       
       
@@ -41,15 +46,26 @@ const Projects = () => {
     // CAD Projects (3)
     {
       id: 4,
+      title: "Facial Recognition",
+      description: "Built a facial recognition system using OpenCv on python and Haar Cascades. It was able to detect faces in real-time and display the bounding box of the face. Also was able to recognize the number of faces present and the FPS of the camera.",
+      image: "/FacialRecognition.jpg",
+      technologies: ["Python", "OpenCV", "Haar Cascades"],
+      githubUrl: "https://github.com/AurickAnwar/Facial-Recognition-with-OpenCV"
+      
+      
+    },
+    {
+      id: 5,
       title: "Google Home",
       description: "Programmed a google home replica on OpenCv python and speech recognition. It was able to run and we could say anything to the system and they would return a response.",
       image: "/STT.png",
       technologies: ["Python", "TextToSpeech", "OpenCV", "SpeechToText"],
       githubUrl: "https://github.com/AurickAnwar/Google-Home-Replica"
       
+      
     },
     {
-      id: 5,
+      id: 6,
       title: "Impact Severity Machine Learning Model",
       description: "Built a machine learning model using PyTorch to predict the severity of an impact based on the accelerometer data. The model was able to predict the severity of an impact with an accuracy of 96.4%. This model I plan on implementing in my startup for Magnified Systems.",
       image: "/CrashSeverity.jpg",
@@ -57,33 +73,27 @@ const Projects = () => {
       githubUrl: "https://github.com/AurickAnwar/Impact-Analysis-ML"
       
     },
+
+    // Arduino Projects (3)
     {
-      id: 6,
+      id: 7,
       title: "Push Button LED PCB",
       description: "Designed a push button LED PCB using KiCad",
       image: "/LEDPCB.png",
       technologies: ["KiCad", "PCB", "LEDs", "Push Button"],
       pcbUrl: "/ledlight.kicad_pcb",
       schematicUrl: "/ledlight.kicad_sch"
+      
     },
-
-    // Arduino Projects (3)
+      
     {
-      id: 7,
+      id: 8,
       title: "Scissor Bot",
       description: "Built an extension grabber mechanism that can retrieve items from the floor. Two push buttons are used to control the gripper's open and close state. We 3D modelled and built a scissor mechanism to extend the gripper's reach.",
       image: "/ScissorsBot.jpg",
       technologies: ["Arduino", "Autodesk Inventor", "3D Printing"],
       demoUrl: "https://www.youtube.com/watch?v=-lGsktbrvjc"
-    },
       
-    {
-      id: 8,
-      title: "Smart Home",
-      description: "3D modelled a house model on Fusion 360 and built a smart home using Arduino using an Ultrasonic Sensor, LCD Module, Servo Motor and Fan",
-      image: "/SmartHome.jpg",
-      technologies: ["Arduino", "Fusion 360", "Laser Cut", "Ultrasonic Sensor", "LEDs", "Fan", "Sensor Shield", "Piezzo Buzzer"],
-      demoUrl: "/SmartHome.mov"
     },
     {
       id: 9,
@@ -117,26 +127,27 @@ const Projects = () => {
                 />
                 
                 <div className="project-overlay">
-                  <div className={`project-links ${project.reportUrl ? 'double' : 'single'}`}>
-
-                    {/* ORDER OF PRIORITY: STL → Assembly → Demo → GitHub */}
-                    {project.stlUrl ? (
+                  <div className="project-links">
+                    {project.stlUrl && (
                       <a href={project.stlUrl} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">🧩</i> STL File
                       </a>
-                    ) : project.assemblyUrl ? (
+                    )}
+                    {project.assemblyUrl && (
                       <a href={project.assemblyUrl} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">🧩</i> Assembly File
                       </a>
-                    ) : project.demoUrl ? (
+                    )}
+                    {project.demoUrl && (
                       <a href={project.demoUrl} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">🎥</i> Demo
                       </a>
-                    ) : project.githubUrl ? (
+                    )}
+                    {project.githubUrl && (
                       <a href={project.githubUrl} className="project-link" target="_blank" rel="noopener noreferrer">
                         <i className="icon">📁</i> GitHub
                       </a>
-                    ) : null}
+                    )}
 
                     {project.reportUrl && (
                       <a href={project.reportUrl} className="project-link" target="_blank" rel="noopener noreferrer">
