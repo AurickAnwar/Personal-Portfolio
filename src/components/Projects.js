@@ -21,6 +21,24 @@ const Projects = () => {
     thirdCtaLabel: 'View GitHub Repository',
     thirdCtaUrl: 'https://github.com/AurickAnwar/MagnifiedSystems'
   };
+  const ros2Learning = {
+    title: 'Learning ROS2',
+    status: 'Currently Learning',
+    progressPercent: 45,
+    progressNote: "Working with RVIZ and locomotion of a robot",
+    description:
+      'Future Projects: ',
+    bullets: [
+      'Autonomous Driving and obstacle avoidance',
+      'Amazon Wearhouse Simulation',
+      'Drone Navigation and Mapping',
+    
+    ],
+    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RVIZ'],
+    primaryCtaLabel: 'Github Repository',
+    primaryCtaUrl: 'https://github.com/007Aurick/ROS2',
+ 
+  };
   const cancerCellDetection = {
     title: 'Cancer Cell Detection',
     status: 'Currently Building',
@@ -38,23 +56,7 @@ const Projects = () => {
     primaryCtaUrl: 'https://github.com/AurickAnwar/Cancer-Cell-Detection',
   };
 
-  const ros2Learning = {
-    title: 'Learning ROS2',
-    status: 'Currently Learning',
-    progressPercent: 30,
-    progressNote: "Made my first publisher.",
-    description:
-      'Slowly wiring my brain to think in nodes and topics...',
-    bullets: [
-      'Topics, nodes, subscribers, publishers',
-      'Gazebo — breaking things in sim before I break them in hardware.'
-    ],
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux'],
-    primaryCtaLabel: 'ROS 2 Docs',
-    primaryCtaUrl: 'https://docs.ros.org/en/humble/',
-    secondaryCtaLabel: 'Gazebo',
-    secondaryCtaUrl: 'https://gazebosim.org/docs'
-  };
+  
   
 
   return (
@@ -94,6 +96,45 @@ const Projects = () => {
                 {magnifiedProject.thirdCtaLabel}
               </a>
 
+            </div>
+          </div>
+        </div>
+        <div className="featured-project fade-in-up">
+          <div className="featured-content">
+            <p className="featured-label">Featured Project</p>
+            <h2>{ros2Learning.title}</h2>
+            <p className="featured-status">{ros2Learning.status}</p>
+            <p>{ros2Learning.description}</p>
+            <ul className="featured-list">
+              {ros2Learning.bullets.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <div className="featured-progress-block" role="status" aria-live="polite">
+              <div className="featured-progress-header">
+                <span className="featured-progress-title">Progress</span>
+                <span className="featured-progress-percent">{ros2Learning.progressPercent}%</span>
+              </div>
+              <div className="featured-progress-track" aria-label={`ROS2 learning progress ${ros2Learning.progressPercent}%`}>
+                <span
+                  className="featured-progress-fill"
+                  style={{ '--progress-width': `${ros2Learning.progressPercent}%` }}
+                />
+              </div>
+              <p className="featured-developing-text" style={{ marginTop: '0.65rem' }}>
+                {ros2Learning.progressNote}
+              </p>
+            </div>
+            <div className="project-technologies" style={{ marginTop: '1rem' }}>
+              {ros2Learning.technologies.map((tech) => (
+                <span key={tech} className="tech-tag">{tech}</span>
+              ))}
+            </div>
+            <div className="featured-actions">
+              <a href={ros2Learning.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
+                {ros2Learning.primaryCtaLabel}
+              </a>
+              
             </div>
           </div>
         </div>
@@ -145,47 +186,7 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="featured-project fade-in-up">
-          <div className="featured-content">
-            <p className="featured-label">Featured Project</p>
-            <h2>{ros2Learning.title}</h2>
-            <p className="featured-status">{ros2Learning.status}</p>
-            <p>{ros2Learning.description}</p>
-            <ul className="featured-list">
-              {ros2Learning.bullets.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-            <div className="featured-progress-block" role="status" aria-live="polite">
-              <div className="featured-progress-header">
-                <span className="featured-progress-title">Progress</span>
-                <span className="featured-progress-percent">{ros2Learning.progressPercent}%</span>
-              </div>
-              <div className="featured-progress-track" aria-label={`ROS2 learning progress ${ros2Learning.progressPercent}%`}>
-                <span
-                  className="featured-progress-fill"
-                  style={{ '--progress-width': `${ros2Learning.progressPercent}%` }}
-                />
-              </div>
-              <p className="featured-developing-text" style={{ marginTop: '0.65rem' }}>
-                {ros2Learning.progressNote}
-              </p>
-            </div>
-            <div className="project-technologies" style={{ marginTop: '1rem' }}>
-              {ros2Learning.technologies.map((tech) => (
-                <span key={tech} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-            <div className="featured-actions">
-              <a href={ros2Learning.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {ros2Learning.primaryCtaLabel}
-              </a>
-              <a href={ros2Learning.secondaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                {ros2Learning.secondaryCtaLabel}
-              </a>
-            </div>
-          </div>
-        </div>
+        
 
         <div className="projects-divider" />
 
