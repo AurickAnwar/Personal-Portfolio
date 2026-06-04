@@ -24,8 +24,8 @@ const Projects = () => {
   const ros2Learning = {
     title: 'Learning ROS2',
     status: 'Currently Learning',
-    progressPercent: 45,
-    progressNote: "Working with RVIZ and locomotion of a robot",
+    progressPercent: 50,
+    progressNote: "Working with RVIZ and locomotion of a robot. Working with URDF and Xacro Files",
     description:
       'Future Projects: ',
     bullets: [
