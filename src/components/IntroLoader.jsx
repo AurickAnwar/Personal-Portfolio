@@ -15,7 +15,6 @@ const SCRIPT = [
     cmd: 'cd Aurick\'s Portfolio',
     output: 'website active...',
   },
- 
   {
     cmd: 'loading content...',
     type: 'progress',
@@ -24,8 +23,8 @@ const SCRIPT = [
   },
   {
     cmd: 'npm start',
-    output: 'SYSTEM READY'
-  }
+    output: 'SYSTEM READY',
+  },
 ];
 
 function buildProgressBar(percent) {
@@ -155,7 +154,6 @@ const IntroLoader = ({ onComplete }) => {
             label: step.progressLabel ?? 'LOADING PROJECT ARCHIVES',
             percent: 100,
           },
-          
         ]);
         setStepIndex((i) => i + 1);
         setPhase('typing');
@@ -195,26 +193,35 @@ const IntroLoader = ({ onComplete }) => {
     setTimeout(() => onComplete(), 400);
   }, [isExiting, onComplete]);
 
-  const submitPrompt = useCallback(() => {
+  useEffect(() => {
+    if (phase !== 'prompt' || isExiting) {
+      return undefined;
+    }
+
     const answer = userInput.trim().toLowerCase();
 
     if (answer === 'yes') {
       finishIntro();
-      return;
+      return undefined;
     }
 
     if (answer === 'no') {
       resetTerminal();
-      return;
+      return undefined;
     }
 
-    setFinishedLines((prev) => [
-      ...prev,
-      { type: 'command', text: userInput },
-      { type: 'output', text: 'Invalid input. Type yes or no.' },
-    ]);
-    setUserInput('');
-  }, [userInput, finishIntro, resetTerminal]);
+    const isValidPrefix = (word) => 'yes'.startsWith(word) || 'no'.startsWith(word);
+    if (answer.length > 0 && !isValidPrefix(answer)) {
+      setFinishedLines((prev) => [
+        ...prev,
+        { type: 'command', text: userInput },
+        { type: 'output', text: 'Invalid input. Type yes or no.' },
+      ]);
+      setUserInput('');
+    }
+
+    return undefined;
+  }, [userInput, phase, isExiting, finishIntro, resetTerminal]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -226,13 +233,6 @@ const IntroLoader = ({ onComplete }) => {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [handleSkip]);
-
-  const handlePromptKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitPrompt();
-    }
-  };
 
   const activeCmd =
     !scriptDone && (phase === 'typing' || phase === 'output') ? (
@@ -300,7 +300,6 @@ const IntroLoader = ({ onComplete }) => {
                     className="intro-term-input"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    onKeyDown={handlePromptKeyDown}
                     autoComplete="off"
                     autoCapitalize="off"
                     spellCheck={false}
