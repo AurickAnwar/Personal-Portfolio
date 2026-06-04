@@ -10,27 +10,54 @@ import OutsideEngineering from './components/OutsideEngineering';
 import IntroLoader from './components/IntroLoader';
 import './App.css';
 
+function revealAnimatedSections() {
+  const animated = document.querySelectorAll('.fade-in, .fade-in-up');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -5% 0px' }
+  );
+
+  animated.forEach((node) => {
+    observer.observe(node);
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+      node.classList.add('in-view');
+      observer.unobserve(node);
+    }
+  });
+
+  return () => observer.disconnect();
+}
+
 function AppContent() {
   const location = useLocation();
   const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
-    const animated = document.querySelectorAll('.fade-in, .fade-in-up');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.18 }
-    );
+    if (showIntro) {
+      return undefined;
+    }
 
-    animated.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, [location.pathname]);
+    let disconnect = () => {};
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        disconnect = revealAnimatedSections();
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      disconnect();
+    };
+  }, [location.pathname, showIntro]);
 
   const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
@@ -38,15 +65,18 @@ function AppContent() {
 
   return (
     <>
-      <AnimatePresence>
-        {showIntro && <IntroLoader onComplete={handleIntroComplete} />}
-      </AnimatePresence>
+      <AnimatePresence>{showIntro && <IntroLoader onComplete={handleIntroComplete} />}</AnimatePresence>
 
       <motion.div
         className="App"
-        initial={showIntro ? { opacity: 0, y: 12 } : { opacity: 1, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
+        initial={false}
+        animate={{
+          opacity: showIntro ? 0 : 1,
+          y: showIntro ? 8 : 0,
+        }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        aria-hidden={showIntro}
+        style={{ pointerEvents: showIntro ? 'none' : 'auto' }}
       >
         <Navbar />
         <Routes>

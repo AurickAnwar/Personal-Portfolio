@@ -4,6 +4,11 @@
   z-index: 9999;
   background: #0a0c10;
   overflow: hidden;
+  will-change: opacity, transform;
+}
+
+.intro-loader--exiting {
+  pointer-events: none;
 }
 
 .intro-loader__center {

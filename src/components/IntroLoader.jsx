@@ -59,8 +59,12 @@ function ProgressLine({ label, percent }) {
   );
 }
 
+const EXIT_MS = 320;
+
 const IntroLoader = ({ onComplete }) => {
   const inputRef = useRef(null);
+  const isExitingRef = useRef(false);
+  const hasCompletedRef = useRef(false);
   const [finishedLines, setFinishedLines] = useState([]);
   const [stepIndex, setStepIndex] = useState(0);
   const [typedCmd, setTypedCmd] = useState('');
@@ -178,50 +182,60 @@ const IntroLoader = ({ onComplete }) => {
   }, [phase]);
 
   const finishIntro = useCallback(() => {
-    if (isExiting) {
+    if (isExitingRef.current) {
       return;
     }
+    isExitingRef.current = true;
     setIsExiting(true);
-    setTimeout(() => onComplete(), 650);
-  }, [isExiting, onComplete]);
+  }, []);
 
   const handleSkip = useCallback(() => {
-    if (isExiting) {
+    finishIntro();
+  }, [finishIntro]);
+
+  const handleExitComplete = useCallback(() => {
+    if (!isExitingRef.current || hasCompletedRef.current) {
       return;
     }
-    setIsExiting(true);
-    setTimeout(() => onComplete(), 400);
-  }, [isExiting, onComplete]);
+    hasCompletedRef.current = true;
+    onComplete();
+  }, [onComplete]);
 
-  useEffect(() => {
-    if (phase !== 'prompt' || isExiting) {
-      return undefined;
-    }
+  const handlePromptChange = useCallback(
+    (e) => {
+      if (isExitingRef.current) {
+        return;
+      }
 
-    const answer = userInput.trim().toLowerCase();
+      const value = e.target.value;
+      const answer = value.trim().toLowerCase();
 
-    if (answer === 'yes') {
-      finishIntro();
-      return undefined;
-    }
+      if (answer === 'yes') {
+        setUserInput(value);
+        finishIntro();
+        return;
+      }
 
-    if (answer === 'no') {
-      resetTerminal();
-      return undefined;
-    }
+      if (answer === 'no') {
+        resetTerminal();
+        return;
+      }
 
-    const isValidPrefix = (word) => 'yes'.startsWith(word) || 'no'.startsWith(word);
-    if (answer.length > 0 && !isValidPrefix(answer)) {
-      setFinishedLines((prev) => [
-        ...prev,
-        { type: 'command', text: userInput },
-        { type: 'output', text: 'Invalid input. Type yes or no.' },
-      ]);
-      setUserInput('');
-    }
+      const isValidPrefix = (word) => 'yes'.startsWith(word) || 'no'.startsWith(word);
+      if (answer.length > 0 && !isValidPrefix(answer)) {
+        setFinishedLines((prev) => [
+          ...prev,
+          { type: 'command', text: value },
+          { type: 'output', text: 'Invalid input. Type yes or no.' },
+        ]);
+        setUserInput('');
+        return;
+      }
 
-    return undefined;
-  }, [userInput, phase, isExiting, finishIntro, resetTerminal]);
+      setUserInput(value);
+    },
+    [finishIntro, resetTerminal]
+  );
 
   useEffect(() => {
     const onKey = (e) => {
@@ -246,10 +260,11 @@ const IntroLoader = ({ onComplete }) => {
 
   return (
     <motion.div
-      className="intro-loader"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: isExiting ? 0 : 1 }}
-      transition={{ duration: 0.55, ease: 'easeInOut' }}
+      className={`intro-loader${isExiting ? ' intro-loader--exiting' : ''}`}
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: isExiting ? 0 : 1, y: isExiting ? -10 : 0 }}
+      transition={{ duration: EXIT_MS / 1000, ease: [0.22, 1, 0.36, 1] }}
+      onAnimationComplete={handleExitComplete}
       role="dialog"
       aria-label="Portfolio terminal intro"
     >
@@ -299,7 +314,7 @@ const IntroLoader = ({ onComplete }) => {
                     type="text"
                     className="intro-term-input"
                     value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
+                    onChange={handlePromptChange}
                     autoComplete="off"
                     autoCapitalize="off"
                     spellCheck={false}
