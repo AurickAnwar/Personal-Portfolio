@@ -275,6 +275,24 @@ function OutsideEngineering() {
             </div>
 
             <div className="life-sports-dashboard">
+            <article className="life-sports-card life-ufc-wide">
+              <h3 className="life-ufc-wide-title">UFC</h3>
+              <div className="life-ufc-wide-grid">
+                {ufcPredictions.map((c, idx) => (
+                  <div key={c.id} className={`life-ufc-wide-bout ${idx > 0 ? 'life-ufc-wide-bout--split' : ''}`}>
+                    <span className="life-sports-card-tag">{c.tag}</span>
+                    <p className="life-sports-card-event">{c.event}</p>
+                    <p className="life-sports-card-matchup">{c.matchup}</p>
+                    <p className="life-sports-card-prediction">
+                      <span className="life-sports-card-pred-label">Prediction</span>
+                      {c.prediction}
+                    </p>
+                    <p className="life-sports-card-detail">{c.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
               <div className="life-sports-accuracy">
               <div className="life-sports-accuracy-head">
                 <span className="life-sports-accuracy-label">NBA playoff tracker</span>
@@ -303,24 +321,6 @@ function OutsideEngineering() {
                 </li>
               </ul>
             </div>
-
-            <article className="life-sports-card life-ufc-wide">
-              <h3 className="life-ufc-wide-title">UFC</h3>
-              <div className="life-ufc-wide-grid">
-                {ufcPredictions.map((c, idx) => (
-                  <div key={c.id} className={`life-ufc-wide-bout ${idx > 0 ? 'life-ufc-wide-bout--split' : ''}`}>
-                    <span className="life-sports-card-tag">{c.tag}</span>
-                    <p className="life-sports-card-event">{c.event}</p>
-                    <p className="life-sports-card-matchup">{c.matchup}</p>
-                    <p className="life-sports-card-prediction">
-                      <span className="life-sports-card-pred-label">Prediction</span>
-                      {c.prediction}
-                    </p>
-                    <p className="life-sports-card-detail">{c.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
 
             <div className="life-nba-bracket">
               <h3 className="life-nba-bracket-main-title">My NBA playoffs prediction bracket</h3>
