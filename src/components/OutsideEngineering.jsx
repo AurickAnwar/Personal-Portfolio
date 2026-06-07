@@ -6,11 +6,9 @@ import {
   vacationSlides,
   PLAYOFF_SCORING_NOTE,
   ufcPredictions,
-  nbaWesternPlayoffs,
-  nbaEasternPlayoffs,
-  nbaFinalsBracket,
   tallyNbaPlayoffsFromBracket,
 } from '../data/lifeContent';
+import NbaPlayoffBracket from './life/NbaPlayoffBracket';
 import './OutsideEngineering.css';
 
 const POLAROID_TILTS = [-2.4, 1.8, -2.1, 2.5, -1.6, 2.2];
@@ -52,57 +50,6 @@ const masonryChild = {
     transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
-function bracketOutcomeLabel(outcome) {
-  switch (outcome) {
-    case 'exact':
-      return 'Exact (+2)';
-    case 'winner':
-      return 'Winner OK (+1)';
-    case 'wrong':
-      return 'Miss (+1 L)';
-    case 'pending':
-      return 'Pending';
-    default:
-      return '';
-  }
-}
-
-function BracketSeriesCard({ series }) {
-  return (
-    <article className={`life-bracket-card life-bracket-card--${series.outcome}`}>
-      <span className="life-bracket-status">{bracketOutcomeLabel(series.outcome)}</span>
-      <p className="life-bracket-matchup">{series.matchup}</p>
-      <p className="life-bracket-pred">
-        <span className="life-bracket-k">Pick</span> {series.prediction}
-      </p>
-      {series.actual ? (
-        <p className="life-bracket-actual">
-          <span className="life-bracket-k">Result</span> {series.actual}
-        </p>
-      ) : null}
-      {series.note ? <p className="life-bracket-note">{series.note}</p> : null}
-    </article>
-  );
-}
-
-function PlayoffConferenceBlock({ data }) {
-  return (
-    <div className="life-bracket-conf">
-      <h3 className="life-bracket-conf-title">{data.conference} Conference</h3>
-      {data.rounds.map((round) => (
-        <div key={round.label} className="life-bracket-round">
-          <h4 className="life-bracket-round-title">{round.label}</h4>
-          <div className="life-bracket-round-grid">
-            {round.series.map((s) => (
-              <BracketSeriesCard key={s.id} series={s} />
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function OutsideEngineering() {
   const playoffTally = tallyNbaPlayoffsFromBracket();
@@ -322,21 +269,7 @@ function OutsideEngineering() {
               </ul>
             </div>
 
-            <div className="life-nba-bracket">
-              <h3 className="life-nba-bracket-main-title">My NBA playoffs prediction bracket</h3>
-              <div className="life-nba-bracket-grid">
-                <PlayoffConferenceBlock data={nbaWesternPlayoffs} />
-                <PlayoffConferenceBlock data={nbaEasternPlayoffs} />
-              </div>
-              <div className="life-nba-finals-wrap">
-                <h4 className="life-bracket-round-title">{nbaFinalsBracket.label}</h4>
-                <div className="life-bracket-round-grid life-bracket-round-grid--finals">
-                  {nbaFinalsBracket.series.map((s) => (
-                    <BracketSeriesCard key={s.id} series={s} />
-                  ))}
-                </div>
-              </div>
-            </div>
+            <NbaPlayoffBracket />
             </div>
           </div>
         </motion.section>
