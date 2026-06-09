@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroPremiumBg from './HeroPremiumBg';
 import BatmanHeroPortrait from './home/BatmanHeroPortrait';
+import WorkSection from './home/WorkSection';
 import SpotifySection from './spotify/SpotifySection';
 import './Home.css';
 
@@ -82,6 +83,7 @@ const Home = () => {
           </div>
         </div>
 
+        <WorkSection />
         <SpotifySection />
       </div>
     </section>
