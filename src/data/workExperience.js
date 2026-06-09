@@ -5,7 +5,7 @@ export const workExperience = [
     role: 'Software Engineering Intern',
     location: 'Toronto, Ontario',
     dates: 'May 2026 – Present',
-    logo: '/HermesAI.png',
+    logo: '/hermesailogo.jpg',
     url: 'https://hermesai.ca/',
   },
   {
