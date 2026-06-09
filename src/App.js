@@ -8,6 +8,7 @@ import ProjectDetail from './components/projects/ProjectDetail';
 import Contact from './components/Contact';
 import OutsideEngineering from './components/OutsideEngineering';
 import IntroLoader from './components/IntroLoader';
+import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 function revealAnimatedSections() {
@@ -66,6 +67,7 @@ function AppContent() {
   return (
     <>
       <AnimatePresence>{showIntro && <IntroLoader onComplete={handleIntroComplete} />}</AnimatePresence>
+      <CustomCursor active={!showIntro} />
 
       <motion.div
         className="App"
