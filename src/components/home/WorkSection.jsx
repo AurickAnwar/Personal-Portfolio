@@ -2,34 +2,44 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { workExperience } from '../../data/workExperience';
 
-function WorkLogo({ company, logo }) {
+function WorkLogo({ company, logo, logoTheme = 'dark', logoFit = 'contain' }) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
     return (
-      <span className="home-work-logo home-work-logo--fallback" aria-hidden="true">
-        {company.charAt(0)}
+      <span
+        className={`home-work-logo-wrap home-work-logo-wrap--${logoTheme} home-work-logo-wrap--fallback`}
+        aria-hidden="true"
+      >
+        <span className="home-work-logo-fallback">{company.charAt(0)}</span>
       </span>
     );
   }
 
   return (
-    <img
-      src={logo}
-      alt=""
-      className="home-work-logo"
-      width={48}
-      height={48}
-      loading="lazy"
-      onError={() => setFailed(true)}
-    />
+    <span className={`home-work-logo-wrap home-work-logo-wrap--${logoTheme}`}>
+      <img
+        src={logo}
+        alt=""
+        className={`home-work-logo home-work-logo--${logoFit}`}
+        width={48}
+        height={48}
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    </span>
   );
 }
 
 function WorkRow({ entry }) {
   const inner = (
     <>
-      <WorkLogo company={entry.company} logo={entry.logo} />
+      <WorkLogo
+        company={entry.company}
+        logo={entry.logo}
+        logoTheme={entry.logoTheme}
+        logoFit={entry.logoFit}
+      />
       <div className="home-work-body">
         <div className="home-work-line">
           <p className="home-work-role">{entry.role}</p>

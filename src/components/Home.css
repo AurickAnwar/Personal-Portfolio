@@ -273,21 +273,54 @@
   outline-offset: 2px;
 }
 
-.home-work-logo {
+.home-work-logo-wrap {
   flex-shrink: 0;
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  object-fit: contain;
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.home-work-logo--fallback {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.home-work-logo-wrap--dark {
+  background: #0a1118;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.home-work-logo-wrap--light {
+  background: #ffffff;
+  border-color: rgba(17, 24, 32, 0.82);
+}
+
+.home-work-logo-wrap--steam {
+  background: #4fbdea;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.home-work-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.home-work-logo--contain {
+  object-fit: contain;
+  padding: 5px;
+}
+
+.home-work-logo--cover {
+  object-fit: cover;
+}
+
+.home-work-logo-wrap--fallback {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.home-work-logo-fallback {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 800;

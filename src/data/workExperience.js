@@ -6,6 +6,8 @@ export const workExperience = [
     location: 'Toronto, Ontario',
     dates: 'May 2026 – Present',
     logo: '/hermesailogo.jpg',
+    logoTheme: 'light',
+    logoFit: 'contain',
     url: 'https://hermesai.ca/',
   },
   {
@@ -15,6 +17,8 @@ export const workExperience = [
     location: 'Toronto, Ontario',
     dates: 'February 2026 – Present',
     logo: '/MagnifiedSystems.png',
+    logoTheme: 'dark',
+    logoFit: 'cover',
     url: 'https://www.magnifiedsystems.com/',
   },
   {
@@ -24,6 +28,8 @@ export const workExperience = [
     location: 'Toronto, Ontario',
     dates: 'December 2023 – June 2025',
     logo: '/Orbitview.png',
+    logoTheme: 'light',
+    logoFit: 'cover',
     url: 'https://www.orbitview.net/',
   },
   {
@@ -33,6 +39,8 @@ export const workExperience = [
     location: 'Toronto, Ontario',
     dates: 'June 2025 – August 2025',
     logo: '/TheSTEAMProject.png',
+    logoTheme: 'steam',
+    logoFit: 'cover',
     url: 'https://www.thesteamproject.ca/',
   },
   

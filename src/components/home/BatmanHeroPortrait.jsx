@@ -48,6 +48,12 @@ const BatmanHeroPortrait = () => {
             aria-pressed={killshotActive}
             aria-label={killshotActive ? 'Deactivate Killshot mode' : 'Activate Killshot mode'}
           >
+            <span
+              className={`batman-hero__toggle-status ${
+                killshotActive ? 'batman-hero__toggle-status--active' : ''
+              }`}
+              aria-hidden="true"
+            />
             <span className="batman-hero__toggle-label">
               {killshotActive ? 'Killshot Active' : 'Activate Killshot'}
             </span>
