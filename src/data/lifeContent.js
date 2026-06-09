@@ -12,6 +12,12 @@
 
 export const friends = [
   {
+    id: 'f10',
+    image: '/Friends17.jpg',
+    date: 'June 2026',
+    caption: 'Remote CO-OP>>>>'
+  },
+  {
     id: 'f1',
     image: '/Friends10.jpg',
     location: 'Bayview Village Park',
@@ -24,6 +30,18 @@ export const friends = [
     location: 'Earl Haig Secondary School',
     date: 'April 2026',
     caption: 'Before big internships!',
+  },
+  {
+    id: 'f11',
+    image: '/Friends15.png',
+    date: 'February 2026',
+    caption: 'Final School Year Project'
+  },
+  {
+    id: 'f12',
+    image: '/Friends16.jpg',
+    date: 'September 2025',
+    caption: 'Projectile Motion is fun.'
   },
   {
     id: 'f5',
