@@ -355,7 +355,7 @@ export const nbaFinalsBracket = {
       prediction: 'Spurs in 6',
       actual: null,
       outcome: 'pending',
-      note: 'Next game: June 10th @ 8:30 PM ET',
+      note: 'Next game: June 13th @ 8:30 PM ET',
     },
   ],
 };
