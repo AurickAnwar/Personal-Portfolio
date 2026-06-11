@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { ASSEMBLY_SEQUENCE, LEG_WELD_STAGES } from './assemblyPartGeometries';
 
 export const CYAN = '#7bf0ff';
 
@@ -120,25 +121,85 @@ export function createRobotMaterials() {
   return { gunmetal, silver, carbon, accent, accentSoft, visor };
 }
 
-/** Which part is actively mounting + weld point in robot-local space. */
+const _sampleBox = new THREE.Box3();
+
+export function sampleSuitPaletteFromScene(root) {
+  let bestMat = null;
+  let bestScore = -1;
+
+  root.traverse((child) => {
+    if (!child.isMesh || !child.material) return;
+
+    const mat = Array.isArray(child.material) ? child.material[0] : child.material;
+    const label = `${child.name} ${mat.name}`.toLowerCase();
+    if (/skin|face|hair|eye|lash|brow|repulsor|light|arc|glow|visor|mask/.test(label)) return;
+
+    _sampleBox.setFromObject(child);
+    const area = (_sampleBox.max.y - _sampleBox.min.y) * (_sampleBox.max.x - _sampleBox.min.x);
+    if (area < 0.0001) return;
+
+    const color = mat.color ?? new THREE.Color('#1a2028');
+    const lum = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
+    if (lum > 0.42) return;
+
+    const metalness = mat.metalness ?? 0.5;
+    const score = area * (0.45 + metalness);
+    if (score > bestScore) {
+      bestScore = score;
+      bestMat = mat;
+    }
+  });
+
+  return bestMat;
+}
+
+export function createIntroSuitMaterials(sourceMat) {
+  const base = createRobotMaterials();
+  const suit = base.gunmetal.clone();
+
+  if (sourceMat?.color) suit.color.copy(sourceMat.color);
+  if (sourceMat?.metalness != null) suit.metalness = sourceMat.metalness;
+  if (sourceMat?.roughness != null) suit.roughness = sourceMat.roughness;
+  if (sourceMat?.clearcoat != null) suit.clearcoat = sourceMat.clearcoat;
+  if (sourceMat?.clearcoatRoughness != null) suit.clearcoatRoughness = sourceMat.clearcoatRoughness;
+  if (sourceMat?.envMapIntensity != null) suit.envMapIntensity = sourceMat.envMapIntensity;
+
+  const suitCore = suit.clone();
+  suitCore.color.multiplyScalar(0.82);
+  suitCore.roughness = Math.min(1, suit.roughness + 0.08);
+
+  const suitPlate = base.carbon.clone();
+  suitPlate.color.copy(suit.color).multiplyScalar(0.72);
+  suitPlate.metalness = Math.max(0.55, suit.metalness * 0.85);
+  suitPlate.roughness = Math.min(1, suit.roughness + 0.12);
+
+  const suitSole = suitPlate.clone();
+  suitSole.roughness = Math.min(1, suitPlate.roughness + 0.18);
+
+  const suitSeam = suit.clone();
+  suitSeam.color.multiplyScalar(1.12);
+  suitSeam.emissive = suit.color.clone().multiplyScalar(0.35);
+  suitSeam.emissiveIntensity = 0.06;
+
+  const suitJoint = base.silver.clone();
+  suitJoint.color.copy(suit.color).lerp(new THREE.Color('#8f9eb0'), 0.45);
+  suitJoint.metalness = Math.min(1, suit.metalness + 0.06);
+
+  return { suit, suitCore, suitPlate, suitSole, suitSeam, suitJoint };
+}
+
+/** Which part is actively mounting + weld point in avatar-rig space. */
 export function getActiveAssemblyTarget(progress) {
   const p = progress / 100;
-  const stages = [
-    { start: 0, end: 0.16, point: [0, -0.52, 0.1] },
-    { start: 0.1, end: 0.3, point: [0, 0.02, 0.13] },
-    { start: 0.24, end: 0.42, point: [0, 0.5, 0.09] },
-    { start: 0.36, end: 0.54, point: [-0.32, 0.12, 0.06] },
-    { start: 0.48, end: 0.64, point: [0.32, 0.12, 0.06] },
-    { start: 0.58, end: 0.76, point: [-0.13, -0.38, 0.07] },
-    { start: 0.68, end: 0.86, point: [0.13, -0.38, 0.07] },
-    { start: 0.82, end: 0.98, point: [0, 0.08, 0.15] },
-  ];
+  const stages = [...ASSEMBLY_SEQUENCE, ...LEG_WELD_STAGES.map((s) => ({ ...s, weld: s.point }))];
 
   for (let i = stages.length - 1; i >= 0; i -= 1) {
     const s = stages[i];
+    const anchor = s.weld ?? s.point;
+    if (!anchor) continue;
     const m = mountProgress(p, s.start, s.end);
     if (m > 0.04 && m < 0.96) {
-      return { point: s.point, intensity: 1 - Math.abs(m - 0.5) * 1.6, mounting: true };
+      return { point: anchor, intensity: 1 - Math.abs(m - 0.5) * 1.6, mounting: true };
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -7,9 +7,10 @@ import Projects from './components/Projects';
 import ProjectDetail from './components/projects/ProjectDetail';
 import Contact from './components/Contact';
 import OutsideEngineering from './components/OutsideEngineering';
-import IntroLoader from './components/IntroLoader';
 import CustomCursor from './components/CustomCursor';
 import './App.css';
+
+const SuitAssemblyIntro = lazy(() => import('./components/SuitAssemblyIntro'));
 
 function revealAnimatedSections() {
   const animated = document.querySelectorAll('.fade-in, .fade-in-up');
@@ -66,7 +67,13 @@ function AppContent() {
 
   return (
     <>
-      <AnimatePresence>{showIntro && <IntroLoader onComplete={handleIntroComplete} />}</AnimatePresence>
+      <AnimatePresence>
+        {showIntro && (
+          <Suspense fallback={null}>
+            <SuitAssemblyIntro onComplete={handleIntroComplete} />
+          </Suspense>
+        )}
+      </AnimatePresence>
       <CustomCursor active={!showIntro} />
 
       <motion.div
