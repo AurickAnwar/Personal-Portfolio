@@ -8,6 +8,7 @@ import AssemblyArms3D from './AssemblyArms3D';
 import AssemblyGantry from './AssemblyGantry';
 import AssemblyCivilian from './AssemblyCivilian';
 import AssemblyGLBAvatar from './AssemblyGLBAvatar';
+import IntroPhotoHead from './IntroPhotoHead';
 import AvatarRig from './AvatarRig';
 import { getActiveAssemblyTarget } from './assemblyUtils';
 import { INTRO_CAMERA } from './intro3dConfig';
@@ -135,6 +136,7 @@ function SceneContent({ progress, armsRetracted, lite }) {
         <AvatarRig progress={progress}>
           <AssemblyGLBAvatar progress={progress} lite={lite} />
           <AssemblyRobot progress={progress} lite={lite} />
+          {lite && <IntroPhotoHead progress={progress} />}
           <AssemblyArms3D progress={progress} retracted={armsRetracted} />
           <WeldSparks progress={progress} retracted={armsRetracted} lite={lite} />
         </AvatarRig>
