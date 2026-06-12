@@ -1,7 +1,9 @@
 import React, { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useGLTF } from '@react-three/drei';
 import Hero3DErrorBoundary from './hero3d/Hero3DErrorBoundary';
 import HeroCanvasFallback from './hero3d/HeroCanvasFallback';
+import { MODEL_URLS } from './hero3d/hero3dConfig';
 import { getDevice3DTier, getModelLoadTimeoutMs } from '../../utils/device3d';
 import './BatmanHeroPortrait.css';
 
@@ -19,9 +21,12 @@ const BatmanHeroPortrait = () => {
   const [canvasReady, setCanvasReady] = useState(false);
   const [loadTimedOut, setLoadTimedOut] = useState(false);
   const toggleKillshot = useCallback(() => {
-    if (isLite) return;
     setKillshotActive((prev) => !prev);
-  }, [isLite]);
+  }, []);
+
+  const preloadKillshot = useCallback(() => {
+    useGLTF.preload(MODEL_URLS.killshot);
+  }, []);
 
   const handleCanvasReady = useCallback(() => setCanvasReady(true), []);
 
@@ -35,6 +40,7 @@ const BatmanHeroPortrait = () => {
 
   const showFallback = loadTimedOut && !canvasReady;
   const showingProfile = isLite && (showFallback || !canvasReady);
+  const showKillshotToggle = canvasReady && !showFallback;
 
   return (
     <motion.div
@@ -61,11 +67,12 @@ const BatmanHeroPortrait = () => {
         </motion.div>
 
         <motion.div className="batman-hero__controls">
-          {!isLite && (
+          {showKillshotToggle && (
             <button
               type="button"
               className={`batman-hero__toggle ${killshotActive ? 'batman-hero__toggle--active' : ''}`}
               onClick={toggleKillshot}
+              onPointerDown={preloadKillshot}
               aria-pressed={killshotActive}
               aria-label={killshotActive ? 'Deactivate Killshot mode' : 'Activate Killshot mode'}
             >

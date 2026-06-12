@@ -1,16 +1,12 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import * as THREE from 'three';
 import { FIT_IDLE, FIT_KILLSHOT, MODEL, MODEL_URLS } from './hero3dConfig';
 import { fitModelToFrame } from './fitModel';
 import { useHero3D } from './Hero3DContext';
-import { getDevice3DTier } from '../../../utils/device3d';
 
 useGLTF.preload(MODEL_URLS.idle);
-if (typeof window !== 'undefined' && getDevice3DTier() === 'full') {
-  useGLTF.preload(MODEL_URLS.killshot);
-}
 
 function applyEmissiveBoost(root, blend, base = 1) {
   if (!root || blend <= 0.001) return;
@@ -61,11 +57,14 @@ function ModelInstance({ url, fit }) {
 }
 
 export default function RobotAvatar() {
-  const tier = useMemo(() => getDevice3DTier(), []);
-  const killshotEnabled = tier === 'full';
-  const { blendRef, entranceRef, groupRef, pointer } = useHero3D();
+  const { blendRef, entranceRef, groupRef, pointer, killshotActive } = useHero3D();
   const idleRoot = useRef();
   const killshotRoot = useRef();
+  const [killshotMounted, setKillshotMounted] = useState(false);
+
+  useEffect(() => {
+    if (killshotActive) setKillshotMounted(true);
+  }, [killshotActive]);
 
   useFrame((state) => {
     const blend = blendRef.current;
@@ -102,9 +101,7 @@ export default function RobotAvatar() {
     });
 
     applyEmissiveBoost(idleRoot.current, blend * 0.25, 0.5);
-    if (killshotEnabled) {
-      applyEmissiveBoost(killshotRoot.current, blend, 1);
-    }
+    applyEmissiveBoost(killshotRoot.current, blend, 1);
   });
 
   return (
@@ -117,10 +114,12 @@ export default function RobotAvatar() {
       <group ref={idleRoot}>
         <ModelInstance url={MODEL_URLS.idle} fit={FIT_IDLE} />
       </group>
-      {killshotEnabled && (
-        <group ref={killshotRoot}>
-          <ModelInstance url={MODEL_URLS.killshot} fit={FIT_KILLSHOT} />
-        </group>
+      {(killshotActive || killshotMounted) && (
+        <Suspense fallback={null}>
+          <group ref={killshotRoot}>
+            <ModelInstance url={MODEL_URLS.killshot} fit={FIT_KILLSHOT} />
+          </group>
+        </Suspense>
       )}
     </group>
   );
