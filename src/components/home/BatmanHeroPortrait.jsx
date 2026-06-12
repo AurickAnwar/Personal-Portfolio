@@ -34,10 +34,11 @@ const BatmanHeroPortrait = () => {
   }, [canvasReady, tier]);
 
   const showFallback = loadTimedOut && !canvasReady;
+  const showingProfile = isLite && (showFallback || !canvasReady);
 
   return (
     <motion.div
-      className="batman-hero"
+      className={`batman-hero${showingProfile ? ' batman-hero--profile' : ''}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.1 }}
