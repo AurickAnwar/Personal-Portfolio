@@ -1,12 +1,15 @@
-import React, { Suspense, useCallback, useRef } from 'react';
+import React, { Suspense, useCallback, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import HeroSceneContent, { CAMERA } from './HeroSceneContent';
+import { getCanvasDpr, getDevice3DTier } from '../../../utils/device3d';
 
 /**
  * Transparent WebGL canvas sized to the hero stage (matches former PNG footprint).
  */
 export default function HeroCanvas({ killshotActive, className, onLoad }) {
   const pointer = useRef({ x: 0, y: 0 });
+  const tier = useMemo(() => getDevice3DTier(), []);
+  const isLite = tier === 'lite';
 
   const onPointerMove = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -22,11 +25,11 @@ export default function HeroCanvas({ killshotActive, className, onLoad }) {
   return (
     <Canvas
       className={className}
-      dpr={[1, 1.5]}
+      dpr={getCanvasDpr(tier)}
       gl={{
         alpha: true,
-        antialias: true,
-        powerPreference: 'high-performance',
+        antialias: !isLite,
+        powerPreference: isLite ? 'default' : 'high-performance',
       }}
       camera={{
         position: CAMERA.idle.position,
@@ -46,6 +49,7 @@ export default function HeroCanvas({ killshotActive, className, onLoad }) {
           killshotActive={killshotActive}
           pointer={pointer}
           onReady={onLoad}
+          qualityTier={tier}
         />
       </Suspense>
     </Canvas>

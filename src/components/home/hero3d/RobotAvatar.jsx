@@ -5,9 +5,12 @@ import * as THREE from 'three';
 import { FIT_IDLE, FIT_KILLSHOT, MODEL, MODEL_URLS } from './hero3dConfig';
 import { fitModelToFrame } from './fitModel';
 import { useHero3D } from './Hero3DContext';
+import { getDevice3DTier } from '../../../utils/device3d';
 
 useGLTF.preload(MODEL_URLS.idle);
-useGLTF.preload(MODEL_URLS.killshot);
+if (typeof window !== 'undefined' && getDevice3DTier() === 'full') {
+  useGLTF.preload(MODEL_URLS.killshot);
+}
 
 function applyEmissiveBoost(root, blend, base = 1) {
   if (!root || blend <= 0.001) return;
@@ -58,6 +61,8 @@ function ModelInstance({ url, fit }) {
 }
 
 export default function RobotAvatar() {
+  const tier = useMemo(() => getDevice3DTier(), []);
+  const killshotEnabled = tier === 'full';
   const { blendRef, entranceRef, groupRef, pointer } = useHero3D();
   const idleRoot = useRef();
   const killshotRoot = useRef();
@@ -97,7 +102,9 @@ export default function RobotAvatar() {
     });
 
     applyEmissiveBoost(idleRoot.current, blend * 0.25, 0.5);
-    applyEmissiveBoost(killshotRoot.current, blend, 1);
+    if (killshotEnabled) {
+      applyEmissiveBoost(killshotRoot.current, blend, 1);
+    }
   });
 
   return (
@@ -110,9 +117,11 @@ export default function RobotAvatar() {
       <group ref={idleRoot}>
         <ModelInstance url={MODEL_URLS.idle} fit={FIT_IDLE} />
       </group>
-      <group ref={killshotRoot}>
-        <ModelInstance url={MODEL_URLS.killshot} fit={FIT_KILLSHOT} />
-      </group>
+      {killshotEnabled && (
+        <group ref={killshotRoot}>
+          <ModelInstance url={MODEL_URLS.killshot} fit={FIT_KILLSHOT} />
+        </group>
+      )}
     </group>
   );
 }

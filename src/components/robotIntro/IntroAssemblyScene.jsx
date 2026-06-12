@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, ContactShadows } from '@react-three/drei';
+import { ContactShadows, Environment } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import AssemblyRobot from './AssemblyRobot';
@@ -11,6 +11,7 @@ import AssemblyGLBAvatar from './AssemblyGLBAvatar';
 import AvatarRig from './AvatarRig';
 import { getActiveAssemblyTarget } from './assemblyUtils';
 import { INTRO_CAMERA } from './intro3dConfig';
+import { getCanvasDpr, getDevice3DTier } from '../../utils/device3d';
 
 function IntroCameraRig({ progress }) {
   const { camera } = useThree();
@@ -40,7 +41,7 @@ function IntroCameraRig({ progress }) {
   return null;
 }
 
-function IntroLights({ progress }) {
+function IntroLights({ progress, lite }) {
   const keyRef = useRef();
 
   useFrame(() => {
@@ -50,16 +51,22 @@ function IntroLights({ progress }) {
 
   return (
     <>
-      <ambientLight intensity={0.28} color="#e8eef4" />
-      <directionalLight ref={keyRef} position={[2.2, 2.8, 3.8]} intensity={0.62} color="#f0f4f8" castShadow />
+      <ambientLight intensity={lite ? 0.42 : 0.28} color="#e8eef4" />
+      <directionalLight
+        ref={keyRef}
+        position={[2.2, 2.8, 3.8]}
+        intensity={lite ? 0.78 : 0.62}
+        color="#f0f4f8"
+        castShadow={!lite}
+      />
       <directionalLight position={[-2.4, 1.2, -2.2]} intensity={0.18} color="#94a3b8" />
     </>
   );
 }
 
-function WeldSparks({ progress, retracted }) {
+function WeldSparks({ progress, retracted, lite }) {
   const pointsRef = useRef();
-  const count = 56;
+  const count = lite ? 24 : 56;
   const positions = useMemo(() => new Float32Array(count * 3), [count]);
 
   useFrame((state) => {
@@ -103,11 +110,13 @@ function WeldSparks({ progress, retracted }) {
   );
 }
 
-function AssemblyFloor() {
+function AssemblyFloor({ lite }) {
   return (
     <group position={[0, -0.76, 0]}>
-      <ContactShadows opacity={0.28} scale={7} blur={2.2} far={1.2} color="#000000" />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+      {!lite && (
+        <ContactShadows opacity={0.28} scale={7} blur={2.2} far={1.2} color="#000000" />
+      )}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow={!lite}>
         <planeGeometry args={[6, 6]} />
         <meshStandardMaterial color="#05080c" metalness={0.35} roughness={0.72} />
       </mesh>
@@ -116,38 +125,47 @@ function AssemblyFloor() {
   );
 }
 
-function SceneContent({ progress, armsRetracted }) {
+function SceneContent({ progress, armsRetracted, lite }) {
   return (
     <>
       <IntroCameraRig progress={progress} />
-      <IntroLights progress={progress} />
+      <IntroLights progress={progress} lite={lite} />
       <Suspense fallback={null}>
-        <Environment preset="city" environmentIntensity={0.12} />
+        {!lite && <Environment preset="city" environmentIntensity={0.12} />}
         <AvatarRig progress={progress}>
-          <AssemblyGLBAvatar progress={progress} />
-          <AssemblyRobot progress={progress} />
+          <AssemblyGLBAvatar progress={progress} lite={lite} />
+          <AssemblyRobot progress={progress} lite={lite} />
           <AssemblyArms3D progress={progress} retracted={armsRetracted} />
-          <WeldSparks progress={progress} retracted={armsRetracted} />
+          <WeldSparks progress={progress} retracted={armsRetracted} lite={lite} />
         </AvatarRig>
       </Suspense>
-      <AssemblyFloor />
+      <AssemblyFloor lite={lite} />
       <AssemblyGantry progress={progress} />
       <AssemblyCivilian progress={progress} />
-      <EffectComposer multisampling={0}>
-        <Bloom intensity={0.28} luminanceThreshold={0.92} luminanceSmoothing={0.4} mipmapBlur />
-        <Vignette eskil={false} offset={0.12} darkness={0.55} />
-      </EffectComposer>
+      {!lite && (
+        <EffectComposer multisampling={0}>
+          <Bloom intensity={0.28} luminanceThreshold={0.92} luminanceSmoothing={0.4} mipmapBlur />
+          <Vignette eskil={false} offset={0.12} darkness={0.55} />
+        </EffectComposer>
+      )}
     </>
   );
 }
 
 export default function IntroAssemblyScene({ progress, armsRetracted = false, className }) {
+  const tier = useMemo(() => getDevice3DTier(), []);
+  const lite = tier === 'lite';
+
   return (
     <Canvas
       className={className}
-      dpr={[1, 1.75]}
-      shadows
-      gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+      dpr={getCanvasDpr(tier)}
+      shadows={!lite}
+      gl={{
+        alpha: true,
+        antialias: !lite,
+        powerPreference: lite ? 'default' : 'high-performance',
+      }}
       camera={{
         position: INTRO_CAMERA.wide.position,
         fov: 42,
@@ -156,11 +174,13 @@ export default function IntroAssemblyScene({ progress, armsRetracted = false, cl
       }}
       onCreated={({ gl }) => {
         gl.setClearColor(0x000000, 0);
-        gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.toneMappingExposure = 0.9;
+        if (!lite) {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 0.9;
+        }
       }}
     >
-      <SceneContent progress={progress} armsRetracted={armsRetracted} />
+      <SceneContent progress={progress} armsRetracted={armsRetracted} lite={lite} />
     </Canvas>
   );
 }

@@ -26,7 +26,7 @@ function LoadNotifier({ onReady }) {
 /**
  * All R3F scene objects — lighting, model, particles, post-FX, camera.
  */
-export default function HeroSceneContent({ killshotActive, pointer, onReady }) {
+export default function HeroSceneContent({ killshotActive, pointer, onReady, qualityTier = 'full' }) {
   return (
     <Hero3DProvider killshotActive={killshotActive} pointer={pointer}>
       <HeroCameraRig killshotActive={killshotActive} />
@@ -35,7 +35,7 @@ export default function HeroSceneContent({ killshotActive, pointer, onReady }) {
       <Suspense fallback={<SceneFallback />}>
         <RobotAvatar />
       </Suspense>
-      <HeroPostProcessing />
+      {qualityTier === 'full' && <HeroPostProcessing />}
     </Hero3DProvider>
   );
 }

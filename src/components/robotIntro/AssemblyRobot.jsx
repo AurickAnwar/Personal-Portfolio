@@ -10,9 +10,11 @@ import {
 import { ASSEMBLY_SEQUENCE, PART_ANCHORS } from './assemblyPartGeometries';
 import { SuitPartMesh } from './SuitPartMesh';
 
-function AssemblyPart({ groupRef, progress, stage, children }) {
+function AssemblyPart({ groupRef, progress, stage, keepVisible, children }) {
   const mount = mountProgress(progress, stage.start, stage.end);
-  const proceduralFade = 1 - easeOutCubic(clamp01((progress - 0.36) / 0.28));
+  const proceduralFade = keepVisible
+    ? 1
+    : 1 - easeOutCubic(clamp01((progress - 0.36) / 0.28));
   const anchor = PART_ANCHORS[stage.anchor];
   const from = stage.from;
 
@@ -79,7 +81,7 @@ function WeldPoint({ parentRef, offset = [0, 0, 0] }) {
   );
 }
 
-export default function AssemblyRobot({ progress }) {
+export default function AssemblyRobot({ progress, lite = false }) {
   const p = progress / 100;
   const materials = useMemo(() => createRobotMaterials(), []);
   const partRefs = useMemo(() => Object.fromEntries(ASSEMBLY_SEQUENCE.map((s) => [s.id, React.createRef()])), []);
@@ -90,7 +92,13 @@ export default function AssemblyRobot({ progress }) {
   return (
     <group scale={0.92}>
       {ASSEMBLY_SEQUENCE.map((stage) => (
-        <AssemblyPart key={stage.id} groupRef={getRef(stage.id)} progress={p} stage={stage}>
+        <AssemblyPart
+          key={stage.id}
+          groupRef={getRef(stage.id)}
+          progress={p}
+          stage={stage}
+          keepVisible={lite}
+        >
           <SuitPartMesh partId={stage.id} materials={materials} />
           <WeldPoint parentRef={getRef(stage.id)} offset={stage.weld} />
         </AssemblyPart>
