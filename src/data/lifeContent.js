@@ -52,8 +52,8 @@ export const friends = [
   {
     id: 'f15',
     image: '/Friends20.jpg',
-    date: 'October 2025',
-    caption: 'Staying Sharp'
+    date: 'December 2025',
+    caption: 'All nighter'
   },
   {
     id: 'f12',
