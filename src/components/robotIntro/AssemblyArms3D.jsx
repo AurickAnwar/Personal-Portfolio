@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
-import { getActiveAssemblyTarget } from './assemblyUtils';
+import { getActiveAssemblyTarget, getEvolutionPhase } from './assemblyUtils';
 
 const ARM_YELLOW = new THREE.MeshStandardMaterial({
   color: '#e8c547',
@@ -44,7 +44,8 @@ function RoboticArm({ basePosition, baseRotation, progress, retracted, phaseOffs
     const target = new THREE.Vector3(point[0], point[1], point[2]);
     const t = state.clock.elapsedTime + phaseOffset;
 
-    const targetVis = retracted ? 0 : Math.min(1, (progress - 10) / 18);
+    const { cocoonIn } = getEvolutionPhase(progress);
+    const targetVis = retracted ? 0 : Math.min(1, (progress - 10) / 18) * (1 - cocoonIn);
     visRef.current = THREE.MathUtils.lerp(visRef.current, targetVis, retracted ? 0.12 : 0.08);
     const visibility = visRef.current;
 

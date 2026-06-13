@@ -108,6 +108,19 @@ export function fitModelToFrame(
   return { scale, size, center, span };
 }
 
+/** Hide mesh below the bust waist cut (waist-local Y). */
+export function applyIntroWaistClip(root, cutY = 0.21) {
+  const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -cutY);
+  root.traverse((child) => {
+    if (!child.isMesh || !child.material) return;
+    const mats = Array.isArray(child.material) ? child.material : [child.material];
+    mats.forEach((mat) => {
+      mat.clippingPlanes = [plane];
+      mat.clipShadows = true;
+    });
+  });
+}
+
 export function fitIntroModelToFrame(root, fit) {
   const {
     offsetX = 0,

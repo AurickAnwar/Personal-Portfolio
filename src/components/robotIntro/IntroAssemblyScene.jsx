@@ -1,17 +1,17 @@
 import React, { Suspense, useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { ContactShadows, Environment } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import AssemblyRobot from './AssemblyRobot';
 import AssemblyArms3D from './AssemblyArms3D';
-import AssemblyGantry from './AssemblyGantry';
 import AssemblyCivilian from './AssemblyCivilian';
 import AssemblyGLBAvatar from './AssemblyGLBAvatar';
 import IntroRobotHead from './IntroRobotHead';
 import AvatarRig from './AvatarRig';
-import { getActiveAssemblyTarget } from './assemblyUtils';
-import { INTRO_CAMERA } from './intro3dConfig';
+import { getActiveAssemblyTarget, getEvolutionPhase } from './assemblyUtils';
+import { INTRO_CAMERA, INTRO_FOV } from './intro3dConfig';
+import { IntroEvolutionBackdrop } from './IntroEvolutionStage';
 import { getCanvasDpr, getDevice3DTier } from '../../utils/device3d';
 
 function IntroCameraRig({ progress }) {
@@ -20,22 +20,19 @@ function IntroCameraRig({ progress }) {
   const p = progress / 100;
 
   useFrame(() => {
-    const wideW = Math.max(0, 1 - p / 0.32);
-    const midW = Math.max(0, 1 - wideW);
-    const closeW = 0;
+    const wideW = Math.max(0, 1 - p / 0.2);
+    const midW = 1 - wideW;
 
     const pos = new THREE.Vector3()
       .addScaledVector(new THREE.Vector3(...INTRO_CAMERA.wide.position), wideW)
-      .addScaledVector(new THREE.Vector3(...INTRO_CAMERA.mid.position), midW)
-      .addScaledVector(new THREE.Vector3(...INTRO_CAMERA.close.position), closeW);
+      .addScaledVector(new THREE.Vector3(...INTRO_CAMERA.mid.position), midW);
 
     lookAt
       .set(...INTRO_CAMERA.wide.lookAt)
       .multiplyScalar(wideW)
-      .add(new THREE.Vector3(...INTRO_CAMERA.mid.lookAt).multiplyScalar(midW))
-      .add(new THREE.Vector3(...INTRO_CAMERA.close.lookAt).multiplyScalar(closeW));
+      .add(new THREE.Vector3(...INTRO_CAMERA.mid.lookAt).multiplyScalar(midW));
 
-    camera.position.lerp(pos, 0.08);
+    camera.position.lerp(pos, 0.1);
     camera.lookAt(lookAt);
   });
 
@@ -44,24 +41,53 @@ function IntroCameraRig({ progress }) {
 
 function IntroLights({ progress, lite }) {
   const keyRef = useRef();
+  const fillRef = useRef();
+  const rimRef = useRef();
 
   useFrame(() => {
-    const t = progress / 100;
-    if (keyRef.current) keyRef.current.intensity = 0.62 + t * 0.25;
+    const { platform, peak, reveal } = getEvolutionPhase(progress);
+    const mood = platform * 0.5 + peak * 0.8 + reveal * 0.3;
+
+    if (keyRef.current) keyRef.current.intensity = 0.35 + mood * 0.55;
+    if (fillRef.current) fillRef.current.intensity = 0.12 + peak * 0.35;
+    if (rimRef.current) rimRef.current.intensity = 0.08 + peak * 0.42;
   });
 
   return (
     <>
-      <ambientLight intensity={lite ? 0.42 : 0.28} color="#e8eef4" />
+      <ambientLight intensity={lite ? 0.32 : 0.18} color="#c8dff5" />
       <directionalLight
         ref={keyRef}
-        position={[2.2, 2.8, 3.8]}
-        intensity={lite ? 0.78 : 0.62}
-        color="#f0f4f8"
+        position={[2.4, 4.5, 3.2]}
+        intensity={lite ? 0.65 : 0.52}
+        color="#eef6ff"
         castShadow={!lite}
       />
-      <directionalLight position={[-2.4, 1.2, -2.2]} intensity={0.18} color="#94a3b8" />
+      <directionalLight ref={fillRef} position={[-1.8, 2.2, 3.5]} intensity={0.18} color="#6eb8ff" />
+      <pointLight ref={rimRef} position={[0.8, 0.35, 1.2]} intensity={0.12} color="#5ce1ff" distance={5} />
     </>
+  );
+}
+
+function IntroBloom({ progress }) {
+  const bloomRef = useRef();
+
+  useFrame(() => {
+    const bloom = bloomRef.current;
+    if (!bloom) return;
+    const { peak, burst } = getEvolutionPhase(progress);
+    bloom.intensity = 0.32 + peak * 1.35 + burst * 0.45;
+    bloom.luminanceThreshold = 0.82 - peak * 0.18;
+  });
+
+  return (
+    <Bloom
+      ref={bloomRef}
+      intensity={0.32}
+      luminanceThreshold={0.82}
+      luminanceSmoothing={0.35}
+      mipmapBlur
+    />
   );
 }
 
@@ -73,6 +99,12 @@ function WeldSparks({ progress, retracted, lite }) {
   useFrame((state) => {
     const pts = pointsRef.current;
     if (!pts) return;
+
+    const { cocoonIn } = getEvolutionPhase(progress);
+    if (cocoonIn > 0.15) {
+      pts.visible = false;
+      return;
+    }
 
     const { point, intensity, mounting } = getActiveAssemblyTarget(progress);
     const active = mounting && !retracted && intensity > 0.1;
@@ -111,28 +143,20 @@ function WeldSparks({ progress, retracted, lite }) {
   );
 }
 
-function AssemblyFloor({ lite }) {
-  return (
-    <group position={[0, -0.76, 0]}>
-      {!lite && (
-        <ContactShadows opacity={0.28} scale={7} blur={2.2} far={1.2} color="#000000" />
-      )}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow={!lite}>
-        <planeGeometry args={[6, 6]} />
-        <meshStandardMaterial color="#05080c" metalness={0.35} roughness={0.72} />
-      </mesh>
-      <gridHelper args={[5, 20, '#1a2830', '#121820']} position={[0, 0.002, 0]} material-opacity={0.06} />
-    </group>
-  );
-}
-
 function SceneContent({ progress, armsRetracted, lite }) {
+  const { platform } = getEvolutionPhase(progress);
+
   return (
     <>
+      <color attach="background" args={['#0b1a2e']} />
+      <fog attach="fog" args={['#0b1a2e', 7, 16]} />
+      <IntroEvolutionBackdrop progress={progress} />
       <IntroCameraRig progress={progress} />
       <IntroLights progress={progress} lite={lite} />
       <Suspense fallback={null}>
-        {!lite && <Environment preset="city" environmentIntensity={0.12} />}
+        {!lite && platform < 0.5 && (
+          <Environment preset="city" environmentIntensity={0.08} />
+        )}
         <AvatarRig progress={progress}>
           <AssemblyGLBAvatar progress={progress} lite={lite} />
           <AssemblyRobot progress={progress} lite={lite} />
@@ -141,13 +165,11 @@ function SceneContent({ progress, armsRetracted, lite }) {
           <WeldSparks progress={progress} retracted={armsRetracted} lite={lite} />
         </AvatarRig>
       </Suspense>
-      <AssemblyFloor lite={lite} />
-      <AssemblyGantry progress={progress} />
       <AssemblyCivilian progress={progress} />
       {!lite && (
         <EffectComposer multisampling={0}>
-          <Bloom intensity={0.28} luminanceThreshold={0.92} luminanceSmoothing={0.4} mipmapBlur />
-          <Vignette eskil={false} offset={0.12} darkness={0.55} />
+          <IntroBloom progress={progress} />
+          <Vignette eskil={false} offset={0.08} darkness={0.48} />
         </EffectComposer>
       )}
     </>
@@ -170,15 +192,16 @@ export default function IntroAssemblyScene({ progress, armsRetracted = false, cl
       }}
       camera={{
         position: INTRO_CAMERA.wide.position,
-        fov: 42,
+        fov: INTRO_FOV,
         near: 0.1,
         far: 100,
       }}
       onCreated={({ gl }) => {
-        gl.setClearColor(0x000000, 0);
+        gl.setClearColor(0x0b1a2e, 1);
+        gl.localClippingEnabled = true;
         if (!lite) {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 0.9;
+          gl.toneMappingExposure = 1.05;
         }
       }}
     >

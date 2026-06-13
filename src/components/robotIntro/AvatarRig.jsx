@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { clamp01, easeOutCubic } from './assemblyUtils';
 import { INTRO_MODEL, INTRO_ROOT_Y } from './intro3dConfig';
 
-/** Shared transform so GLB torso, procedural parts, and legs align. */
+/** Shared transform so GLB bust and procedural parts align. */
 export default function AvatarRig({ progress, children }) {
   const ref = useRef();
   const p = progress / 100;

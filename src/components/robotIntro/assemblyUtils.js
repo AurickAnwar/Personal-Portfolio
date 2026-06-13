@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { ASSEMBLY_SEQUENCE, LEG_WELD_STAGES } from './assemblyPartGeometries';
+import { ASSEMBLY_SEQUENCE } from './assemblyPartGeometries';
+import { EVOLUTION } from './intro3dConfig';
 
 export const CYAN = '#7bf0ff';
 
@@ -19,6 +20,38 @@ export function easeOutBack(t) {
 
 export function mountProgress(progress, start, end) {
   return easeOutBack(clamp01((progress - start) / Math.max(end - start, 0.001)));
+}
+
+/** Pokémon GO–style evolution phase weights from assembly progress (0–100). */
+export function getEvolutionPhase(progress) {
+  const p = progress / 100;
+  const {
+    platformStart,
+    platformEnd,
+    cocoonStart,
+    cocoonPeak,
+    cocoonBurst,
+    revealEnd,
+  } = EVOLUTION;
+
+  const platform = easeOutCubic(clamp01((p - platformStart) / (platformEnd - platformStart)));
+  const cocoonIn = easeOutCubic(clamp01((p - cocoonStart) / (cocoonPeak - cocoonStart)));
+  const cocoonHold = clamp01((p - cocoonPeak) / Math.max(cocoonBurst - cocoonPeak, 0.001));
+  const burst = easeOutCubic(clamp01((p - cocoonBurst) / (revealEnd - cocoonBurst)));
+  const reveal = easeOutCubic(clamp01((p - cocoonBurst) / (revealEnd - cocoonBurst)));
+  const cocoon =
+    p < cocoonBurst
+      ? cocoonIn * (1 - cocoonHold * 0.15)
+      : cocoonIn * Math.max(0, 1 - burst * 1.35);
+
+  return {
+    platform,
+    cocoon,
+    cocoonIn,
+    burst,
+    reveal,
+    peak: cocoonIn * (1 - burst),
+  };
 }
 
 export function makeCarbonTexture() {
@@ -191,7 +224,7 @@ export function createIntroSuitMaterials(sourceMat) {
 /** Which part is actively mounting + weld point in avatar-rig space. */
 export function getActiveAssemblyTarget(progress) {
   const p = progress / 100;
-  const stages = [...ASSEMBLY_SEQUENCE, ...LEG_WELD_STAGES.map((s) => ({ ...s, weld: s.point }))];
+  const stages = ASSEMBLY_SEQUENCE.filter((s) => s.weld);
 
   for (let i = stages.length - 1; i >= 0; i -= 1) {
     const s = stages[i];
