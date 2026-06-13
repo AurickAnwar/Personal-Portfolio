@@ -40,9 +40,9 @@ const Projects = () => {
  
   };
   const cancerCellDetection = {
-    title: 'Cancer Cell Detection',
+    title: 'Breast Cancer Cell Detection',
     status: 'Currently Building',
-    progressPercent: 5,
+    progressPercent: 7,
     progressNote: 'Integrated YOLOv11 for cell detection.',
     description:
       'Building a system that processes microscopy images and uses machine learning to classify cells as benign or malignant.',
