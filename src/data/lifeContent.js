@@ -12,6 +12,12 @@
 
 export const friends = [
   {
+    id: 'f13',
+    image: '/Friends18.jpg',
+    date: 'June 2026',
+    caption: 'Downtown McDonalds hit different'
+  },
+  {
     id: 'f10',
     image: '/Friends17.jpg',
     date: 'June 2026',
@@ -36,6 +42,18 @@ export const friends = [
     image: '/Friends15.png',
     date: 'February 2026',
     caption: 'Final School Year Project'
+  },
+  {
+    id: 'f14',
+    image: '/Friends19.jpg',
+    date: 'January 2026',
+    caption: 'Pure Vibes'
+  },
+  {
+    id: 'f15',
+    image: '/Friends20.jpg',
+    date: 'October 2025',
+    caption: 'Staying Sharp'
   },
   {
     id: 'f12',
