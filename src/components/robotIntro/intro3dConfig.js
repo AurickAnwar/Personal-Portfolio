@@ -1,6 +1,6 @@
 /** Intro assembly scene tuning — separate from home hero framing. */
 
-export const INTRO_DURATION_MS = 9200;
+export const INTRO_DURATION_MS = 8000;
 
 /** Pause on finished assembly before transitioning to portfolio. */
 export const INTRO_HOLD_MS = 900;

@@ -14,7 +14,7 @@ function AssemblyPart({ groupRef, progress, stage, keepVisible, children }) {
   const mount = mountProgress(progress, stage.start, stage.end);
   const proceduralFade = keepVisible
     ? 1
-    : 1 - easeOutCubic(clamp01((progress - 0.26) / 0.12));
+    : 1 - easeOutCubic(clamp01((progress - 0.3) / 0.24));
   const anchor = PART_ANCHORS[stage.anchor];
   const from = stage.from;
 
