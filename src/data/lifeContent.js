@@ -371,9 +371,9 @@ export const nbaFinalsBracket = {
       id: 'fn-1',
       matchup: '(2) Spurs vs (3) Knicks',
       prediction: 'Spurs in 6',
-      actual: null,
-      outcome: 'pending',
-      note: 'Next game: June 13th @ 8:30 PM ET',
+      actual: 'Knick win (4-1)',
+      outcome: 'loss',
+      note: 'Congrats to the Knicks!',
     },
   ],
 };
