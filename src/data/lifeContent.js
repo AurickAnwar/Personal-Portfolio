@@ -372,7 +372,7 @@ export const nbaFinalsBracket = {
       matchup: '(2) Spurs vs (3) Knicks',
       prediction: 'Spurs in 6',
       actual: 'Knick win (4-1)',
-      outcome: 'loss',
+      outcome: 'wrong',
       note: 'Congrats to the Knicks!',
     },
   ],
