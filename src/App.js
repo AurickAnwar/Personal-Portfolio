@@ -11,6 +11,7 @@ import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 const SuitAssemblyIntro = lazy(() => import('./components/SuitAssemblyIntro'));
+const RecruitersPage = lazy(() => import('./components/recruiters/RecruitersPage'));
 
 function revealAnimatedSections() {
   const animated = document.querySelectorAll('.fade-in, .fade-in-up');
@@ -41,10 +42,11 @@ function revealAnimatedSections() {
 
 function AppContent() {
   const location = useLocation();
-  const [showIntro, setShowIntro] = useState(true);
+  const isRecruiters = location.pathname === '/recruiters';
+  const [showIntro, setShowIntro] = useState(!isRecruiters);
 
   useEffect(() => {
-    if (showIntro) {
+    if (isRecruiters || showIntro) {
       return undefined;
     }
 
@@ -59,11 +61,19 @@ function AppContent() {
       cancelAnimationFrame(frame);
       disconnect();
     };
-  }, [location.pathname, showIntro]);
+  }, [location.pathname, showIntro, isRecruiters]);
 
   const handleIntroComplete = useCallback(() => {
     setShowIntro(false);
   }, []);
+
+  if (isRecruiters) {
+    return (
+      <Suspense fallback={null}>
+        <RecruitersPage />
+      </Suspense>
+    );
+  }
 
   return (
     <>
