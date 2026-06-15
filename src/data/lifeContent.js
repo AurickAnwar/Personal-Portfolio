@@ -207,6 +207,8 @@ export const ufcPredictions = [
     prediction: 'Topuria by KO, round 1',
     detail:
       'This is not a fair fight, Topuria will pressure Gaethje and finish him in the first round.',
+    analysis: 'Wow, did not expect this to happen. Topuria was clearly way too overconfident and Gaethje clearly had the right gameplan of clinching and uppercuts. I honestly don\'t thing Topuria will ever be the same. That was a life changing beating.',
+    outcome: 'loss',
     tag: 'Main card',
   },
   {
@@ -216,6 +218,8 @@ export const ufcPredictions = [
     prediction: 'Alex Pereira by decision',
     detail:
       "I know you're surprised I picked this fight to go the distance, but I think this will be a close fight. Gane is no slouch, but I do believe Alex is one of the best strikers we've seen in UFC history. It will be quite a boring fight too in my opinion with some people saying 'robbery'.",
+    analysis: 'Alex clearly just couldn\'t handle being up at heavyweight. He should fight Hokit next but man he looked really bad out there.',
+    outcome: 'loss',
     tag: 'Co-main energy',
   },
 ];

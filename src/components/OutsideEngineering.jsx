@@ -227,7 +227,18 @@ function OutsideEngineering() {
               <div className="life-ufc-wide-grid">
                 {ufcPredictions.map((c, idx) => (
                   <div key={c.id} className={`life-ufc-wide-bout ${idx > 0 ? 'life-ufc-wide-bout--split' : ''}`}>
-                    <span className="life-sports-card-tag">{c.tag}</span>
+                    <div className="life-ufc-bout-head">
+                      <span className="life-sports-card-tag">{c.tag}</span>
+                      {c.outcome === 'loss' && (
+                        <span className="life-ufc-outcome life-ufc-outcome--loss">Loss</span>
+                      )}
+                      {c.outcome === 'win' && (
+                        <span className="life-ufc-outcome life-ufc-outcome--win">Win</span>
+                      )}
+                      {c.outcome === 'pending' && (
+                        <span className="life-ufc-outcome life-ufc-outcome--pending">Pending</span>
+                      )}
+                    </div>
                     <p className="life-sports-card-event">{c.event}</p>
                     <p className="life-sports-card-matchup">{c.matchup}</p>
                     <p className="life-sports-card-prediction">
@@ -235,6 +246,12 @@ function OutsideEngineering() {
                       {c.prediction}
                     </p>
                     <p className="life-sports-card-detail">{c.detail}</p>
+                    <div className="life-ufc-analysis">
+                      <span className="life-sports-card-pred-label">Analysis of fight</span>
+                      <p className="life-ufc-analysis-text">
+                        {c.analysis || '—'}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
