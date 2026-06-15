@@ -170,7 +170,7 @@
   color: inherit;
 }
 
-.recruiters-work-item:hover .recruiters-work-company {
+.recruiters-work-item:hover .recruiters-work-role {
   color: var(--rp-text);
 }
 
@@ -189,15 +189,15 @@
 }
 
 .recruiters-work-company {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--rp-text);
-}
-
-.recruiters-work-role {
   font-size: 0.92rem;
   color: var(--rp-text-muted);
   margin-top: 0.1rem;
+}
+
+.recruiters-work-role {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--rp-text);
 }
 
 .recruiters-projects-grid {

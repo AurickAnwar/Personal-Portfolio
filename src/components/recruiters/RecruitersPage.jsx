@@ -147,8 +147,8 @@ export default function RecruitersPage() {
                   }`}
                 />
                 <div>
-                  <div className="recruiters-work-company">{company}</div>
                   <div className="recruiters-work-role">{role}</div>
+                  <div className="recruiters-work-company">{company}</div>
                 </div>
               </a>
             ))}
