@@ -1,3 +1,5 @@
+import { getProjectCardDescription, portfolioProjects } from './portfolioProjects';
+
 export const RECRUITER_SOCIAL = [
   {
     label: 'LinkedIn',
@@ -69,21 +71,52 @@ export const RECRUITER_WORK = [
   
 ];
 
-export const RECRUITER_PROJECTS = [
-  {
-    id: 'autonomous-carla',
-    title: 'Autonomous Self-Driving Vehicle',
-    description:
-      'CARLA simulation with live object detection and decision-making — perception-to-control pipeline for autonomous driving.',
-    image: '/SelfDriving.png',
-    githubUrl: 'https://github.com/AurickAnwar/Autonomous-Self-Driving-Vehicle',
-  },
-  {
-    id: 'hand-gesture',
-    title: 'Hand Gesture Computer Control',
-    description:
-      'Real-time touchless desktop control using webcam hand landmarks — cursor, clicks, and media shortcuts via MediaPipe.',
-    image: '/HandGestureControl.jpg',
-    githubUrl: 'https://github.com/AurickAnwar/Real-Time-Hand-Gesture-Controller',
-  },
+const RECRUITER_PROJECT_SLUGS = [
+  'autonomous-self-driving-carla',
+  'hand-gesture-computer-control',
+  'basketball-shot-predictor',
+  'google-home-replica',
+  'facial-recognition',
+  'car-pedestrian-detection',
+  'push-button-led-pcb',
+  'scissor-bot',
+  'arduino-smart-home',
 ];
+
+const RECRUITER_PROJECT_TITLES = {
+  'autonomous-self-driving-carla': 'Autonomous Self-Driving Vehicle',
+};
+
+function getRecruiterCtaLabel(slug) {
+  if (slug === 'push-button-led-pcb') return 'Download PCB';
+  if (slug === 'scissor-bot') return 'View Report';
+  return 'View GitHub';
+}
+
+export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
+  const project = portfolioProjects.find((p) => p.slug === slug);
+  if (!project) return null;
+
+  return {
+    id: project.slug,
+    slug: project.slug,
+    title: RECRUITER_PROJECT_TITLES[slug] ?? project.title,
+    detailTitle: project.title,
+    category: project.category,
+    year: project.year,
+    projectType: project.projectType,
+    summary: getProjectCardDescription(project),
+    description: project.description,
+    overview: project.overview ?? [],
+    challenge: project.challenge ?? [],
+    solution: project.solution ?? [],
+    technical: project.technical ?? [],
+    outcomes: project.outcomes ?? [],
+    image: project.image,
+    youtubeVideoId: project.youtubeVideoId,
+    projectUrl: project.projectUrl,
+    downloadFilename: project.downloadFilename,
+    ctaLabel: getRecruiterCtaLabel(slug),
+    technologies: project.technologies,
+  };
+}).filter(Boolean);
