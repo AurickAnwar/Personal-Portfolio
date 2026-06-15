@@ -218,7 +218,7 @@ export const ufcPredictions = [
     prediction: 'Alex Pereira by decision',
     detail:
       "I know you're surprised I picked this fight to go the distance, but I think this will be a close fight. Gane is no slouch, but I do believe Alex is one of the best strikers we've seen in UFC history. It will be quite a boring fight too in my opinion with some people saying 'robbery'.",
-    analysis: 'Alex clearly just couldn\'t handle being up at heavyweight. He should fight Hokit next but man he looked really bad out there.',
+    analysis: 'Alex clearly just couldn\'t handle being up at heavyweight. He should fight Hokit next but man he looked really bad out there. Gane honesly has a good shot of beating Aspinall in rematch and that is the next fight I want to see.',
     outcome: 'loss',
     tag: 'Co-main energy',
   },
