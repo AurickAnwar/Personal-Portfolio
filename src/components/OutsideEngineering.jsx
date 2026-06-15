@@ -51,6 +51,18 @@ const masonryChild = {
   },
 };
 
+function ufcBoutClassName(card, index, cards) {
+  const classes = ['life-ufc-wide-bout'];
+  if (card.featured) {
+    classes.push('life-ufc-wide-bout--featured');
+    return classes.join(' ');
+  }
+
+  const gridIndex = cards.slice(0, index).filter((item) => !item.featured).length;
+  if (gridIndex % 2 === 1) classes.push('life-ufc-wide-bout--split');
+  return classes.join(' ');
+}
+
 function OutsideEngineering() {
   const playoffTally = tallyNbaPlayoffsFromBracket();
   const { wins: playoffWins, losses: playoffLosses, pending: playoffPending } = playoffTally;
@@ -226,7 +238,7 @@ function OutsideEngineering() {
               <h3 className="life-ufc-wide-title">UFC</h3>
               <div className="life-ufc-wide-grid">
                 {ufcPredictions.map((c, idx) => (
-                  <div key={c.id} className={`life-ufc-wide-bout ${idx > 0 ? 'life-ufc-wide-bout--split' : ''}`}>
+                  <div key={c.id} className={ufcBoutClassName(c, idx, ufcPredictions)}>
                     <div className="life-ufc-bout-head">
                       <span className="life-sports-card-tag">{c.tag}</span>
                       {c.outcome === 'loss' && (
@@ -243,15 +255,17 @@ function OutsideEngineering() {
                     <p className="life-sports-card-matchup">{c.matchup}</p>
                     <p className="life-sports-card-prediction">
                       <span className="life-sports-card-pred-label">Prediction</span>
-                      {c.prediction}
+                      {c.prediction || '—'}
                     </p>
-                    <p className="life-sports-card-detail">{c.detail}</p>
-                    <div className="life-ufc-analysis">
-                      <span className="life-sports-card-pred-label">Analysis of fight</span>
-                      <p className="life-ufc-analysis-text">
-                        {c.analysis || '—'}
-                      </p>
-                    </div>
+                    {c.detail ? <p className="life-sports-card-detail">{c.detail}</p> : null}
+                    {!c.featured && (
+                      <div className="life-ufc-analysis">
+                        <span className="life-sports-card-pred-label">Analysis of fight</span>
+                        <p className="life-ufc-analysis-text">
+                          {c.analysis || '—'}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

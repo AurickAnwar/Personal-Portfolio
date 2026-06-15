@@ -201,6 +201,17 @@ export const PLAYOFF_SCORING_NOTE =
 
 export const ufcPredictions = [
   {
+    id: 'u0',
+    event: 'Upcoming bout',
+    matchup: 'Holloway vs McGregor',
+    prediction: 'Holloway by round 3 TKO',
+    detail: 'Mcgregor returning after 5 years, I just think he is too old and rusty. Holloway is no longer in his prime, however he is still competing at the highest level. First round will be tough for Holloway but he will get the TKO along the fence by round 3.',
+    analysis: '',
+    outcome: 'pending',
+    tag: 'Upcoming',
+    featured: true,
+  },
+  {
     id: 'u1',
     event: 'UFC White House Card',
     matchup: 'Topuria vs Gaethje',
