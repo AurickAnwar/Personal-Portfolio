@@ -39,36 +39,36 @@ export const RECRUITER_INTRO = [
 export const RECRUITER_WORK = [
   {
     company: 'Personalized Prescribing',
-    role: 'Machine Learning Intern (Incoming Fall 2026)',
+    role: 'Machine Learning Intern',
+    location: 'Richmond Hill, Ontario',
+    dates: 'Incoming Fall 2026',
     logo: '/personalized.jpg',
     url: 'https://personalizedprescribing.com/',
   },
   {
-    company: 'Magnified Systems',
-    role: 'Founding Engineer',
-    logo: '/MagnifiedSystems.png',
-    url: 'https://www.magnifiedsystems.com/',
-  },
-  {
     company: 'HermesAI',
     role: 'Software Engineering Intern',
+    location: 'Toronto, Ontario',
+    dates: 'May 2026 – Present',
     logo: '/hermesailogo.jpg',
     url: 'https://hermesai.ca/',
   },
   {
-    company: 'Orbitview',
-    role: 'Co-Founder',
-    logo: '/Orbitview.png',
-    url: 'https://www.orbitview.net/',
-
+    company: 'Magnified Systems',
+    role: 'Founding Engineer',
+    location: 'Toronto, Ontario',
+    dates: 'February 2026 – Present',
+    logo: '/MagnifiedSystems.png',
+    url: 'https://www.magnifiedsystems.com/',
   },
   {
-    company: 'The STEAM Project',
-    role: 'Manufacturing Assistant',
-    logo: '/TheSTEAMProject.png',
-    url: 'https://www.thesteamproject.ca/',
-  }
-  
+    company: 'Orbitview',
+    role: 'Co-Founder',
+    location: 'Toronto, Ontario',
+    dates: 'December 2023 – June 2025',
+    logo: '/Orbitview.png',
+    url: 'https://www.orbitview.net/',
+  },
 ];
 
 const RECRUITER_PROJECT_SLUGS = [

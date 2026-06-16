@@ -511,7 +511,7 @@ export default function RecruitersPage() {
             Work
           </h2>
           <div className="recruiters-work-list">
-            {RECRUITER_WORK.map(({ company, role, logo, url }) => (
+            {RECRUITER_WORK.map(({ company, role, location, dates, logo, url }) => (
               <a
                 key={company}
                 href={url}
@@ -526,9 +526,15 @@ export default function RecruitersPage() {
                     company !== 'Magnified Systems' ? ' recruiters-work-logo--contain' : ''
                   }`}
                 />
-                <div>
-                  <div className="recruiters-work-role">{role}</div>
-                  <div className="recruiters-work-company">{company}</div>
+                <div className="recruiters-work-body">
+                  <div className="recruiters-work-line">
+                    <div className="recruiters-work-role">{role}</div>
+                    <p className="recruiters-work-meta">{location}</p>
+                  </div>
+                  <div className="recruiters-work-line recruiters-work-line--sub">
+                    <div className="recruiters-work-company">{company}</div>
+                    <p className="recruiters-work-meta recruiters-work-meta--dates">{dates}</p>
+                  </div>
                 </div>
               </a>
             ))}

@@ -43,16 +43,4 @@ export const workExperience = [
     logoFit: 'cover',
     url: 'https://www.orbitview.net/',
   },
-  {
-    id: 'steam',
-    company: 'The STEAM Project',
-    role: 'Manufacturing Assistant',
-    location: 'Toronto, Ontario',
-    dates: 'June 2025 – August 2025',
-    logo: '/TheSTEAMProject.png',
-    logoTheme: 'steam',
-    logoFit: 'cover',
-    url: 'https://www.thesteamproject.ca/',
-  },
-  
 ];
