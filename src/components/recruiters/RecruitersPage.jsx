@@ -328,10 +328,96 @@ function getVisibleProjects(projects, page, perPage) {
   return [...slice, ...projects.slice(0, perPage - slice.length)];
 }
 
+const SWIPE_THRESHOLD_PX = 48;
+const WHEEL_THRESHOLD_PX = 18;
+const WHEEL_COOLDOWN_MS = 450;
+
+function useCarouselSwipe({ onPrev, onNext, enabled }) {
+  const dragRef = useRef(null);
+  const wheelCooldownRef = useRef(false);
+
+  const handlePointerDown = useCallback(
+    (event) => {
+      if (!enabled || event.button !== 0) return;
+
+      dragRef.current = {
+        startX: event.clientX,
+        startY: event.clientY,
+        pointerId: event.pointerId,
+      };
+      event.currentTarget.setPointerCapture(event.pointerId);
+    },
+    [enabled]
+  );
+
+  const finishPointer = useCallback(
+    (event) => {
+      const drag = dragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId) return;
+
+      dragRef.current = null;
+
+      const deltaX = event.clientX - drag.startX;
+      const deltaY = event.clientY - drag.startY;
+
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) {
+        return;
+      }
+
+      if (deltaX > 0) onNext();
+      else onPrev();
+    },
+    [onNext, onPrev]
+  );
+
+  const handlePointerUp = useCallback(
+    (event) => {
+      finishPointer(event);
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }
+    },
+    [finishPointer]
+  );
+
+  const handlePointerCancel = useCallback((event) => {
+    if (dragRef.current?.pointerId === event.pointerId) {
+      dragRef.current = null;
+    }
+  }, []);
+
+  const handleWheel = useCallback(
+    (event) => {
+      if (!enabled || wheelCooldownRef.current) return;
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      if (Math.abs(event.deltaX) < WHEEL_THRESHOLD_PX) return;
+
+      event.preventDefault();
+      wheelCooldownRef.current = true;
+      window.setTimeout(() => {
+        wheelCooldownRef.current = false;
+      }, WHEEL_COOLDOWN_MS);
+
+      if (event.deltaX > 0) onNext();
+      else onPrev();
+    },
+    [enabled, onNext, onPrev]
+  );
+
+  return {
+    handlePointerDown,
+    handlePointerUp,
+    handlePointerCancel,
+    handleWheel,
+  };
+}
+
 function ProjectsCarousel({ projects }) {
   const perPage = useCarouselPerPage();
   const [page, setPage] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const viewportRef = useRef(null);
   const pageCount = Math.max(1, Math.ceil(projects.length / perPage));
   const visibleProjects = getVisibleProjects(projects, page, perPage);
 
@@ -361,6 +447,29 @@ function ProjectsCarousel({ projects }) {
     setPage((nextPage + pageCount) % pageCount);
   };
 
+  const goPrev = useCallback(() => {
+    setPage((current) => (current - 1 + pageCount) % pageCount);
+  }, [pageCount]);
+
+  const goNext = useCallback(() => {
+    setPage((current) => (current + 1) % pageCount);
+  }, [pageCount]);
+
+  const swipeEnabled = selectedIndex === null;
+  const { handlePointerDown, handlePointerUp, handlePointerCancel, handleWheel } = useCarouselSwipe({
+    onPrev: goPrev,
+    onNext: goNext,
+    enabled: swipeEnabled,
+  });
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return undefined;
+
+    viewport.addEventListener('wheel', handleWheel, { passive: false });
+    return () => viewport.removeEventListener('wheel', handleWheel);
+  }, [handleWheel]);
+
   useEffect(() => {
     setPage((current) => Math.min(current, pageCount - 1));
   }, [pageCount]);
@@ -369,16 +478,16 @@ function ProjectsCarousel({ projects }) {
     const onKeyDown = (event) => {
       if (selectedIndex !== null) return;
       if (event.key === 'ArrowLeft') {
-        setPage((current) => (current - 1 + pageCount) % pageCount);
+        goPrev();
       }
       if (event.key === 'ArrowRight') {
-        setPage((current) => (current + 1) % pageCount);
+        goNext();
       }
     };
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [pageCount, selectedIndex]);
+  }, [goNext, goPrev, selectedIndex]);
 
   if (!projects.length) return null;
 
@@ -394,7 +503,25 @@ function ProjectsCarousel({ projects }) {
           <ChevronLeftIcon />
         </button>
 
-        <div className="recruiters-carousel-viewport" aria-live="polite">
+        <div
+          ref={viewportRef}
+          className={`recruiters-carousel-viewport${
+            isDragging ? ' recruiters-carousel-viewport--dragging' : ''
+          }`}
+          aria-live="polite"
+          onPointerDown={(event) => {
+            setIsDragging(true);
+            handlePointerDown(event);
+          }}
+          onPointerUp={(event) => {
+            setIsDragging(false);
+            handlePointerUp(event);
+          }}
+          onPointerCancel={(event) => {
+            setIsDragging(false);
+            handlePointerCancel(event);
+          }}
+        >
           <div key={`${page}-${perPage}`} className="recruiters-carousel-slide">
             {visibleProjects.map((project, slideIndex) => (
               <ProjectCard

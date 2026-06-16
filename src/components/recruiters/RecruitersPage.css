@@ -277,6 +277,13 @@
 
 .recruiters-carousel-viewport {
   overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+}
+
+.recruiters-carousel-viewport--dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .recruiters-carousel-slide {
