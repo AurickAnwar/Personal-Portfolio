@@ -262,12 +262,31 @@ function ArrowLinkIcon() {
   );
 }
 
-function ProjectCard({ project, onViewDescription }) {
+function ProjectCard({ project, onViewDescription, suppressClickRef }) {
   const { title, summary, image, technologies } = project;
 
+  const openDescription = useCallback(() => {
+    if (suppressClickRef?.current) return;
+    onViewDescription(project);
+  }, [onViewDescription, project, suppressClickRef]);
+
+  const handleImageKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openDescription();
+    }
+  };
+
   return (
-    <article className="recruiters-project-card">
-      <div className="recruiters-project-image-wrap">
+    <article className="recruiters-project-card recruiters-project-card--interactive">
+      <div
+        className="recruiters-project-image-wrap"
+        role="button"
+        tabIndex={0}
+        aria-label={`View ${title} description`}
+        onClick={openDescription}
+        onKeyDown={handleImageKeyDown}
+      >
         <img src={image} alt="" className="recruiters-project-image" />
         <div className="recruiters-project-image-overlay" />
       </div>
@@ -290,7 +309,10 @@ function ProjectCard({ project, onViewDescription }) {
           <button
             type="button"
             className="recruiters-project-view-btn"
-            onClick={() => onViewDescription(project)}
+            onClick={(event) => {
+              event.stopPropagation();
+              openDescription();
+            }}
             onPointerDown={(event) => event.stopPropagation()}
           >
             <span>View description</span>
@@ -338,14 +360,26 @@ function isInteractiveCarouselTarget(target) {
   return Boolean(target.closest('button, a, input, textarea, select'));
 }
 
-function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
+function isSelectableCarouselTarget(target) {
+  return Boolean(target.closest('.recruiters-project-content'));
+}
+
+function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange, suppressClickRef }) {
   const dragRef = useRef(null);
   const wheelCooldownRef = useRef(false);
+
+  const lockCardClick = useCallback(() => {
+    if (!suppressClickRef) return;
+    suppressClickRef.current = true;
+    window.setTimeout(() => {
+      suppressClickRef.current = false;
+    }, 120);
+  }, [suppressClickRef]);
 
   const handlePointerDown = useCallback(
     (event) => {
       if (!enabled || event.button !== 0) return;
-      if (isInteractiveCarouselTarget(event.target)) return;
+      if (isInteractiveCarouselTarget(event.target) || isSelectableCarouselTarget(event.target)) return;
 
       dragRef.current = {
         startX: event.clientX,
@@ -385,6 +419,10 @@ function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
       const deltaX = event.clientX - drag.startX;
       const deltaY = event.clientY - drag.startY;
 
+      if (drag.captured) {
+        lockCardClick();
+      }
+
       if (!drag.captured || Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) {
         return;
       }
@@ -392,7 +430,7 @@ function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
       if (deltaX > 0) onNext();
       else onPrev();
     },
-    [onDragChange, onNext, onPrev]
+    [lockCardClick, onDragChange, onNext, onPrev]
   );
 
   const handlePointerUp = useCallback(
@@ -423,6 +461,7 @@ function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
 
       event.preventDefault();
       wheelCooldownRef.current = true;
+      lockCardClick();
       window.setTimeout(() => {
         wheelCooldownRef.current = false;
       }, WHEEL_COOLDOWN_MS);
@@ -430,7 +469,7 @@ function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
       if (event.deltaX > 0) onNext();
       else onPrev();
     },
-    [enabled, onNext, onPrev]
+    [enabled, lockCardClick, onNext, onPrev]
   );
 
   return {
@@ -448,6 +487,7 @@ function ProjectsCarousel({ projects }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const viewportRef = useRef(null);
+  const suppressCardClickRef = useRef(false);
   const pageCount = Math.max(1, Math.ceil(projects.length / perPage));
   const visibleProjects = getVisibleProjects(projects, page, perPage);
 
@@ -492,6 +532,7 @@ function ProjectsCarousel({ projects }) {
       onNext: goNext,
       enabled: swipeEnabled,
       onDragChange: setIsDragging,
+      suppressClickRef: suppressCardClickRef,
     });
 
   useEffect(() => {
@@ -552,6 +593,7 @@ function ProjectsCarousel({ projects }) {
                 key={`${page}-${project.id}-${slideIndex}`}
                 project={project}
                 onViewDescription={openProject}
+                suppressClickRef={suppressCardClickRef}
               />
             ))}
           </div>

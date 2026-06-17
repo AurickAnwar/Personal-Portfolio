@@ -278,7 +278,6 @@
 .recruiters-carousel-viewport {
   overflow: hidden;
   touch-action: pan-y pinch-zoom;
-  cursor: grab;
 }
 
 .recruiters-carousel-viewport--dragging {
@@ -394,6 +393,23 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.recruiters-intro,
+.recruiters-work,
+.recruiters-name,
+.recruiters-section-title,
+.recruiters-footer {
+  user-select: text;
+}
+
+.recruiters-project-card--interactive {
+  cursor: default;
+}
+
+.recruiters-project-card--interactive:focus-visible {
+  outline: none;
+}
+
+
 .recruiters-project-card:hover {
   border-color: var(--rp-text-subtle);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
@@ -410,6 +426,12 @@
   overflow: hidden;
   flex-shrink: 0;
   background: var(--rp-surface);
+  cursor: pointer;
+}
+
+.recruiters-project-image-wrap:focus-visible {
+  outline: 2px solid var(--rp-text-subtle);
+  outline-offset: -2px;
 }
 
 .recruiters-project-image {
@@ -438,6 +460,9 @@
   flex-direction: column;
   flex: 1;
   padding: 0.85rem 0.9rem 0.75rem;
+  user-select: text;
+  cursor: text;
+  touch-action: auto;
 }
 
 .recruiters-project-title {
@@ -504,8 +529,6 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: pointer;
-  position: relative;
-  z-index: 1;
   transition: color 0.2s ease;
 }
 
@@ -519,7 +542,8 @@
   transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.recruiters-project-view-btn:hover .recruiters-project-view-arrow {
+.recruiters-project-view-btn:hover .recruiters-project-view-arrow,
+.recruiters-project-card:hover .recruiters-project-view-arrow {
   transform: translateX(4px);
 }
 
