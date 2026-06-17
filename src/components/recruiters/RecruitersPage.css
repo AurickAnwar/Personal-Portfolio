@@ -496,7 +496,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0;
+  padding: 0.35rem 0;
   border: none;
   background: none;
   color: var(--rp-text-muted);
@@ -504,6 +504,8 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
   transition: color 0.2s ease;
 }
 

@@ -291,6 +291,7 @@ function ProjectCard({ project, onViewDescription }) {
             type="button"
             className="recruiters-project-view-btn"
             onClick={() => onViewDescription(project)}
+            onPointerDown={(event) => event.stopPropagation()}
           >
             <span>View description</span>
             <span className="recruiters-project-view-arrow">
@@ -329,25 +330,48 @@ function getVisibleProjects(projects, page, perPage) {
 }
 
 const SWIPE_THRESHOLD_PX = 48;
+const DRAG_START_PX = 10;
 const WHEEL_THRESHOLD_PX = 18;
 const WHEEL_COOLDOWN_MS = 450;
 
-function useCarouselSwipe({ onPrev, onNext, enabled }) {
+function isInteractiveCarouselTarget(target) {
+  return Boolean(target.closest('button, a, input, textarea, select'));
+}
+
+function useCarouselSwipe({ onPrev, onNext, enabled, onDragChange }) {
   const dragRef = useRef(null);
   const wheelCooldownRef = useRef(false);
 
   const handlePointerDown = useCallback(
     (event) => {
       if (!enabled || event.button !== 0) return;
+      if (isInteractiveCarouselTarget(event.target)) return;
 
       dragRef.current = {
         startX: event.clientX,
         startY: event.clientY,
         pointerId: event.pointerId,
+        captured: false,
       };
-      event.currentTarget.setPointerCapture(event.pointerId);
     },
     [enabled]
+  );
+
+  const handlePointerMove = useCallback(
+    (event) => {
+      const drag = dragRef.current;
+      if (!drag || drag.pointerId !== event.pointerId || drag.captured) return;
+
+      const deltaX = Math.abs(event.clientX - drag.startX);
+      const deltaY = Math.abs(event.clientY - drag.startY);
+
+      if (deltaX < DRAG_START_PX && deltaY < DRAG_START_PX) return;
+
+      drag.captured = true;
+      onDragChange?.(true);
+      event.currentTarget.setPointerCapture(event.pointerId);
+    },
+    [onDragChange]
   );
 
   const finishPointer = useCallback(
@@ -356,18 +380,19 @@ function useCarouselSwipe({ onPrev, onNext, enabled }) {
       if (!drag || drag.pointerId !== event.pointerId) return;
 
       dragRef.current = null;
+      onDragChange?.(false);
 
       const deltaX = event.clientX - drag.startX;
       const deltaY = event.clientY - drag.startY;
 
-      if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) {
+      if (!drag.captured || Math.abs(deltaX) < SWIPE_THRESHOLD_PX || Math.abs(deltaX) < Math.abs(deltaY)) {
         return;
       }
 
       if (deltaX > 0) onNext();
       else onPrev();
     },
-    [onNext, onPrev]
+    [onDragChange, onNext, onPrev]
   );
 
   const handlePointerUp = useCallback(
@@ -380,11 +405,15 @@ function useCarouselSwipe({ onPrev, onNext, enabled }) {
     [finishPointer]
   );
 
-  const handlePointerCancel = useCallback((event) => {
-    if (dragRef.current?.pointerId === event.pointerId) {
-      dragRef.current = null;
-    }
-  }, []);
+  const handlePointerCancel = useCallback(
+    (event) => {
+      if (dragRef.current?.pointerId === event.pointerId) {
+        dragRef.current = null;
+        onDragChange?.(false);
+      }
+    },
+    [onDragChange]
+  );
 
   const handleWheel = useCallback(
     (event) => {
@@ -406,6 +435,7 @@ function useCarouselSwipe({ onPrev, onNext, enabled }) {
 
   return {
     handlePointerDown,
+    handlePointerMove,
     handlePointerUp,
     handlePointerCancel,
     handleWheel,
@@ -456,11 +486,13 @@ function ProjectsCarousel({ projects }) {
   }, [pageCount]);
 
   const swipeEnabled = selectedIndex === null;
-  const { handlePointerDown, handlePointerUp, handlePointerCancel, handleWheel } = useCarouselSwipe({
-    onPrev: goPrev,
-    onNext: goNext,
-    enabled: swipeEnabled,
-  });
+  const { handlePointerDown, handlePointerMove, handlePointerUp, handlePointerCancel, handleWheel } =
+    useCarouselSwipe({
+      onPrev: goPrev,
+      onNext: goNext,
+      enabled: swipeEnabled,
+      onDragChange: setIsDragging,
+    });
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -509,18 +541,10 @@ function ProjectsCarousel({ projects }) {
             isDragging ? ' recruiters-carousel-viewport--dragging' : ''
           }`}
           aria-live="polite"
-          onPointerDown={(event) => {
-            setIsDragging(true);
-            handlePointerDown(event);
-          }}
-          onPointerUp={(event) => {
-            setIsDragging(false);
-            handlePointerUp(event);
-          }}
-          onPointerCancel={(event) => {
-            setIsDragging(false);
-            handlePointerCancel(event);
-          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
         >
           <div key={`${page}-${perPage}`} className="recruiters-carousel-slide">
             {visibleProjects.map((project, slideIndex) => (
