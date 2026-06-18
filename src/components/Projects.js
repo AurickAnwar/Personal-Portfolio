@@ -129,8 +129,20 @@ const Projects = () => {
               className="project-card fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
+              <div
+                className={`project-image${
+                  project.imageFocusLeft ? ' project-image--left-focus' : ''
+                }`}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={
+                    project.imageObjectPosition
+                      ? { objectPosition: project.imageObjectPosition }
+                      : undefined
+                  }
+                />
                 <div className="project-image-overlay" />
               </div>
 

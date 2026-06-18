@@ -5,6 +5,7 @@ import {
   RECRUITER_SOCIAL,
   RECRUITER_WORK,
 } from '../../data/recruitersContent';
+import { getProjectMediaImages } from '../../data/portfolioProjects';
 import YouTubeLoop from '../projects/YouTubeLoop';
 import './RecruitersPage.css';
 
@@ -126,6 +127,7 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
   if (!project) return null;
 
   const metaParts = [project.year, project.projectType].filter(Boolean);
+  const mediaImages = getProjectMediaImages(project);
   const ctaProps = project.downloadFilename
     ? { download: project.downloadFilename }
     : { target: '_blank', rel: 'noopener noreferrer' };
@@ -169,20 +171,33 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
           </div>
 
           <div key={project.id} className="recruiters-detail-content">
-            <div className="recruiters-detail-hero">
-              {project.youtubeVideoId ? (
-                <YouTubeLoop
-                  videoId={project.youtubeVideoId}
-                  title={`${project.title} demo`}
-                  className="recruiters-detail-video"
-                  poster={project.image}
-                  showControls
-                  eager
-                />
-              ) : (
-                <img src={project.image} alt={project.title} className="recruiters-detail-poster" />
-              )}
-            </div>
+            {mediaImages ? (
+              <div className="recruiters-detail-gallery">
+                {mediaImages.map(({ src, alt, caption }) => (
+                  <figure key={`${src}-${caption}`} className="recruiters-detail-gallery-item">
+                    <img src={src} alt={alt ?? project.title} className="recruiters-detail-gallery-image" />
+                    {caption && (
+                      <figcaption className="recruiters-detail-gallery-caption">{caption}</figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            ) : (
+              <div className="recruiters-detail-hero">
+                {project.youtubeVideoId ? (
+                  <YouTubeLoop
+                    videoId={project.youtubeVideoId}
+                    title={`${project.title} demo`}
+                    className="recruiters-detail-video"
+                    poster={project.image}
+                    showControls
+                    eager
+                  />
+                ) : (
+                  <img src={project.image} alt={project.title} className="recruiters-detail-poster" />
+                )}
+              </div>
+            )}
 
             <div className="recruiters-detail-layout">
               <aside className="recruiters-detail-sidebar">
@@ -263,7 +278,7 @@ function ArrowLinkIcon() {
 }
 
 function ProjectCard({ project, onViewDescription, suppressClickRef }) {
-  const { title, summary, image, technologies } = project;
+  const { title, summary, image, imageObjectPosition, imageFocusLeft, technologies } = project;
 
   const openDescription = useCallback(() => {
     if (suppressClickRef?.current) return;
@@ -280,14 +295,21 @@ function ProjectCard({ project, onViewDescription, suppressClickRef }) {
   return (
     <article className="recruiters-project-card recruiters-project-card--interactive">
       <div
-        className="recruiters-project-image-wrap"
+        className={`recruiters-project-image-wrap${
+          imageFocusLeft ? ' recruiters-project-image-wrap--left-focus' : ''
+        }`}
         role="button"
         tabIndex={0}
         aria-label={`View ${title} description`}
         onClick={openDescription}
         onKeyDown={handleImageKeyDown}
       >
-        <img src={image} alt="" className="recruiters-project-image" />
+        <img
+          src={image}
+          alt=""
+          className="recruiters-project-image"
+          style={imageObjectPosition ? { objectPosition: imageObjectPosition } : undefined}
+        />
         <div className="recruiters-project-image-overlay" />
       </div>
 

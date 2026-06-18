@@ -434,6 +434,15 @@
   outline-offset: -2px;
 }
 
+.recruiters-project-image-wrap--left-focus .recruiters-project-image {
+  width: 125%;
+  max-width: none;
+  left: 0;
+  right: auto;
+  object-fit: cover;
+  object-position: left top;
+}
+
 .recruiters-project-image {
   position: absolute;
   inset: 0;
@@ -693,6 +702,37 @@
   border: 1px solid var(--rp-border);
   background: var(--rp-surface);
   margin-bottom: 1.5rem;
+}
+
+.recruiters-detail-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.recruiters-detail-gallery-item {
+  margin: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--rp-border);
+  background: var(--rp-surface);
+}
+
+.recruiters-detail-gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.recruiters-detail-gallery-caption {
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rp-text-muted);
+  border-top: 1px solid var(--rp-border);
 }
 
 .recruiters-detail-video {

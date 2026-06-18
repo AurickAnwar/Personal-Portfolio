@@ -256,6 +256,14 @@
   position: relative;
   height: 165px;
   background: var(--bg-card);
+  overflow: hidden;
+}
+
+.project-image--left-focus img {
+  width: 125%;
+  max-width: none;
+  object-fit: cover;
+  object-position: left top;
 }
 
 .project-image img {

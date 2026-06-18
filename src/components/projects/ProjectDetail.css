@@ -45,6 +45,46 @@
   display: block;
 }
 
+.project-detail__hero--natural {
+  aspect-ratio: auto;
+}
+
+.project-detail__hero--natural .project-detail__poster {
+  height: auto;
+  object-fit: contain;
+}
+
+.project-detail__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.project-detail__gallery-item {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.project-detail__gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-detail__gallery-caption {
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+}
+
 .project-detail__layout {
   display: grid;
   grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);

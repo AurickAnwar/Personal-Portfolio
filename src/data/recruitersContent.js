@@ -73,6 +73,7 @@ export const RECRUITER_WORK = [
 
 const RECRUITER_PROJECT_SLUGS = [
   'autonomous-self-driving-carla',
+  'breast-cancer-cell-detection',
   'hand-gesture-computer-control',
   'basketball-shot-predictor',
   'google-home-replica',
@@ -113,6 +114,9 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
     technical: project.technical ?? [],
     outcomes: project.outcomes ?? [],
     image: project.image,
+    imageObjectPosition: project.imageObjectPosition,
+    imageFocusLeft: project.imageFocusLeft,
+    detailImages: project.detailImages ?? [],
     youtubeVideoId: project.youtubeVideoId,
     projectUrl: project.projectUrl,
     downloadFilename: project.downloadFilename,

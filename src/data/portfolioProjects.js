@@ -54,6 +54,66 @@ const rawProjects = [
     ],
   },
   {
+    id: 10,
+    slug: 'breast-cancer-cell-detection',
+    title: 'Breast Cancer Cell Detection',
+    category: 'COMPUTER VISION',
+    year: '2026',
+    projectType: 'Solo Project',
+    description:
+      'Building a medical AI pipeline that detects breast cancer tumors using YOLO and predicts with Grad-CAM heatmaps.',
+    image: '/CellDetection2.png',
+    imageObjectPosition: 'left top',
+    imageFocusLeft: true,
+    detailImages: [
+      {
+        src: '/CellDetection1.png',
+        alt: 'Benign classification with Grad-CAM heatmap',
+        caption: 'Benign · 86.35%',
+      },
+      {
+        src: '/BreastCancerYOLO.png',
+        alt: 'YOLO tumor detection on mammogram',
+        caption: 'YOLO detection',
+      },
+    ],
+    technologies: ['PyTorch', 'Grad-CAM', 'CNNs', 'YOLOv11'],
+    projectUrl: 'https://github.com/AurickAnwar/Cancer-Cell-Detection',
+    overview: [
+      'Built a medical imaging pipeline that detects and classifies breast cancer regions in mammography images using a two-stage deep learning approach.',
+      'Combined object detection, custom CNN classification, and explainability visualization to simulate a real-world computer-aided diagnosis workflow.',
+      'Designed to explore how explainable AI can bridge the gap between model predictions and clinical interpretability in medical imaging.',
+    ],
+    challenge: [
+      'Training a YOLO model to localize tumor regions in grayscale mammography images with limited annotated data.',
+      'Building a CNN classifier from scratch and integrating it as a second-stage classifier on YOLO-detected crops.',
+      'Hooking Grad-CAM into a custom CNN architecture to generate meaningful heatmaps without using pretrained models.',
+      'Connecting multiple models into a single real-time inference pipeline without breaking gradient flow for explainability.',
+    ],
+    solution: [
+      'Fine-tuned YOLOv11 on 5,400 annotated breast cancer images from Roboflow to detect and localize tumor regions with bounding boxes.',
+      'Built a custom CNN classifier in PyTorch trained on YOLO-cropped regions to independently classify each detection as benign or malignant.',
+      'Applied pytorch-grad-cam to the final convolutional layer of the CNN to generate spatial heatmaps explaining which regions influenced each prediction.',
+      'Displayed original crop and Grad-CAM heatmap side by side with confidence scores for each detection.',
+    ],
+    technical: [
+      'Developed in Python using PyTorch, Ultralytics YOLOv11, OpenCV, pytorch-grad-cam, and Pillow.',
+      'Fine-tuned YOLOv11m on a Roboflow breast cancer dataset with YOLO-format annotations and a custom data.yaml config.',
+      'Built a 3-layer CNN with Conv2d, ReLU, and MaxPool2d blocks followed by fully connected layers outputting benign/malignant probabilities.',
+      'Trained the CNN using CrossEntropyLoss and Adam optimization on YOLO-cropped cell regions.',
+      'Applied softmax to CNN outputs to convert raw logits into calibrated confidence percentages.',
+      'Used GradCAM targeting conv3 to generate grayscale activation maps and overlaid them using cv2.applyColorMap and cv2.addWeighted.',
+      'Built a modular pipeline across four scripts — train.py, crop_dataset.py, cnn_train.py, and BreastCellDetection.py.',
+    ],
+    outcomes: [
+      'Built a working end-to-end explainable medical AI pipeline from tumor detection to visual decision explanation.',
+      'Achieved 95.31% CNN confidence on malignant detections with visually meaningful Grad-CAM activation maps.',
+      'Strengthened experience with computer vision, custom neural network design, and explainable AI in a medical context.',
+      'Gained hands-on experience connecting multiple deep learning models into a unified real-time inference pipeline.',
+      'Created a foundation for future work in medical imaging, transfer learning with ResNet/EfficientNet, and multi-class tumor grading.',
+    ],
+  },
+  {
     id: 2,
     slug: 'basketball-shot-predictor',
     title: 'Basketball Shot Predictor',
@@ -433,4 +493,21 @@ export function getProjectCardDescription(project) {
     return project.description.join(' ');
   }
   return project.description ?? '';
+}
+
+/** Header image plus stacked gallery frames for detail views. */
+export function getProjectMediaImages(project) {
+  if (!project.detailImages?.length) return null;
+
+  const headerCaption =
+    project.slug === 'breast-cancer-cell-detection' ? 'Malignant · 95.31%' : null;
+
+  return [
+    {
+      src: project.image,
+      alt: project.title,
+      caption: headerCaption,
+    },
+    ...project.detailImages,
+  ];
 }

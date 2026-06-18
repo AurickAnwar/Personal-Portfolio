@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { getProjectBySlug } from '../../data/portfolioProjects';
+import { getProjectBySlug, getProjectMediaImages } from '../../data/portfolioProjects';
 import YouTubeLoop from './YouTubeLoop';
 import './ProjectDetail.css';
 
@@ -34,6 +34,21 @@ function BulletList({ items }) {
   );
 }
 
+function ProjectDetailGallery({ images }) {
+  if (!images?.length) return null;
+
+  return (
+    <div className="project-detail__gallery fade-in-up">
+      {images.map(({ src, alt, caption }) => (
+        <figure key={`${src}-${caption}`} className="project-detail__gallery-item">
+          <img src={src} alt={alt ?? ''} loading="lazy" />
+          {caption && <figcaption className="project-detail__gallery-caption">{caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 const ProjectDetail = () => {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
@@ -47,6 +62,7 @@ const ProjectDetail = () => {
   }
 
   const showCta = !project.hideCta && project.projectUrl;
+  const mediaImages = getProjectMediaImages(project);
   const ctaLabel =
     project.ctaLabel ??
     (project.downloadFilename ? 'Download File' : 'View Project');
@@ -61,20 +77,24 @@ const ProjectDetail = () => {
           ← Back to Projects
         </Link>
 
-        <div className="project-detail__hero fade-in-up">
-          {project.youtubeVideoId ? (
-            <YouTubeLoop
-              videoId={project.youtubeVideoId}
-              title={`${project.title} demo`}
-              className="project-detail__video"
-              poster={project.image}
-              showControls
-              eager
-            />
-          ) : (
-            <img src={project.image} alt={project.title} className="project-detail__poster" />
-          )}
-        </div>
+        {mediaImages ? (
+          <ProjectDetailGallery images={mediaImages} />
+        ) : (
+          <div className="project-detail__hero fade-in-up">
+            {project.youtubeVideoId ? (
+              <YouTubeLoop
+                videoId={project.youtubeVideoId}
+                title={`${project.title} demo`}
+                className="project-detail__video"
+                poster={project.image}
+                showControls
+                eager
+              />
+            ) : (
+              <img src={project.image} alt={project.title} className="project-detail__poster" />
+            )}
+          </div>
+        )}
 
         <div className="project-detail__layout fade-in-up">
           <aside className="project-detail__sidebar">
