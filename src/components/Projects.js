@@ -39,25 +39,6 @@ const Projects = () => {
     primaryCtaUrl: 'https://github.com/007Aurick/ROS2',
  
   };
-  const cancerCellDetection = {
-    title: 'Breast Cancer Cell Detection',
-    status: 'Currently Building',
-    progressPercent: 50,
-    progressNote: 'Officially got YOLO to detect whether the cell is benign or malignant',
-    description:
-      'Building a system that processes microscopy images and uses machine learning to classify cells as benign or malignant.',
-    bullets: [
-      'Training CNN models to predict cell type from image input.',
-      'Using Grad-CAM to visualize the regions driving each prediction.',
-      'Integrating YOLOv11 for localized cell detection in full-frame images.',
-    ],
-    technologies: ['CNNs', 'Grad-CAM', 'PyTorch', 'YOLOv11'],
-    primaryCtaLabel: 'GitHub Repository',
-    primaryCtaUrl: 'https://github.com/AurickAnwar/Cancer-Cell-Detection',
-  };
-
-  
-  
 
   return (
     <section className="projects section">
@@ -138,55 +119,6 @@ const Projects = () => {
             </div>
           </div>
         </div>
-
-        <div className="featured-project fade-in-up">
-          <div className="featured-content">
-            <p className="featured-label">Featured Building</p>
-            <h2>{cancerCellDetection.title}</h2>
-            <p className="featured-status">{cancerCellDetection.status}</p>
-            <p>{cancerCellDetection.description}</p>
-            <ul className="featured-list">
-              {cancerCellDetection.bullets.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-            <div className="featured-progress-block" role="status" aria-live="polite">
-              <div className="featured-progress-header">
-                <span className="featured-progress-title">Progress</span>
-                <span className="featured-progress-percent">{cancerCellDetection.progressPercent}%</span>
-              </div>
-              <div
-                className="featured-progress-track"
-                aria-label={`Cancer cell detection progress ${cancerCellDetection.progressPercent}%`}
-              >
-                <span
-                  className="featured-progress-fill"
-                  style={{ '--progress-width': `${cancerCellDetection.progressPercent}%` }}
-                />
-              </div>
-              <p className="featured-developing-text" style={{ marginTop: '0.65rem' }}>
-                {cancerCellDetection.progressNote}
-              </p>
-            </div>
-            <div className="project-technologies" style={{ marginTop: '1rem' }}>
-              {cancerCellDetection.technologies.map((tech) => (
-                <span key={tech} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-            <div className="featured-actions">
-              <a
-                href={cancerCellDetection.primaryCtaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn"
-              >
-                {cancerCellDetection.primaryCtaLabel}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        
 
         <div className="projects-divider" />
 
