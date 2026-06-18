@@ -25,7 +25,6 @@ const Projects = () => {
     title: 'Learning ROS2',
     status: 'Currently Learning',
     progressPercent: 52,
-    progressNote: "Working with RVIZ and locomotion of a robot. Working with URDF and Xacro Files",
     description:
       'Future Projects: ',
     bullets: [
@@ -102,9 +101,6 @@ const Projects = () => {
                   style={{ '--progress-width': `${ros2Learning.progressPercent}%` }}
                 />
               </div>
-              <p className="featured-developing-text" style={{ marginTop: '0.65rem' }}>
-                {ros2Learning.progressNote}
-              </p>
             </div>
             <div className="project-technologies" style={{ marginTop: '1rem' }}>
               {ros2Learning.technologies.map((tech) => (

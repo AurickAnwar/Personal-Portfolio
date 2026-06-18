@@ -124,3 +124,13 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
     technologies: project.technologies,
   };
 }).filter(Boolean);
+
+export const RECRUITER_IN_PROGRESS = [
+  {
+    id: 'learning-ros2',
+    title: 'Learning ROS2',
+    progressPercent: 52,
+    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RVIZ'],
+    githubUrl: 'https://github.com/007Aurick/ROS2',
+  },
+];
