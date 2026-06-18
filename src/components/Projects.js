@@ -42,8 +42,8 @@ const Projects = () => {
   const cancerCellDetection = {
     title: 'Breast Cancer Cell Detection',
     status: 'Currently Building',
-    progressPercent: 7,
-    progressNote: 'Integrated YOLOv11 for cell detection.',
+    progressPercent: 50,
+    progressNote: 'Officially got YOLO to detect whether the cell is benign or malignant',
     description:
       'Building a system that processes microscopy images and uses machine learning to classify cells as benign or malignant.',
     bullets: [
