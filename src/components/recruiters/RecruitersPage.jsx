@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   RECRUITER_INTRO,
+  RECRUITER_IN_PROGRESS,
   RECRUITER_PROJECTS,
   RECRUITER_SOCIAL,
   RECRUITER_WORK,
@@ -239,6 +240,27 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7 17L17 7"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 7h7v7"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
@@ -739,6 +761,59 @@ export default function RecruitersPage() {
             Projects
           </h2>
           <ProjectsCarousel projects={RECRUITER_PROJECTS} />
+        </section>
+
+        <section className="recruiters-in-progress" aria-labelledby="in-progress-heading">
+          <h2 id="in-progress-heading" className="recruiters-section-title">
+            Currently Building
+          </h2>
+          <div className="recruiters-in-progress-list">
+            {RECRUITER_IN_PROGRESS.map((project) => (
+              <article key={project.id} className="recruiters-in-progress-card">
+                <div className="recruiters-in-progress-header">
+                  <h3 className="recruiters-in-progress-title">{project.title}</h3>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      className="recruiters-in-progress-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      <ExternalLinkIcon />
+                      <span className="recruiters-in-progress-link-label">View GitHub</span>
+                    </a>
+                  )}
+                </div>
+
+                <div className="recruiters-in-progress-block" role="status" aria-live="polite">
+                  <div className="recruiters-in-progress-block-header">
+                    <span className="recruiters-in-progress-label">Progress</span>
+                    <span className="recruiters-in-progress-percent">{project.progressPercent}%</span>
+                  </div>
+                  <div
+                    className="recruiters-in-progress-track"
+                    aria-label={`${project.title} progress ${project.progressPercent}%`}
+                  >
+                    <span
+                      className="recruiters-in-progress-fill"
+                      style={{ width: `${project.progressPercent}%` }}
+                    />
+                  </div>
+                </div>
+
+                {project.technologies?.length > 0 && (
+                  <ul className="recruiters-in-progress-tech" aria-label="Technologies">
+                    {project.technologies.map((tech) => (
+                      <li key={tech} className="recruiters-in-progress-tech-tag">
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
         </section>
 
         <footer className="recruiters-footer">

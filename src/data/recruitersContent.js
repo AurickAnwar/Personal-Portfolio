@@ -120,3 +120,13 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
     technologies: project.technologies,
   };
 }).filter(Boolean);
+
+export const RECRUITER_IN_PROGRESS = [
+  {
+    id: 'breast-cancer-cell-detection',
+    title: 'Breast Cancer Cell Detection',
+    progressPercent: 50,
+    technologies: ['PyTorch', 'Grad-CAM', 'CNNs', 'YOLOv11'],
+    githubUrl: 'https://github.com/AurickAnwar/Cancer-Cell-Detection',
+  },
+];
