@@ -14,8 +14,8 @@
 .home .container {
   position: relative;
   z-index: 2;
-  max-width: 1440px;
-  padding-inline: clamp(24px, 3.5vw, 56px);
+  max-width: var(--site-max-width);
+  padding-inline: var(--site-gutter);
 }
 
 .home-content {

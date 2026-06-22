@@ -2,6 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
+function ExternalLinkIcon() {
+  return (
+    <svg className="nav-link-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7 17L17 7"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 7h7v7"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,6 +75,16 @@ const Navbar = () => {
             >
               <span className="nav-outside-full">Life</span>
               <span className="nav-outside-short">Outside</span>
+            </Link>
+            <Link
+              to="/recruiters"
+              className="nav-link nav-link--external"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
+            >
+              For Recruiters
+              <ExternalLinkIcon />
             </Link>
             <Link 
               to="/contact" 

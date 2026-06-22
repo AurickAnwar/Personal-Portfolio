@@ -33,4 +33,7 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
+
+  --site-max-width: 1440px;
+  --site-gutter: clamp(24px, 3.5vw, 56px);
 }
