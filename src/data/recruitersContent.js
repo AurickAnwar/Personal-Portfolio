@@ -129,7 +129,7 @@ export const RECRUITER_IN_PROGRESS = [
   {
     id: 'learning-ros2',
     title: 'Learning ROS2',
-    progressPercent: 52,
+    progressPercent: 65,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RVIZ'],
     githubUrl: 'https://github.com/007Aurick/ROS2',
   },
