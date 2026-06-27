@@ -24,7 +24,7 @@ const Projects = () => {
   const ros2Learning = {
     title: 'Learning ROS2',
     status: 'Currently Learning',
-    progressPercent: 65,
+    progressPercent: 70,
     description:
       'Future Projects: ',
     bullets: [
