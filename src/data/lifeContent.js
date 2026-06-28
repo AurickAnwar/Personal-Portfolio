@@ -414,3 +414,124 @@ export function tallyNbaPlayoffsFromBracket() {
   }
   return { wins, losses, pending };
 }
+
+/* ——— World Cup 2026 knockout bracket ——— */
+/** ISO 3166-1 alpha-2 codes (used to load flag images from flagcdn.com). */
+export const worldCupFlags = {
+  Germany: 'de',
+  Paraguay: 'py',
+  France: 'fr',
+  Sweden: 'se',
+  'South Africa': 'za',
+  Canada: 'ca',
+  Netherlands: 'nl',
+  Morocco: 'ma',
+  Portugal: 'pt',
+  Croatia: 'hr',
+  Spain: 'es',
+  Austria: 'at',
+  USA: 'us',
+  'Bosnia & Herzegovina': 'ba',
+  Belgium: 'be',
+  Senegal: 'sn',
+  Brazil: 'br',
+  Japan: 'jp',
+  'Ivory Coast': 'ci',
+  Norway: 'no',
+  Mexico: 'mx',
+  Ecuador: 'ec',
+  England: 'gb-eng',
+  'DR Congo': 'cd',
+  Argentina: 'ar',
+  Peru: 'pe',
+  Australia: 'au',
+  Egypt: 'eg',
+  Switzerland: 'ch',
+  Algeria: 'dz',
+  Colombia: 'co',
+  Ghana: 'gh',
+};
+
+/**
+ * Round of 32 seed matchups. Everything past this is derived from the
+ * user's picks (the winner of each match advances to the next round).
+ */
+export const worldCupKnockout = {
+  left: [
+    { id: 'l32-0', a: 'Germany', b: 'Paraguay' },
+    { id: 'l32-1', a: 'France', b: 'Sweden' },
+    { id: 'l32-2', a: 'South Africa', b: 'Canada' },
+    { id: 'l32-3', a: 'Netherlands', b: 'Morocco' },
+    { id: 'l32-4', a: 'Portugal', b: 'Croatia' },
+    { id: 'l32-5', a: 'Spain', b: 'Austria' },
+    { id: 'l32-6', a: 'USA', b: 'Bosnia & Herzegovina' },
+    { id: 'l32-7', a: 'Belgium', b: 'Senegal' },
+  ],
+  right: [
+    { id: 'r32-0', a: 'Brazil', b: 'Japan' },
+    { id: 'r32-1', a: 'Ivory Coast', b: 'Norway' },
+    { id: 'r32-2', a: 'Mexico', b: 'Ecuador' },
+    { id: 'r32-3', a: 'England', b: 'DR Congo' },
+    { id: 'r32-4', a: 'Argentina', b: 'Peru' },
+    { id: 'r32-5', a: 'Australia', b: 'Egypt' },
+    { id: 'r32-6', a: 'Switzerland', b: 'Algeria' },
+    { id: 'r32-7', a: 'Colombia', b: 'Ghana' },
+  ],
+};
+
+/** Total knockout matches to predict: 16 + 8 + 4 + 2 + 1 = 31 */
+export const WORLD_CUP_TOTAL_MATCHES = 31;
+
+/**
+ * MY predictions. Edit these — the value is the team you think wins that match.
+ * Later-round matchups (l16-*, lqf-*, lsf-*, r16-*, rqf-*, rsf-*, final) are
+ * built automatically from the winners you set in the round before.
+ *
+ * Round of 32 match ids are the same as in worldCupKnockout above.
+ *  - l16-0 = winner(l32-0) vs winner(l32-1), l16-1 = winner(l32-2) vs winner(l32-3), ...
+ *  - final = winner(lsf-0) vs winner(rsf-0)
+ */
+export const worldCupPicks = {
+  // Left — Round of 32
+  'l32-0': 'Germany',
+  'l32-1': 'France',
+  'l32-2': 'Canada',
+  'l32-3': 'Morocco',
+  'l32-4': 'Portugal',
+  'l32-5': 'Spain',
+  'l32-6': 'USA',
+  'l32-7': 'Belgium',
+  // Left — Round of 16
+  'l16-0': 'France',
+  'l16-1': 'Netherlands',
+  'l16-2': 'Spain',
+  'l16-3': 'Belgium',
+  // Left — Quarterfinals
+  'lqf-0': 'France',
+  'lqf-1': 'Spain',
+  // Left — Semifinal
+  'lsf-0': 'France',
+
+  // Right — Round of 32
+  'r32-0': 'Brazil',
+  'r32-1': 'Norway',
+  'r32-2': 'Mexico',
+  'r32-3': 'England',
+  'r32-4': 'Argentina',
+  'r32-5': 'Egypt',
+  'r32-6': 'Switzerland',
+  'r32-7': 'Colombia',
+  // Right — Round of 16
+  'r16-0': 'Norway',
+  'r16-1': 'England',
+  'r16-2': 'Argentina',
+  'r16-3': 'Colombia',
+  // Right — Quarterfinals
+  'rqf-0': 'England',
+  'rqf-1': 'Argentina',
+  // Right — Semifinal
+  'rsf-0': 'Argentina',
+
+  // Final
+  final: 'France',
+};

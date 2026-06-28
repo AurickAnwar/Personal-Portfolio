@@ -9,6 +9,7 @@ import {
   tallyNbaPlayoffsFromBracket,
 } from '../data/lifeContent';
 import NbaPlayoffBracket from './life/NbaPlayoffBracket';
+import WorldCupBracket from './life/WorldCupBracket';
 import './OutsideEngineering.css';
 
 const POLAROID_TILTS = [-2.4, 1.8, -2.1, 2.5, -1.6, 2.2];
@@ -234,6 +235,8 @@ function OutsideEngineering() {
             </div>
 
             <div className="life-sports-dashboard">
+            <WorldCupBracket />
+
             <article className="life-sports-card life-ufc-wide">
               <h3 className="life-ufc-wide-title">UFC</h3>
               <div className="life-ufc-wide-grid">
