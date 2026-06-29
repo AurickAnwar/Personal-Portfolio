@@ -503,9 +503,9 @@ export const worldCupPicks = {
   'l32-7': 'Belgium',
   // Left — Round of 16
   'l16-0': 'France',
-  'l16-1': 'Netherlands',
+  'l16-1': 'Morocco',
   'l16-2': 'Spain',
-  'l16-3': 'Belgium',
+  'l16-3': 'USA',
   // Left — Quarterfinals
   'lqf-0': 'France',
   'lqf-1': 'Spain',
