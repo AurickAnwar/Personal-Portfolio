@@ -15,13 +15,15 @@ export const friends = [
     id: 'f13',
     image: '/Friends18.jpg',
     date: 'June 2026',
-    caption: 'Downtown McDonalds hit different'
+    caption: 'Downtown McDonalds hit different',
+    location: 'Toronto, ON'
   },
   {
     id: 'f10',
     image: '/Friends17.jpg',
     date: 'June 2026',
-    caption: 'Remote CO-OP>>>>'
+    caption: 'Remote CO-OP>>>>',
+    location: 'Montego Bay, Jamaica'
   },
   {
     id: 'f1',
@@ -41,25 +43,29 @@ export const friends = [
     id: 'f11',
     image: '/Friends15.png',
     date: 'February 2026',
-    caption: 'Final School Year Project'
+    caption: 'Final School Year Project',
+    location: 'A.N Bourns Building'
   },
   {
     id: 'f14',
     image: '/Friends19.jpg',
     date: 'January 2026',
-    caption: 'Pure Vibes'
+    caption: 'Pure Vibes',
+    location: 'Hamilton, ON',
   },
   {
     id: 'f15',
     image: '/Friends20.jpg',
     date: 'December 2025',
-    caption: 'All nighter'
+    caption: 'All nighter',
+    location: 'McMaster University',
   },
   {
     id: 'f12',
     image: '/Friends16.jpg',
     date: 'September 2025',
-    caption: 'Projectile Motion is fun.'
+    caption: 'Projectile Motion is fun.',
+    location: 'Burke Science Building'
   },
   {
     id: 'f5',
