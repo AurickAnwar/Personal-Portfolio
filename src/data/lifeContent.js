@@ -43,8 +43,9 @@ export const friends = [
     id: 'f11',
     image: '/Friends15.png',
     date: 'February 2026',
+    location: 'A.N Bourns Building',
     caption: 'Final School Year Project',
-    location: 'A.N Bourns Building'
+    
   },
   {
     id: 'f14',
