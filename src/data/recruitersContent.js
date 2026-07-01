@@ -119,10 +119,10 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
 
 export const RECRUITER_IN_PROGRESS = [
   {
-    id: 'learning-ros2',
-    title: 'Learning ROS2',
-    progressPercent: 70,
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RVIZ'],
-    githubUrl: 'https://github.com/007Aurick/ROS2',
+    id: 'warehouse-cleanup-robot-simulation',
+    title: 'Warehouse Cleanup Robot Simulation',
+    progressPercent: 5,
+    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
+    githubUrl: 'https://github.com/007Aurick/Warehouse-Cleanup-Robot-Simulation',
   },
 ];

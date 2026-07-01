@@ -21,22 +21,26 @@ const Projects = () => {
     thirdCtaLabel: 'View GitHub Repository',
     thirdCtaUrl: 'https://github.com/AurickAnwar/MagnifiedSystems'
   };
-  const ros2Learning = {
-    title: 'Learning ROS2',
-    status: 'Currently Learning',
-    progressPercent: 70,
+  const warehouseCleanup = {
+    title: 'Warehouse Cleanup Robot Simulation',
+    status: 'Currently Building',
+    progressPercent: 5,
     description:
-      'Future Projects: ',
+      'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, picks them up with a forklift, and deposits them into storage zones.',
     bullets: [
-      'Autonomous Driving and obstacle avoidance',
-      'Amazon Wearhouse Simulation',
-      'Drone Navigation and Mapping',
-    
+      'Warehouse floor environment in Gazebo with randomly spawned displaced boxes',
+      'Forklift-style robot with a single lift joint for box retrieval',
+      'Autonomous navigation powered by Nav2',
+      'Real-time map building with SLAM Toolbox',
+      'LiDAR point cloud processing for floor-level box detection',
+      'State machine managing patrol, detect, retrieve, and deposit behaviors',
+      'Configurable storage zones for cleaned-up boxes',
+      'RViz2 visualization for live map, robot pose, and sensor feeds',
+      'Reproducible box spawn patterns via random seed',
     ],
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RVIZ'],
+    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     primaryCtaLabel: 'Github Repository',
-    primaryCtaUrl: 'https://github.com/007Aurick/ROS2',
- 
+    primaryCtaUrl: 'https://github.com/007Aurick/Warehouse-Cleanup-Robot-Simulation',
   };
 
   return (
@@ -82,34 +86,37 @@ const Projects = () => {
         <div className="featured-project fade-in-up">
           <div className="featured-content">
             <p className="featured-label">Featured Project</p>
-            <h2>{ros2Learning.title}</h2>
-            <p className="featured-status">{ros2Learning.status}</p>
-            <p>{ros2Learning.description}</p>
+            <h2>{warehouseCleanup.title}</h2>
+            <p className="featured-status">{warehouseCleanup.status}</p>
+            <p>{warehouseCleanup.description}</p>
             <ul className="featured-list">
-              {ros2Learning.bullets.map((point) => (
+              {warehouseCleanup.bullets.map((point) => (
                 <li key={point}>{point}</li>
               ))}
             </ul>
             <div className="featured-progress-block" role="status" aria-live="polite">
               <div className="featured-progress-header">
                 <span className="featured-progress-title">Progress</span>
-                <span className="featured-progress-percent">{ros2Learning.progressPercent}%</span>
+                <span className="featured-progress-percent">{warehouseCleanup.progressPercent}%</span>
               </div>
-              <div className="featured-progress-track" aria-label={`ROS2 learning progress ${ros2Learning.progressPercent}%`}>
+              <div
+                className="featured-progress-track"
+                aria-label={`${warehouseCleanup.title} progress ${warehouseCleanup.progressPercent}%`}
+              >
                 <span
                   className="featured-progress-fill"
-                  style={{ '--progress-width': `${ros2Learning.progressPercent}%` }}
+                  style={{ '--progress-width': `${warehouseCleanup.progressPercent}%` }}
                 />
               </div>
             </div>
             <div className="project-technologies" style={{ marginTop: '1rem' }}>
-              {ros2Learning.technologies.map((tech) => (
+              {warehouseCleanup.technologies.map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
               ))}
             </div>
             <div className="featured-actions">
-              <a href={ros2Learning.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {ros2Learning.primaryCtaLabel}
+              <a href={warehouseCleanup.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
+                {warehouseCleanup.primaryCtaLabel}
               </a>
               
             </div>
