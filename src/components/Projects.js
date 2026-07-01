@@ -24,7 +24,7 @@ const Projects = () => {
   const warehouseCleanup = {
     title: 'Warehouse Cleanup Robot Simulation',
     status: 'Currently Building',
-    progressPercent: 5,
+    progressPercent: 15,
     description:
       'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, picks them up with a forklift, and deposits them into storage zones.',
     bullets: [
