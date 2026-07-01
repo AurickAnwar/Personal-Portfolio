@@ -28,15 +28,9 @@ const Projects = () => {
     description:
       'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, picks them up with a forklift, and deposits them into storage zones.',
     bullets: [
-      'Warehouse floor environment in Gazebo with randomly spawned displaced boxes',
-      'Forklift-style robot with a single lift joint for box retrieval',
-      'Autonomous navigation powered by Nav2',
-      'Real-time map building with SLAM Toolbox',
-      'LiDAR point cloud processing for floor-level box detection',
-      'State machine managing patrol, detect, retrieve, and deposit behaviors',
-      'Configurable storage zones for cleaned-up boxes',
-      'RViz2 visualization for live map, robot pose, and sensor feeds',
-      'Reproducible box spawn patterns via random seed',
+      'Gazebo warehouse environment with a forklift-style robot and randomly spawned displaced boxes',
+      'Autonomous navigation with Nav2 and real-time mapping via SLAM Toolbox',
+      'LiDAR-based box detection with a state machine handling patrol, retrieval, and deposit',
     ],
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     primaryCtaLabel: 'Github Repository',
