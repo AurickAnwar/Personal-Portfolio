@@ -121,7 +121,7 @@ export const RECRUITER_IN_PROGRESS = [
   {
     id: 'warehouse-cleanup-robot-simulation',
     title: 'Warehouse Cleanup Robot Simulation',
-    progressPercent: 5,
+    progressPercent: 15,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     githubUrl: 'https://github.com/007Aurick/Warehouse-Cleanup-Robot-Simulation',
   },
