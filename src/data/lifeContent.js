@@ -507,7 +507,7 @@ export const worldCupPicks = {
   'l32-4': 'Portugal',
   'l32-5': 'Spain',
   'l32-6': 'USA',
-  'l32-7': 'Belgium',
+  'l32-7': 'Senegal',
   // Left — Round of 16
   'l16-0': 'France',
   'l16-1': 'Morocco',
