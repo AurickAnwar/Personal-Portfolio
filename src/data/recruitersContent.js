@@ -38,6 +38,14 @@ export const RECRUITER_INTRO = [
 
 export const RECRUITER_WORK = [
   {
+    company: 'Personalized Prescribing',
+    role: 'Machine Learning Intern',
+    location: 'Richmond Hill, Ontario',
+    dates: 'Incoming Fall 2026',
+    logo: '/personalized.jpg',
+    url: 'https://personalizedprescribing.com/',
+  },
+  {
     company: 'HermesAI',
     role: 'Software Engineering Intern',
     location: 'Toronto, Ontario',
