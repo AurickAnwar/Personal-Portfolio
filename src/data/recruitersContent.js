@@ -46,6 +46,14 @@ export const RECRUITER_WORK = [
     url: 'https://personalizedprescribing.com/',
   },
   {
+    company: 'HermesAI',
+    role: 'Software Engineering Intern',
+    location: 'Toronto, Ontario',
+    dates: 'May 2026 – Present',
+    logo: '/hermesailogo.jpg',
+    url: 'https://hermesai.ca/',
+  },
+  {
     company: 'McMaster Aerial Drone and Robotics Team',
     role: 'Software Engineer',
     location: 'Hamilton, Ontario',
@@ -57,14 +65,6 @@ export const RECRUITER_WORK = [
     logoPadding: 0,
     logoOffsetY: '3px',
     url: 'https://www.macdrones.ca/',
-  },
-  {
-    company: 'HermesAI',
-    role: 'Software Engineering Intern',
-    location: 'Toronto, Ontario',
-    dates: 'May 2026 – Present',
-    logo: '/hermesailogo.jpg',
-    url: 'https://hermesai.ca/',
   },
   {
     company: 'Magnified Systems',
