@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { workExperience } from '../../data/workExperience';
 
-function WorkLogo({ company, logo, logoTheme = 'dark', logoFit = 'contain' }) {
+function WorkLogo({ company, logo, logoTheme = 'dark', logoFit = 'contain', logoScale, logoPadding, logoOffsetY }) {
   const [failed, setFailed] = useState(false);
 
   if (failed) {
@@ -22,6 +22,15 @@ function WorkLogo({ company, logo, logoTheme = 'dark', logoFit = 'contain' }) {
         src={logo}
         alt=""
         className={`home-work-logo home-work-logo--${logoFit}`}
+        style={{
+          transform: [
+            logoScale ? `scale(${logoScale})` : null,
+            logoOffsetY ? `translateY(${logoOffsetY})` : null,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined,
+          ...(logoPadding !== undefined ? { padding: logoPadding } : {}),
+        }}
         width={48}
         height={48}
         loading="lazy"
@@ -39,6 +48,9 @@ function WorkRow({ entry }) {
         logo={entry.logo}
         logoTheme={entry.logoTheme}
         logoFit={entry.logoFit}
+        logoScale={entry.logoScale}
+        logoPadding={entry.logoPadding}
+        logoOffsetY={entry.logoOffsetY}
       />
       <div className="home-work-body">
         <div className="home-work-line">

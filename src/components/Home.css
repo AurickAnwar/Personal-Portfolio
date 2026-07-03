@@ -305,6 +305,7 @@
   display: block;
   width: 100%;
   height: 100%;
+  transform-origin: center;
 }
 
 .home-work-logo--contain {
