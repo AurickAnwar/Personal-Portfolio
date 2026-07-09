@@ -808,6 +808,10 @@ export default function RecruitersPage() {
                   )}
                 </div>
 
+                {project.description && (
+                  <p className="recruiters-in-progress-desc">{project.description}</p>
+                )}
+
                 <div className="recruiters-in-progress-block" role="status" aria-live="polite">
                   <div className="recruiters-in-progress-block-header">
                     <span className="recruiters-in-progress-label">Progress</span>

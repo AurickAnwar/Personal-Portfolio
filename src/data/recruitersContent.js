@@ -133,9 +133,10 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
 export const RECRUITER_IN_PROGRESS = [
   {
     id: 'warehouse-cleanup-robot-simulation',
-    title: 'Warehouse Cleanup Robot Simulation',
+    title: 'TeleARM',
     progressPercent: 15,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
-    githubUrl: 'https://github.com/007Aurick/Warehouse-Cleanup-Robot-Simulation',
+    description: 'Using a LiDAR Camera Sensor, the Robot moves with a TELEOP key and picks up items if an object is detected in warehouse map.',
+    githubUrl: 'https://github.com/007Aurick/TeleArm',
   },
 ];

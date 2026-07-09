@@ -22,15 +22,16 @@ const Projects = () => {
     thirdCtaUrl: 'https://github.com/AurickAnwar/MagnifiedSystems'
   };
   const warehouseCleanup = {
-    title: 'Warehouse Cleanup Robot Simulation',
+    title: 'TeleARM',
     status: 'Currently Building',
     progressPercent: 15,
     description:
-      'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, picks them up with a forklift, and deposits them into storage zones.',
+      'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, retrieves them with a forklift-style mechanism, and deposits them into designated storage zones.',
     bullets: [
-      'Gazebo warehouse environment with a forklift-style robot and randomly spawned displaced boxes',
-      'Autonomous navigation with Nav2 and real-time mapping via SLAM Toolbox',
-      'LiDAR-based box detection with a state machine handling patrol, retrieval, and deposit',
+     
+      'Gazebo warehouse environment featuring a forklift-style robot and randomly spawned displaced boxes',
+      'Autonomous navigation via Nav2, with real-time mapping powered by SLAM Toolbox',
+      'LiDAR-based box detection driving a state machine that manages patrol, retrieval, and deposit behaviors',
     ],
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     primaryCtaLabel: 'Github Repository',
