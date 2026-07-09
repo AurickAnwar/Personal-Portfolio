@@ -20,7 +20,7 @@ export const RECRUITER_SOCIAL = [
 
 export const RECRUITER_INTRO = [
   {
-    text: 'Engineering Physics at ',
+    text: '2nd Year Engineering Physics at ',
     link: { label: 'McMaster University', href: 'https://www.mcmaster.ca/' },
     suffix: '.',
   },
