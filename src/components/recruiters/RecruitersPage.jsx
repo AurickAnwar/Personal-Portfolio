@@ -258,6 +258,154 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
   );
 }
 
+function RecruitersWorkLogo({ company, logo, logoFit, logoScale, logoPadding, logoOffsetY }) {
+  const isContain = logoFit === 'contain' || company !== 'Magnified Systems';
+  return (
+    <span className="recruiters-work-logo-wrap">
+      <img
+        src={logo}
+        alt=""
+        className={`recruiters-work-logo${isContain ? ' recruiters-work-logo--contain' : ''}`}
+        style={{
+          transform: [
+            logoScale ? `scale(${logoScale})` : null,
+            logoOffsetY ? `translateY(${logoOffsetY})` : null,
+          ]
+            .filter(Boolean)
+            .join(' ') || undefined,
+          ...(logoPadding !== undefined ? { padding: logoPadding } : {}),
+        }}
+      />
+    </span>
+  );
+}
+
+function RecruitersHermesHoverArt() {
+  return (
+    <div className="recruiters-work-hermes-art" aria-hidden="true">
+      <p className="recruiters-work-hermes-kicker">Canadian legal AI</p>
+      <p className="recruiters-work-hermes-title">Harvey for Canadian law</p>
+      <p className="recruiters-work-hermes-lede">
+        Upload statutes, contracts, and filings — the LLM pulls structured key data points in seconds.
+      </p>
+      <div className="recruiters-work-hermes-panels">
+        <div className="recruiters-work-hermes-panel">
+          <span className="recruiters-work-hermes-panel-label">Source</span>
+          <div className="recruiters-work-hermes-doc-line recruiters-work-hermes-doc-line--long" />
+          <div className="recruiters-work-hermes-doc-line" />
+          <div className="recruiters-work-hermes-doc-line recruiters-work-hermes-doc-line--highlight" />
+          <div className="recruiters-work-hermes-doc-line recruiters-work-hermes-doc-line--short" />
+        </div>
+        <div className="recruiters-work-hermes-panel">
+          <span className="recruiters-work-hermes-panel-label">Extracted</span>
+          <dl className="recruiters-work-hermes-fields">
+            <div>
+              <dt>Party</dt>
+              <dd>R. v. Chen</dd>
+            </div>
+            <div>
+              <dt>Citation</dt>
+              <dd>2024 ONCA 142</dd>
+            </div>
+            <div>
+              <dt>Jurisdiction</dt>
+              <dd>Ontario · Canada</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RecruitersWorkHoverPreview({ preview }) {
+  if (!preview) return null;
+
+  if (preview.type === 'hermes') {
+    return <RecruitersHermesHoverArt />;
+  }
+
+  if (preview.type === 'image' && preview.image) {
+    const imageClass = [
+      'recruiters-work-hover-image',
+      preview.fitAlign === 'right' ? 'recruiters-work-hover-image--fit-right' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <img
+        className={imageClass}
+        src={preview.image}
+        alt=""
+        style={{
+          ...(preview.position ? { objectPosition: preview.position } : {}),
+          ...(preview.objectFit ? { objectFit: preview.objectFit } : {}),
+          ...(preview.fitWidth ? { width: preview.fitWidth } : {}),
+          ...(preview.scale ? { transform: `scale(${preview.scale})` } : {}),
+          ...(preview.transformOrigin ? { transformOrigin: preview.transformOrigin } : {}),
+        }}
+      />
+    );
+  }
+
+  return null;
+}
+
+function RecruitersWorkItem({ entry }) {
+  const hasPreview = Boolean(entry.hoverPreview);
+  const itemClass = [
+    'recruiters-work-item',
+    hasPreview ? 'recruiters-work-item--preview' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return (
+    <a
+      href={entry.url}
+      className={itemClass}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {hasPreview && (
+        <div
+          className={[
+            'recruiters-work-hover-panel',
+            entry.hoverPreview?.overlay === 'light'
+              ? 'recruiters-work-hover-panel--light-overlay'
+              : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
+          <RecruitersWorkHoverPreview preview={entry.hoverPreview} />
+        </div>
+      )}
+      <div className="recruiters-work-item-main">
+        <RecruitersWorkLogo
+          company={entry.company}
+          logo={entry.logo}
+          logoFit={entry.logoFit}
+          logoScale={entry.logoScale}
+          logoPadding={entry.logoPadding}
+          logoOffsetY={entry.logoOffsetY}
+        />
+        <div className="recruiters-work-body">
+          <div className="recruiters-work-line">
+            <div className="recruiters-work-role">{entry.role}</div>
+            <p className="recruiters-work-meta">{entry.location}</p>
+          </div>
+          <div className="recruiters-work-line recruiters-work-line--sub">
+            <div className="recruiters-work-company">{entry.company}</div>
+            <p className="recruiters-work-meta recruiters-work-meta--dates">{entry.dates}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
 function ExternalLinkIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -748,32 +896,8 @@ export default function RecruitersPage() {
             Work
           </h2>
           <div className="recruiters-work-list">
-            {RECRUITER_WORK.map(({ company, role, location, dates, logo, url }) => (
-              <a
-                key={company}
-                href={url}
-                className="recruiters-work-item"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={logo}
-                  alt=""
-                  className={`recruiters-work-logo${
-                    company !== 'Magnified Systems' ? ' recruiters-work-logo--contain' : ''
-                  }`}
-                />
-                <div className="recruiters-work-body">
-                  <div className="recruiters-work-line">
-                    <div className="recruiters-work-role">{role}</div>
-                    <p className="recruiters-work-meta">{location}</p>
-                  </div>
-                  <div className="recruiters-work-line recruiters-work-line--sub">
-                    <div className="recruiters-work-company">{company}</div>
-                    <p className="recruiters-work-meta recruiters-work-meta--dates">{dates}</p>
-                  </div>
-                </div>
-              </a>
+            {RECRUITER_WORK.map((entry) => (
+              <RecruitersWorkItem key={entry.company} entry={entry} />
             ))}
           </div>
         </section>

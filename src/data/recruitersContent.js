@@ -44,6 +44,7 @@ export const RECRUITER_WORK = [
     dates: 'May 2026 – Present',
     logo: '/hermesailogo.jpg',
     url: 'https://hermesai.ca/',
+    hoverPreview: { type: 'hermes' },
   },
   {
     company: 'McMaster Aerial Drone and Robotics Team',
@@ -57,6 +58,11 @@ export const RECRUITER_WORK = [
     logoPadding: 0,
     logoOffsetY: '3px',
     url: 'https://www.macdrones.ca/',
+    hoverPreview: {
+      type: 'image',
+      image: '/work-hover/macdrones.png',
+      position: '38% 36%',
+    },
   },
   {
     company: 'Magnified Systems',
@@ -65,6 +71,14 @@ export const RECRUITER_WORK = [
     dates: 'February 2026 – Present',
     logo: '/MagnifiedSystems.png',
     url: 'https://www.magnifiedsystems.com/',
+    hoverPreview: {
+      type: 'image',
+      image: '/work-hover/magnified-device-full.png',
+      position: '85% center',
+      scale: 0.88,
+      transformOrigin: 'right center',
+      overlay: 'light',
+    },
   },
 ];
 

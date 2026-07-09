@@ -167,21 +167,146 @@
 }
 
 .recruiters-work-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
   padding: 1.1rem 0;
   text-decoration: none;
   color: inherit;
   border-bottom: 1px solid var(--rp-border);
 }
 
+.recruiters-work-item--preview {
+  margin: 0 -0.35rem;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  border-radius: 0.85rem;
+  transition: box-shadow 0.28s ease;
+}
+
+.recruiters-work-item-main {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.recruiters-work-hover-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.recruiters-work-item--preview:hover .recruiters-work-hover-panel,
+.recruiters-work-item--preview:focus-visible .recruiters-work-hover-panel {
+  opacity: 1;
+}
+
+.recruiters-work-hover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  transform-origin: right center;
+}
+
+.recruiters-work-hover-image--fit-right {
+  display: block;
+  margin-left: auto;
+  object-fit: contain;
+  object-position: right center;
+}
+
+.recruiters-work-hover-panel:has(.recruiters-work-hover-image)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    #06080c 0%,
+    #06080c 48%,
+    rgba(6, 8, 12, 0.72) 68%,
+    rgba(6, 8, 12, 0.2) 85%,
+    transparent 100%
+  );
+}
+
+.recruiters-work-hover-panel:has(.recruiters-work-hover-image) .recruiters-work-hover-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.recruiters-work-hover-panel:has(.recruiters-work-hover-image)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 8, 12, 0.96) 0%,
+    rgba(6, 8, 12, 0.82) 42%,
+    rgba(6, 8, 12, 0.28) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.recruiters-work-hover-panel--light-overlay:has(.recruiters-work-hover-image)::after {
+  background: linear-gradient(
+    90deg,
+    rgba(6, 8, 12, 0.97) 0%,
+    rgba(6, 8, 12, 0.78) 38%,
+    rgba(6, 8, 12, 0.35) 62%,
+    rgba(6, 8, 12, 0.08) 80%,
+    transparent 92%
+  );
+}
+
+.recruiters-work-hover-panel--light-overlay .recruiters-work-hover-image {
+  filter: brightness(1.22) contrast(1.1) saturate(1.08);
+}
+
+.recruiters-work-item--preview:hover .recruiters-work-role,
+.recruiters-work-item--preview:hover .recruiters-work-company,
+.recruiters-work-item--preview:focus-visible .recruiters-work-role,
+.recruiters-work-item--preview:focus-visible .recruiters-work-company {
+  color: #f8fafc;
+}
+
+.recruiters-work-item--preview:hover .recruiters-work-meta,
+.recruiters-work-item--preview:focus-visible .recruiters-work-meta {
+  color: #e2e8f0;
+}
+
+.recruiters-work-item--preview:hover,
+.recruiters-work-item--preview:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
 .recruiters-work-item:first-child {
   border-top: 1px solid var(--rp-border);
 }
 
-.recruiters-work-item:hover .recruiters-work-role {
+.recruiters-work-item:not(.recruiters-work-item--preview):hover .recruiters-work-role {
   color: var(--rp-text);
+}
+
+.recruiters-work-logo-wrap {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: var(--rp-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .recruiters-work-logo {
@@ -191,11 +316,49 @@
   object-fit: cover;
   flex-shrink: 0;
   background: var(--rp-surface);
+  transform-origin: center;
 }
 
 .recruiters-work-logo--contain {
   object-fit: contain;
   padding: 0.2rem;
+}
+
+.recruiters-work-hermes-art {
+  height: 100%;
+  padding: 0.55rem 0.75rem 0.55rem 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 70% 80% at 88% 50%, rgba(220, 38, 38, 0.16) 0%, transparent 55%),
+    linear-gradient(135deg, #0b1220 0%, #111827 50%, #0f172a 100%);
+}
+
+.recruiters-work-hermes-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fca5a5;
+}
+
+.recruiters-work-hermes-title {
+  margin: 0.12rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.2;
+}
+
+.recruiters-work-hermes-lede {
+  display: none;
+}
+
+.recruiters-work-hermes-panels {
+  display: none;
 }
 
 .recruiters-work-body {
