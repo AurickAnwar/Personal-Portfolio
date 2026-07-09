@@ -174,6 +174,8 @@
   text-decoration: none;
   color: inherit;
   border-bottom: 1px solid var(--rp-border);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .recruiters-work-item--preview {
@@ -201,9 +203,32 @@
   pointer-events: none;
 }
 
-.recruiters-work-item--preview:hover .recruiters-work-hover-panel,
-.recruiters-work-item--preview:focus-visible .recruiters-work-hover-panel {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .recruiters-work-item--preview:hover .recruiters-work-hover-panel,
+  .recruiters-work-item--preview:focus-visible .recruiters-work-hover-panel {
+    opacity: 1;
+  }
+
+  .recruiters-work-item--preview:hover .recruiters-work-role,
+  .recruiters-work-item--preview:hover .recruiters-work-company,
+  .recruiters-work-item--preview:focus-visible .recruiters-work-role,
+  .recruiters-work-item--preview:focus-visible .recruiters-work-company {
+    color: #f8fafc;
+  }
+
+  .recruiters-work-item--preview:hover .recruiters-work-meta,
+  .recruiters-work-item--preview:focus-visible .recruiters-work-meta {
+    color: #e2e8f0;
+  }
+
+  .recruiters-work-item--preview:hover,
+  .recruiters-work-item--preview:focus-visible {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .recruiters-work-item:not(.recruiters-work-item--preview):hover .recruiters-work-role {
+    color: var(--rp-text);
+  }
 }
 
 .recruiters-work-hover-image {
@@ -272,30 +297,11 @@
   filter: brightness(1.22) contrast(1.1) saturate(1.08);
 }
 
-.recruiters-work-item--preview:hover .recruiters-work-role,
-.recruiters-work-item--preview:hover .recruiters-work-company,
-.recruiters-work-item--preview:focus-visible .recruiters-work-role,
-.recruiters-work-item--preview:focus-visible .recruiters-work-company {
-  color: #f8fafc;
-}
-
-.recruiters-work-item--preview:hover .recruiters-work-meta,
-.recruiters-work-item--preview:focus-visible .recruiters-work-meta {
-  color: #e2e8f0;
-}
-
-.recruiters-work-item--preview:hover,
-.recruiters-work-item--preview:focus-visible {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-}
 
 .recruiters-work-item:first-child {
   border-top: 1px solid var(--rp-border);
 }
 
-.recruiters-work-item:not(.recruiters-work-item--preview):hover .recruiters-work-role {
-  color: var(--rp-text);
-}
 
 .recruiters-work-logo-wrap {
   width: 2.75rem;
