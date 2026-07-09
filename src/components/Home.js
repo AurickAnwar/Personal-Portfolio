@@ -48,17 +48,6 @@ const Home = () => {
                 </a>
               </p>
               <p>
-                Incoming @{''}
-                <a
-                  href="https://personalizedprescribing.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="home-role-link"
-                >
-                  Personalized Prescribing
-                </a>
-              </p>
-              <p>
                 SWE Intern @{''}
                 <a
                   href="https://hermesai.ca/"
