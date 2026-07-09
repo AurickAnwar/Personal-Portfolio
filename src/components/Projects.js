@@ -26,16 +26,16 @@ const Projects = () => {
     status: 'Currently Building',
     progressPercent: 15,
     description:
-      'Building an autonomous warehouse cleanup robot that detects displaced boxes on the floor, retrieves them with a forklift-style mechanism, and deposits them into designated storage zones.',
+      'Using a LiDAR and camera sensor, the robot is driven with teleop keys and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
     bullets: [
      
-      'Gazebo warehouse environment featuring a forklift-style robot and randomly spawned displaced boxes',
-      'Autonomous navigation via Nav2, with real-time mapping powered by SLAM Toolbox',
-      'LiDAR-based box detection driving a state machine that manages patrol, retrieval, and deposit behaviors',
+      'Gazebo warehouse environment with a mobile robot, mounted arm, and scattered objects to pick up',  
+      'Manual teleop driving paired with real-time SLAM mapping via SLAM Toolbox',
+      'LiDAR and camera-based object detection that triggers the arm\'s pick-and-place sequence',
     ],
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     primaryCtaLabel: 'Github Repository',
-    primaryCtaUrl: 'https://github.com/007Aurick/Warehouse-Cleanup-Robot-Simulation',
+    primaryCtaUrl: 'https://github.com/007Aurick/TeleArm',
   };
 
   return (
