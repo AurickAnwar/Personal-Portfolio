@@ -35,15 +35,4 @@ export const workExperience = [
     logoFit: 'cover',
     url: 'https://www.magnifiedsystems.com/',
   },
-  {
-    id: 'orbitview',
-    company: 'Orbitview',
-    role: 'Co-Founder',
-    location: 'Toronto, Ontario',
-    dates: 'December 2023 – June 2025',
-    logo: '/Orbitview.png',
-    logoTheme: 'light',
-    logoFit: 'cover',
-    url: 'https://www.orbitview.net/',
-  },
 ];

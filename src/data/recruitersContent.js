@@ -66,14 +66,6 @@ export const RECRUITER_WORK = [
     logo: '/MagnifiedSystems.png',
     url: 'https://www.magnifiedsystems.com/',
   },
-  {
-    company: 'Orbitview',
-    role: 'Co-Founder',
-    location: 'Toronto, Ontario',
-    dates: 'December 2023 – June 2025',
-    logo: '/Orbitview.png',
-    url: 'https://www.orbitview.net/',
-  },
 ];
 
 const RECRUITER_PROJECT_SLUGS = [
