@@ -261,14 +261,14 @@ function OutsideEngineering() {
                       {c.prediction || '—'}
                     </p>
                     {c.detail ? <p className="life-sports-card-detail">{c.detail}</p> : null}
-                    {!c.featured && (
+                    {c.analysis ? (
                       <div className="life-ufc-analysis">
                         <span className="life-sports-card-pred-label">Analysis of fight</span>
                         <p className="life-ufc-analysis-text">
-                          {c.analysis || '—'}
+                          {c.analysis}
                         </p>
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ))}
               </div>

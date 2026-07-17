@@ -209,17 +209,26 @@ export const PLAYOFF_SCORING_NOTE =
 export const ufcPredictions = [
   {
     id: 'u0',
-    event: 'Upcoming bout',
+    event: 'UFC 330: Makhachev vs Garry',
+    matchup: 'Makhachev vs Garry',
+    prediction: 'Ian Garry by decision',
+    detail: 'I\'m feeling ballsy for this pick. I genuinely think the UFC has been so unpredictable lately and Garry has the style to beat Makhachev. Better striking plus a solid ground game. Garry is a big welterweight too. I think this will be a shocker and Garry will win by decision.',
+    outcome: 'pending',
+    tag: 'Upcoming'
+  },
+  {
+    id: 'u1',
+    event: 'UFC 329: Holloway vs McGregor',
     matchup: 'Holloway vs McGregor',
     prediction: 'Holloway by round 3 TKO',
     detail: 'Mcgregor returning after 5 years, I just think he is too old and rusty. Holloway is no longer in his prime, however he is still competing at the highest level. First round will be tough for Holloway but he will get the TKO along the fence by round 3.',
     analysis: 'Brother...',
-    outcome: 'winner',
+    outcome: 'win',
     tag: 'Main card',
-    featured: true,
+    
   },
   {
-    id: 'u1',
+    id: 'u2',
     event: 'UFC White House Card',
     matchup: 'Topuria vs Gaethje',
     prediction: 'Topuria by KO, round 1',
@@ -230,7 +239,7 @@ export const ufcPredictions = [
     tag: 'Main card',
   },
   {
-    id: 'u2',
+    id: 'u3',
     event: 'Co-Main Event',
     matchup: 'Alex Pereira vs Cyril Gane',
     prediction: 'Alex Pereira by decision',
