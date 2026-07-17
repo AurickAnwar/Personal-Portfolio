@@ -213,9 +213,9 @@ export const ufcPredictions = [
     matchup: 'Holloway vs McGregor',
     prediction: 'Holloway by round 3 TKO',
     detail: 'Mcgregor returning after 5 years, I just think he is too old and rusty. Holloway is no longer in his prime, however he is still competing at the highest level. First round will be tough for Holloway but he will get the TKO along the fence by round 3.',
-    analysis: '',
-    outcome: 'pending',
-    tag: 'Upcoming',
+    analysis: 'Brother...',
+    outcome: 'winner',
+    tag: 'Main card',
     featured: true,
   },
   {
@@ -238,7 +238,7 @@ export const ufcPredictions = [
       "I know you're surprised I picked this fight to go the distance, but I think this will be a close fight. Gane is no slouch, but I do believe Alex is one of the best strikers we've seen in UFC history. It will be quite a boring fight too in my opinion with some people saying 'robbery'.",
     analysis: 'Alex clearly just couldn\'t handle being up at heavyweight. He should fight Hokit next but man he looked really bad out there. Gane honesly has a good shot of beating Aspinall in rematch and that is the next fight I want to see.',
     outcome: 'loss',
-    tag: 'Co-main energy',
+    tag: 'Main card',
   },
 ];
 
