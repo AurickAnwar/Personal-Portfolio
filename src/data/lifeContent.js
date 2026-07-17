@@ -225,7 +225,7 @@ export const ufcPredictions = [
     prediction: 'Topuria by KO, round 1',
     detail:
       'This is not a fair fight, Topuria will pressure Gaethje and finish him in the first round.',
-    analysis: 'Wow, did not expect this to happen. Topuria was clearly way too overconfident and Gaethje clearly had the right gameplan of clinching and uppercuts. I honestly don\'t thing Topuria will ever be the same. That was a life changing beating.',
+    analysis: 'Wow, did not expect this to happen. Topuria was clearly way too overconfident and Gaethje clearly had the right gameplan of clinching and uppercuts. I honestly don\'t think Topuria will ever be the same. That was a life changing beating.',
     outcome: 'loss',
     tag: 'Main card',
   },
