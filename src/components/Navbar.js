@@ -37,6 +37,19 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -107,11 +120,17 @@ const Navbar = () => {
             </Link>
           </div>
           
-          <div className="nav-toggle" onClick={toggleMobileMenu}>
+          <button
+            type="button"
+            className={`nav-toggle${isMobileMenuOpen ? ' active' : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+          >
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
-          </div>
+          </button>
         </div>
       </div>
     </nav>

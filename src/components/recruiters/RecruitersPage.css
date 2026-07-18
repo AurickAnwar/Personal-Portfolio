@@ -231,6 +231,31 @@
   }
 }
 
+/* Touch: light press feedback, no sticky hover image, first tap still opens link */
+@media (hover: none), (pointer: coarse) {
+  .recruiters-work-item--preview {
+    transition: background-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .recruiters-work-item--preview:active {
+    background: rgba(6, 8, 12, 0.88);
+    transform: scale(0.992);
+  }
+
+  .recruiters-work-item--preview:active .recruiters-work-role,
+  .recruiters-work-item--preview:active .recruiters-work-company {
+    color: #f8fafc;
+  }
+
+  .recruiters-work-item--preview:active .recruiters-work-meta {
+    color: #e2e8f0;
+  }
+
+  .recruiters-page--light .recruiters-work-item--preview:active {
+    background: rgba(15, 23, 42, 0.9);
+  }
+}
+
 .recruiters-work-hover-image {
   width: 100%;
   height: 100%;
