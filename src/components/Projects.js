@@ -16,7 +16,7 @@ const Projects = () => {
     ],
     technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
     primaryCtaLabel: 'View GitHub',
-    primaryCtaUrl: 'https://github.com/AurickAnwar/Vent-Buddy'
+    primaryCtaUrl: 'https://github.com/007Aurick/Vent-Buddy'
   };
   const warehouseCleanup = {
     title: 'TeleARM',
