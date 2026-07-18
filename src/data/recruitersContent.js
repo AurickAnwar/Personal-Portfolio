@@ -143,6 +143,7 @@ export const RECRUITER_IN_PROGRESS = [
     progressPercent: 67,
     technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
     description: 'A voice-controlled AI assistant that listens to your vent, gives advice, and provides a document report of what to do next after you vent.',
+    githubUrl: 'https://github.com/AurickAnwar/Vent-Buddy',
   },
   {
     id: 'warehouse-cleanup-robot-simulation',

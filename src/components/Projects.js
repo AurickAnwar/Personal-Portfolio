@@ -3,23 +3,20 @@ import { Link } from 'react-router-dom';
 import { portfolioProjects, getProjectCardDescription } from '../data/portfolioProjects';
 import './Projects.css';
 const Projects = () => {
-  const magnifiedProject = {
-    title: 'Magnified Systems',
+  const ventBuddyProject = {
+    title: 'Vent Buddy',
     status: 'Currently Building',
+    progressPercent: 67,
     description:
-      'Developing a real-time impact severity detection system using IMU sensor data and machine learning.',
+      'A voice-first assistant that listens to a user’s frustration, offers supportive guidance, and turns the conversation into a clear next-step action report.',
     bullets: [
-      'Working with ESP32 and IMU sensors for real-time motion data',
-      'Building a machine learning model to predict impact severity (1-100 scale)',
-      'Designing a helmet-mounted prototype for real-world testing'
+      'Built with LangChain, Ollama, and FastAPI to power conversational AI workflows',
+      'Uses speech recognition and Whisper-based transcription for hands-free interaction',
+      'Generates a structured follow-up report so the experience feels useful beyond a simple chat'
     ],
-    technologies: ['ESP32', 'IMU Sensors', 'Machine Learning', 'Embedded Prototyping'],
-    primaryCtaLabel: 'View Website',
-    primaryCtaUrl: 'https://www.magnifiedsystems.com/',
-    secondaryCtaLabel: 'View Instagram',
-    secondaryCtaUrl: 'https://www.instagram.com/magnifiedsystems/',
-    thirdCtaLabel: 'View GitHub Repository',
-    thirdCtaUrl: 'https://github.com/AurickAnwar/MagnifiedSystems'
+    technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
+    primaryCtaLabel: 'View GitHub',
+    primaryCtaUrl: 'https://github.com/AurickAnwar/Vent-Buddy'
   };
   const warehouseCleanup = {
     title: 'TeleARM',
@@ -51,30 +48,38 @@ const Projects = () => {
         <div className="featured-project fade-in-up">
           <div className="featured-content">
             <p className="featured-label">Featured Project</p>
-            <h2>{magnifiedProject.title}</h2>
-            <p className="featured-status">{magnifiedProject.status}</p>
-            <p>{magnifiedProject.description}</p>
+            <h2>{ventBuddyProject.title}</h2>
+            <p className="featured-status">{ventBuddyProject.status}</p>
+            <p>{ventBuddyProject.description}</p>
             <ul className="featured-list">
-              {magnifiedProject.bullets.map((point) => (
+              {ventBuddyProject.bullets.map((point) => (
                 <li key={point}>{point}</li>
               ))}
             </ul>
-            <div className="project-technologies">
-              {magnifiedProject.technologies.map((tech) => (
+            <div className="featured-progress-block" role="status" aria-live="polite">
+              <div className="featured-progress-header">
+                <span className="featured-progress-title">Progress</span>
+                <span className="featured-progress-percent">{ventBuddyProject.progressPercent}%</span>
+              </div>
+              <div
+                className="featured-progress-track"
+                aria-label={`${ventBuddyProject.title} progress ${ventBuddyProject.progressPercent}%`}
+              >
+                <span
+                  className="featured-progress-fill"
+                  style={{ '--progress-width': `${ventBuddyProject.progressPercent}%` }}
+                />
+              </div>
+            </div>
+            <div className="project-technologies" style={{ marginTop: '1rem' }}>
+              {ventBuddyProject.technologies.map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
               ))}
             </div>
             <div className="featured-actions">
-              <a href={magnifiedProject.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {magnifiedProject.primaryCtaLabel}
+              <a href={ventBuddyProject.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
+                {ventBuddyProject.primaryCtaLabel}
               </a>
-              <a href={magnifiedProject.secondaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                {magnifiedProject.secondaryCtaLabel}
-              </a>
-              <a href={magnifiedProject.thirdCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {magnifiedProject.thirdCtaLabel}
-              </a>
-
             </div>
           </div>
         </div>
