@@ -138,6 +138,13 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
 
 export const RECRUITER_IN_PROGRESS = [
   {
+    id: 'Vent-Buddy',
+    title: 'Vent Buddy',
+    progressPercent: 67,
+    technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
+    description: 'A voice-controlled AI assistant that listens to your vent, gives advice, and provides a document report of what to do next after you vent.',
+  },
+  {
     id: 'warehouse-cleanup-robot-simulation',
     title: 'TeleARM',
     progressPercent: 15,
