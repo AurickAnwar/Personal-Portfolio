@@ -60,8 +60,9 @@ export const RECRUITER_WORK = [
     url: 'https://www.macdrones.ca/',
     hoverPreview: {
       type: 'image',
-      image: '/work-hover/macdrones.png',
-      position: '38% 36%',
+      image: '/work-hover/macdrones-banner.png',
+      position: '70% center',
+      overlay: 'light',
     },
   },
   {
@@ -73,10 +74,8 @@ export const RECRUITER_WORK = [
     url: 'https://www.magnifiedsystems.com/',
     hoverPreview: {
       type: 'image',
-      image: '/work-hover/magnified-device-full.png',
-      position: '85% center',
-      scale: 0.88,
-      transformOrigin: 'right center',
+      image: '/work-hover/magnified-banner.png',
+      position: 'center center',
       overlay: 'light',
     },
   },
