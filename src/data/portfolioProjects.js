@@ -123,6 +123,7 @@ const rawProjects = [
     description:
       'A voice-first AI assistant that listens without judgment, offers supportive guidance, and turns each conversation into a clear next-step report.',
     image: '/VentBuddy.png',
+    imageZoomIn: true,
     technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
     projectUrl: 'https://vent-buddy.vercel.app/',
     ctaLabel: 'View Project',

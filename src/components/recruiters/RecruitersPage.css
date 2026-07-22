@@ -610,6 +610,16 @@
   padding: 0 2.75rem 0.5rem;
 }
 
+@media (max-width: 639px) {
+  .recruiters-projects-carousel {
+    padding: 0 0 0.5rem;
+  }
+
+  .recruiters-carousel-nav {
+    display: none;
+  }
+}
+
 .recruiters-carousel-viewport {
   overflow: hidden;
   touch-action: pan-y pinch-zoom;
@@ -776,6 +786,17 @@
   right: auto;
   object-fit: cover;
   object-position: left top;
+}
+
+.recruiters-project-image-wrap--zoom .recruiters-project-image {
+  transform: scale(1.06);
+  transform-origin: center center;
+}
+
+@media (max-width: 639px) {
+  .recruiters-project-image-wrap--zoom .recruiters-project-image {
+    transform: scale(1.12);
+  }
 }
 
 .recruiters-project-image {

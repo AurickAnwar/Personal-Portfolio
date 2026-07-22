@@ -128,6 +128,7 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
     image: project.image,
     imageObjectPosition: project.imageObjectPosition,
     imageFocusLeft: project.imageFocusLeft,
+    imageZoomIn: project.imageZoomIn,
     detailImages: project.detailImages ?? [],
     youtubeVideoId: project.youtubeVideoId,
     projectUrl: project.projectUrl,

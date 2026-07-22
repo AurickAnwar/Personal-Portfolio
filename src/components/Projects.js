@@ -82,7 +82,7 @@ const Projects = () => {
               <div
                 className={`project-image${
                   project.imageFocusLeft ? ' project-image--left-focus' : ''
-                }`}
+                }${project.imageZoomIn ? ' project-image--zoom' : ''}`}
               >
                 <img
                   src={project.image}

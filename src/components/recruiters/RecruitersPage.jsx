@@ -462,7 +462,7 @@ function ArrowLinkIcon() {
 }
 
 function ProjectCard({ project, onViewDescription, suppressClickRef }) {
-  const { title, summary, image, imageObjectPosition, imageFocusLeft, technologies } = project;
+  const { title, summary, image, imageObjectPosition, imageFocusLeft, imageZoomIn, technologies } = project;
 
   const openDescription = useCallback(() => {
     if (suppressClickRef?.current) return;
@@ -481,7 +481,7 @@ function ProjectCard({ project, onViewDescription, suppressClickRef }) {
       <div
         className={`recruiters-project-image-wrap${
           imageFocusLeft ? ' recruiters-project-image-wrap--left-focus' : ''
-        }`}
+        }${imageZoomIn ? ' recruiters-project-image-wrap--zoom' : ''}`}
         role="button"
         tabIndex={0}
         aria-label={`View ${title} description`}

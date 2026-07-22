@@ -266,6 +266,17 @@
   object-position: left top;
 }
 
+.project-image--zoom img {
+  transform: scale(1.06);
+  transform-origin: center center;
+}
+
+@media (max-width: 639px) {
+  .project-image--zoom img {
+    transform: scale(1.12);
+  }
+}
+
 .project-image img {
   width: 100%;
   height: 100%;
