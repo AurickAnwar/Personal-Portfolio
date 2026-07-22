@@ -100,17 +100,6 @@ const Navbar = () => {
               For Recruiters
               <ExternalLinkIcon />
             </Link>
-            <a
-              href="https://www.magnifiedsystems.com/"
-              className="nav-link nav-link--external"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMobileMenu}
-            >
-              My Startup
-              <ExternalLinkIcon />
-            </a>
-            
             <Link 
               to="/contact" 
               className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}

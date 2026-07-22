@@ -3,21 +3,6 @@ import { Link } from 'react-router-dom';
 import { portfolioProjects, getProjectCardDescription } from '../data/portfolioProjects';
 import './Projects.css';
 const Projects = () => {
-  const ventBuddyProject = {
-    title: 'Vent Buddy',
-    status: 'Currently Building',
-    progressPercent: 67,
-    description:
-      'A voice-first assistant that listens to a user’s frustration, offers supportive guidance, and turns the conversation into a clear next-step action report.',
-    bullets: [
-      'Built with LangChain, Ollama, and FastAPI to power conversational AI workflows',
-      'Uses speech recognition and Whisper-based transcription for hands-free interaction',
-      'Generates a structured follow-up report so the experience feels useful beyond a simple chat'
-    ],
-    technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
-    primaryCtaLabel: 'View GitHub',
-    primaryCtaUrl: 'https://github.com/007Aurick/Vent-Buddy'
-  };
   const warehouseCleanup = {
     title: 'TeleARM',
     status: 'Currently Building',
@@ -45,44 +30,6 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="featured-project fade-in-up">
-          <div className="featured-content">
-            <p className="featured-label">Featured Project</p>
-            <h2>{ventBuddyProject.title}</h2>
-            <p className="featured-status">{ventBuddyProject.status}</p>
-            <p>{ventBuddyProject.description}</p>
-            <ul className="featured-list">
-              {ventBuddyProject.bullets.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-            <div className="featured-progress-block" role="status" aria-live="polite">
-              <div className="featured-progress-header">
-                <span className="featured-progress-title">Progress</span>
-                <span className="featured-progress-percent">{ventBuddyProject.progressPercent}%</span>
-              </div>
-              <div
-                className="featured-progress-track"
-                aria-label={`${ventBuddyProject.title} progress ${ventBuddyProject.progressPercent}%`}
-              >
-                <span
-                  className="featured-progress-fill"
-                  style={{ '--progress-width': `${ventBuddyProject.progressPercent}%` }}
-                />
-              </div>
-            </div>
-            <div className="project-technologies" style={{ marginTop: '1rem' }}>
-              {ventBuddyProject.technologies.map((tech) => (
-                <span key={tech} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-            <div className="featured-actions">
-              <a href={ventBuddyProject.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {ventBuddyProject.primaryCtaLabel}
-              </a>
-            </div>
-          </div>
-        </div>
         <div className="featured-project fade-in-up">
           <div className="featured-content">
             <p className="featured-label">Featured Project</p>

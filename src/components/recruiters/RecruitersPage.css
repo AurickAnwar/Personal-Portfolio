@@ -1155,6 +1155,16 @@
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
+.recruiters-detail-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recruiters-detail-cta--secondary {
+  background: transparent;
+}
+
 .recruiters-detail-cta:hover {
   border-color: var(--rp-text-subtle);
   background: var(--rp-surface-soft);

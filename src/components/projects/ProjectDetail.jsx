@@ -113,11 +113,23 @@ const ProjectDetail = () => {
               </ul>
             </div>
 
-            {showCta && (
+            {(showCta || project.secondaryUrl) && (
               <div className="project-detail__sidebar-actions">
-                <a href={project.projectUrl} className="btn" {...ctaProps}>
-                  {ctaLabel}
-                </a>
+                {showCta && (
+                  <a href={project.projectUrl} className="btn" {...ctaProps}>
+                    {ctaLabel}
+                  </a>
+                )}
+                {project.secondaryUrl && (
+                  <a
+                    href={project.secondaryUrl}
+                    className="btn project-detail__btn-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.secondaryLabel ?? 'View GitHub'}
+                  </a>
+                )}
               </div>
             )}
           </aside>

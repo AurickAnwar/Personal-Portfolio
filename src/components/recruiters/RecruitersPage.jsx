@@ -219,14 +219,28 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
                   </ul>
                 </div>
 
-                {project.projectUrl && (
-                  <a
-                    href={project.projectUrl}
-                    className="recruiters-detail-cta"
-                    {...ctaProps}
-                  >
-                    {project.ctaLabel}
-                  </a>
+                {(project.projectUrl || project.secondaryUrl) && (
+                  <div className="recruiters-detail-cta-group">
+                    {project.projectUrl && (
+                      <a
+                        href={project.projectUrl}
+                        className="recruiters-detail-cta"
+                        {...ctaProps}
+                      >
+                        {project.ctaLabel}
+                      </a>
+                    )}
+                    {project.secondaryUrl && (
+                      <a
+                        href={project.secondaryUrl}
+                        className="recruiters-detail-cta recruiters-detail-cta--secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.secondaryLabel ?? 'View GitHub'}
+                      </a>
+                    )}
+                  </div>
                 )}
               </aside>
 

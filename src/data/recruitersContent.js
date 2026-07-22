@@ -84,6 +84,7 @@ export const RECRUITER_WORK = [
 const RECRUITER_PROJECT_SLUGS = [
   'autonomous-self-driving-carla',
   'breast-cancer-cell-detection',
+  'vent-buddy',
   'hand-gesture-computer-control',
   'basketball-shot-predictor',
   'google-home-replica',
@@ -99,6 +100,7 @@ const RECRUITER_PROJECT_TITLES = {
 };
 
 function getRecruiterCtaLabel(slug) {
+  if (slug === 'vent-buddy') return 'View Project';
   if (slug === 'push-button-led-pcb') return 'Download PCB';
   if (slug === 'scissor-bot') return 'View Report';
   return 'View GitHub';
@@ -131,19 +133,13 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
     projectUrl: project.projectUrl,
     downloadFilename: project.downloadFilename,
     ctaLabel: getRecruiterCtaLabel(slug),
+    secondaryLabel: project.secondaryLabel,
+    secondaryUrl: project.secondaryUrl,
     technologies: project.technologies,
   };
 }).filter(Boolean);
 
 export const RECRUITER_IN_PROGRESS = [
-  {
-    id: 'Vent-Buddy',
-    title: 'Vent Buddy',
-    progressPercent: 67,
-    technologies: ['LangChain', 'Ollama', 'FastAPI', 'SpeechRecognition', 'Python', 'OpenAI Whisper'],
-    description: 'A voice-controlled AI assistant that listens to your vent, gives advice, and provides a document report of what to do next after you vent.',
-    githubUrl: 'https://github.com/007Aurick/Vent-Buddy',
-  },
   {
     id: 'warehouse-cleanup-robot-simulation',
     title: 'TeleARM',
