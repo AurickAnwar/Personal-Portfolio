@@ -144,7 +144,7 @@ export const RECRUITER_IN_PROGRESS = [
   {
     id: 'warehouse-cleanup-robot-simulation',
     title: 'TeleARM',
-    progressPercent: 15,
+    progressPercent: 20,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     description: 'Using a LiDAR Camera Sensor, the Robot moves with a TELEOP key and picks up items if an object is detected in warehouse map.',
     githubUrl: 'https://github.com/007Aurick/TeleArm',
