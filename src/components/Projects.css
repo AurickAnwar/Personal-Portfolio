@@ -99,7 +99,7 @@
 
 .featured-content p {
   color: #c8ccd4;
-  max-width: 760px;
+  max-width: none;
   margin-bottom: 1rem;
 }
 

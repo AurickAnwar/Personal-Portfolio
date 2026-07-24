@@ -146,7 +146,7 @@ export const RECRUITER_IN_PROGRESS = [
     title: 'TeleARM',
     progressPercent: 25,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
-    description: 'Using a Depth Camera and camera sensor, the robot is driven with teleop keys and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
+    description: 'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
     githubUrl: 'https://github.com/007Aurick/TeleArm',
   },
 ];

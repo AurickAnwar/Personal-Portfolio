@@ -8,7 +8,7 @@ const Projects = () => {
     status: 'Currently Building',
     progressPercent: 25,
     description:
-      'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
+      'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected!',
     bullets: [
      
       'Gazebo warehouse environment with a mobile robot, mounted arm, and scattered objects to pick up',  
