@@ -6,7 +6,7 @@ const Projects = () => {
   const warehouseCleanup = {
     title: 'TeleARM',
     status: 'Currently Building',
-    progressPercent: 20,
+    progressPercent: 25,
     description:
       'Using a LiDAR and camera sensor, the robot is driven with teleop keys and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
     bullets: [
