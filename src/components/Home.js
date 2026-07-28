@@ -13,16 +13,24 @@ const SOCIAL_LINKS = [
     icon: '/Linkedin.png',
   },
   {
-    href: '/resume-AurickAnwar.pdf',
-    label: 'Resume',
-    caption: 'resume',
-    icon: '/Resume.png',
+    href: 'https://x.com/007Aurick',
+    label: 'Twitter',
+    caption: 'twitter',
+    icon: '/twitter.png',
   },
+  
   {
     href: 'https://github.com/007Aurick',
     label: 'GitHub',
     caption: 'github',
     icon: '/Github.png',
+  },
+ 
+  {
+    href: '/resume-AurickAnwar.pdf',
+    label: 'Resume',
+    caption: 'resume',
+    icon: '/Resume.png',
   },
 ];
 

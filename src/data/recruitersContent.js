@@ -7,10 +7,16 @@ export const RECRUITER_SOCIAL = [
     icon: '/Linkedin.png',
   },
   {
+    label: 'Twitter',
+    href: 'https://x.com/007Aurick',
+    icon: '/twitter.png',
+  },
+  {
     label: 'GitHub',
     href: 'https://github.com/007Aurick',
     icon: '/Github.png',
   },
+  
   {
     label: 'Resume',
     href: '/resume-AurickAnwar.pdf',
