@@ -150,7 +150,7 @@ export const RECRUITER_IN_PROGRESS = [
   {
     id: 'warehouse-cleanup-robot-simulation',
     title: 'TeleARM',
-    progressPercent: 33,
+    progressPercent: 40,
     technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
     description: 'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
     githubUrl: 'https://github.com/007Aurick/TeleArm',

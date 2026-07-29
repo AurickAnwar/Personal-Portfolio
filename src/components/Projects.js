@@ -6,7 +6,7 @@ const Projects = () => {
   const warehouseCleanup = {
     title: 'TeleARM',
     status: 'Currently Building',
-    progressPercent: 33,
+    progressPercent: 40,
     description:
       'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected!',
     bullets: [
