@@ -6,16 +6,16 @@ const Projects = () => {
   const warehouseCleanup = {
     title: 'TeleARM',
     status: 'Currently Building',
-    progressPercent: 40,
+    progressPercent: 65,
     description:
-      'Using a Depth Camera, the robot is driven autonomously and picks up items when an object is detected!',
+      'Using a RGB Camera, the robot is driven autonomously and picks up items when an object is detected!',
     bullets: [
      
       'Gazebo warehouse environment with a mobile robot, mounted arm, and scattered objects to pick up',  
       'Manual teleop driving paired with real-time SLAM mapping via SLAM Toolbox',
-      'Depth Camera object detection that triggers the arm\'s pick-and-place sequence',
+      'RGB Camera color object detection that triggers the arm\'s pick-and-place sequence',
     ],
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2'],
+    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2', 'Foxglove'],
     primaryCtaLabel: 'Github Repository',
     primaryCtaUrl: 'https://github.com/007Aurick/TeleArm',
   };
