@@ -89,6 +89,7 @@ export const RECRUITER_WORK = [
 
 const RECRUITER_PROJECT_SLUGS = [
   'autonomous-self-driving-carla',
+  'telearm',
   'breast-cancer-cell-detection',
   'vent-buddy',
   'hand-gesture-computer-control',
@@ -103,6 +104,7 @@ const RECRUITER_PROJECT_SLUGS = [
 
 const RECRUITER_PROJECT_TITLES = {
   'autonomous-self-driving-carla': 'Autonomous Self-Driving Vehicle',
+  telearm: 'TeleARM',
 };
 
 function getRecruiterCtaLabel(slug) {
@@ -146,13 +148,4 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
   };
 }).filter(Boolean);
 
-export const RECRUITER_IN_PROGRESS = [
-  {
-    id: 'warehouse-cleanup-robot-simulation',
-    title: 'TeleARM',
-    progressPercent: 95,
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2', 'Foxglove'],
-    description: 'Using a RGB Camera, the robot is driven autonomously and picks up items when an object is detected! Built with ROS2, SLAM, and RViz2.',
-    githubUrl: 'https://github.com/007Aurick/TeleArm',
-  },
-];
+export const RECRUITER_IN_PROGRESS = [];

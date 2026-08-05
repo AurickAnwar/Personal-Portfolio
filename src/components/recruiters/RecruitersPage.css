@@ -454,6 +454,13 @@
   margin-bottom: 2.5rem;
 }
 
+.recruiters-in-progress-empty {
+  margin: 0;
+  color: var(--rp-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .recruiters-in-progress-list {
   display: flex;
   flex-direction: column;

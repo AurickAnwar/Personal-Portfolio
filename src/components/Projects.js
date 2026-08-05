@@ -2,24 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { portfolioProjects, getProjectCardDescription } from '../data/portfolioProjects';
 import './Projects.css';
-const Projects = () => {
-  const warehouseCleanup = {
-    title: 'TeleARM',
-    status: 'Currently Building',
-    progressPercent: 95,
-    description:
-      'Using a RGB Camera, the robot is driven autonomously and picks up items when an object is detected!',
-    bullets: [
-     
-      'Gazebo warehouse environment with a mobile robot, mounted arm, and scattered objects to pick up',  
-      'Manual teleop driving paired with real-time SLAM mapping via SLAM Toolbox',
-      'RGB Camera color object detection that triggers the arm\'s pick-and-place sequence',
-    ],
-    technologies: ['ROS2', 'Python', 'Gazebo', 'Linux', 'SLAM', 'RViz2', 'Nav2', 'Foxglove'],
-    primaryCtaLabel: 'Github Repository',
-    primaryCtaUrl: 'https://github.com/007Aurick/TeleArm',
-  };
 
+const Projects = () => {
   return (
     <section className="projects section">
       <div className="container">
@@ -29,48 +13,6 @@ const Projects = () => {
             Here are some of my recent projects that showcase my skills and experience.
           </p>
         </div>
-
-        <div className="featured-project fade-in-up">
-          <div className="featured-content">
-            <p className="featured-label">Featured Project</p>
-            <h2>{warehouseCleanup.title}</h2>
-            <p className="featured-status">{warehouseCleanup.status}</p>
-            <p>{warehouseCleanup.description}</p>
-            <ul className="featured-list">
-              {warehouseCleanup.bullets.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-            <div className="featured-progress-block" role="status" aria-live="polite">
-              <div className="featured-progress-header">
-                <span className="featured-progress-title">Progress</span>
-                <span className="featured-progress-percent">{warehouseCleanup.progressPercent}%</span>
-              </div>
-              <div
-                className="featured-progress-track"
-                aria-label={`${warehouseCleanup.title} progress ${warehouseCleanup.progressPercent}%`}
-              >
-                <span
-                  className="featured-progress-fill"
-                  style={{ '--progress-width': `${warehouseCleanup.progressPercent}%` }}
-                />
-              </div>
-            </div>
-            <div className="project-technologies" style={{ marginTop: '1rem' }}>
-              {warehouseCleanup.technologies.map((tech) => (
-                <span key={tech} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-            <div className="featured-actions">
-              <a href={warehouseCleanup.primaryCtaUrl} target="_blank" rel="noopener noreferrer" className="btn">
-                {warehouseCleanup.primaryCtaLabel}
-              </a>
-              
-            </div>
-          </div>
-        </div>
-
-        <div className="projects-divider" />
 
         <div className="projects-grid">
           {portfolioProjects.map((project, index) => (

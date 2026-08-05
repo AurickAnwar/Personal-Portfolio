@@ -927,62 +927,68 @@ export default function RecruitersPage() {
           <h2 id="in-progress-heading" className="recruiters-section-title">
             Currently Building
           </h2>
-          <div className="recruiters-in-progress-list">
-            {RECRUITER_IN_PROGRESS.map((project) => (
-              <article key={project.id} className="recruiters-in-progress-card">
-                <div className="recruiters-in-progress-header">
-                  <h3 className="recruiters-in-progress-title">{project.title}</h3>
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      className="recruiters-in-progress-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.title} on GitHub`}
+          {RECRUITER_IN_PROGRESS.length > 0 ? (
+            <div className="recruiters-in-progress-list">
+              {RECRUITER_IN_PROGRESS.map((project) => (
+                <article key={project.id} className="recruiters-in-progress-card">
+                  <div className="recruiters-in-progress-header">
+                    <h3 className="recruiters-in-progress-title">{project.title}</h3>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        className="recruiters-in-progress-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${project.title} on GitHub`}
+                      >
+                        <ExternalLinkIcon />
+                        <span className="recruiters-in-progress-link-label">View GitHub</span>
+                      </a>
+                    )}
+                  </div>
+
+                  {project.description && (
+                    <p className="recruiters-in-progress-desc">{project.description}</p>
+                  )}
+
+                  <div className="recruiters-in-progress-block" role="status" aria-live="polite">
+                    <div className="recruiters-in-progress-block-header">
+                      <span className="recruiters-in-progress-label">Progress</span>
+                      <span className="recruiters-in-progress-percent">
+                        {project.progressPercent}%
+                      </span>
+                    </div>
+                    <div
+                      className="recruiters-in-progress-track"
+                      aria-label={`${project.title} progress ${project.progressPercent}%`}
                     >
-                      <ExternalLinkIcon />
-                      <span className="recruiters-in-progress-link-label">View GitHub</span>
-                    </a>
-                  )}
-                </div>
-
-                {project.description && (
-                  <p className="recruiters-in-progress-desc">{project.description}</p>
-                )}
-
-                <div className="recruiters-in-progress-block" role="status" aria-live="polite">
-                  <div className="recruiters-in-progress-block-header">
-                    <span className="recruiters-in-progress-label">Progress</span>
-                    <span className="recruiters-in-progress-percent">
-                      {project.progressPercent}%
-                    </span>
+                      <span
+                        className="recruiters-in-progress-fill"
+                        style={{ width: `${project.progressPercent}%` }}
+                      />
+                    </div>
+                    {project.progressNote && (
+                      <p className="recruiters-in-progress-note">{project.progressNote}</p>
+                    )}
                   </div>
-                  <div
-                    className="recruiters-in-progress-track"
-                    aria-label={`${project.title} progress ${project.progressPercent}%`}
-                  >
-                    <span
-                      className="recruiters-in-progress-fill"
-                      style={{ width: `${project.progressPercent}%` }}
-                    />
-                  </div>
-                  {project.progressNote && (
-                    <p className="recruiters-in-progress-note">{project.progressNote}</p>
-                  )}
-                </div>
 
-                {project.technologies?.length > 0 && (
-                  <ul className="recruiters-in-progress-tech" aria-label="Technologies">
-                    {project.technologies.map((tech) => (
-                      <li key={tech} className="recruiters-in-progress-tech-tag">
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </article>
-            ))}
-          </div>
+                  {project.technologies?.length > 0 && (
+                    <ul className="recruiters-in-progress-tech" aria-label="Technologies">
+                      {project.technologies.map((tech) => (
+                        <li key={tech} className="recruiters-in-progress-tech-tag">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="recruiters-in-progress-empty">
+              Nothing cooking right now — last ship was TeleARM.
+            </p>
+          )}
         </section>
 
         <footer className="recruiters-footer">
