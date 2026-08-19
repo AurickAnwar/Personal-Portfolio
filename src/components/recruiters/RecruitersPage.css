@@ -328,6 +328,10 @@
   justify-content: center;
 }
 
+.recruiters-work-logo-wrap--light {
+  background: #ffffff;
+}
+
 .recruiters-work-logo {
   width: 2.75rem;
   height: 2.75rem;

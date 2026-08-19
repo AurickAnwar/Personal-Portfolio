@@ -272,10 +272,14 @@ function ProjectDetailModal({ projects, projectIndex, onNavigate, onClose }) {
   );
 }
 
-function RecruitersWorkLogo({ company, logo, logoFit, logoScale, logoPadding, logoOffsetY }) {
+function RecruitersWorkLogo({ company, logo, logoFit, logoScale, logoPadding, logoOffsetY, logoTheme }) {
   const isContain = logoFit === 'contain' || company !== 'Magnified Systems';
   return (
-    <span className="recruiters-work-logo-wrap">
+    <span
+      className={`recruiters-work-logo-wrap${
+        logoTheme === 'light' ? ' recruiters-work-logo-wrap--light' : ''
+      }`}
+    >
       <img
         src={logo}
         alt=""
@@ -404,6 +408,7 @@ function RecruitersWorkItem({ entry }) {
           logoScale={entry.logoScale}
           logoPadding={entry.logoPadding}
           logoOffsetY={entry.logoOffsetY}
+          logoTheme={entry.logoTheme}
         />
         <div className="recruiters-work-body">
           <div className="recruiters-work-line">

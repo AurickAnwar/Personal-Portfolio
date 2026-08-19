@@ -44,6 +44,22 @@ export const RECRUITER_INTRO = [
 
 export const RECRUITER_WORK = [
   {
+    company: 'Personalized Prescribing',
+    role: 'Machine Learning Intern',
+    location: 'Richmond Hill, Ontario',
+    dates: 'Incoming Fall 2026',
+    logo: '/personalized.jpg',
+    logoTheme: 'light',
+    logoFit: 'contain',
+    url: 'https://personalizedprescribing.com/',
+    hoverPreview: {
+      type: 'image',
+      image: '/work-hover/prescribing-banner.png',
+      position: 'center center',
+      overlay: 'light',
+    },
+  },
+  {
     company: 'HermesAI',
     role: 'Software Engineering Intern',
     location: 'Toronto, Ontario',
@@ -148,4 +164,14 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
   };
 }).filter(Boolean);
 
-export const RECRUITER_IN_PROGRESS = [];
+export const RECRUITER_IN_PROGRESS = [
+  {
+    id: 'robot-basketball-shooter',
+    title: 'Robot Basketball Shooter',
+    progressPercent: 20,
+    technologies: ['MuJoCo', 'ROS2', 'Python'],
+    description:
+      'A MuJoCo humanoid robot that computes basketball shots at different distances. Uses ROS2 to connect the shot planning to joint commands in sim.',
+    githubUrl: 'https://github.com/007Aurick/Robot-Basketball-Shooter',
+  },
+];

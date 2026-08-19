@@ -1,10 +1,21 @@
 export const workExperience = [
   {
+    id: 'personalized-prescribing',
+    company: 'Personalized Prescribing',
+    role: 'Machine Learning Intern',
+    location: 'Richmond Hill, Ontario',
+    dates: 'Incoming Fall 2026',
+    logo: '/personalized.jpg',
+    logoTheme: 'light',
+    logoFit: 'contain',
+    url: 'https://personalizedprescribing.com/',
+  },
+  {
     id: 'hermesai',
     company: 'HermesAI',
     role: 'Software Engineering Intern',
     location: 'Toronto, Ontario',
-    dates: 'May 2026 – Present',
+    dates: 'May 2026 – August 2026',
     logo: '/hermesailogo.jpg',
     logoTheme: 'light',
     logoFit: 'contain',
