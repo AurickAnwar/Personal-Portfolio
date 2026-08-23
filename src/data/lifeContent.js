@@ -213,8 +213,9 @@ export const ufcPredictions = [
     matchup: 'Makhachev vs Garry',
     prediction: 'Ian Garry by decision',
     detail: 'I\'m feeling ballsy for this pick. I genuinely think the UFC has been so unpredictable lately and Garry has the style to beat Makhachev. Better striking plus a solid ground game. Garry is a big welterweight too. I think this will be a shocker and Garry will win by decision.',
-    outcome: 'pending',
-    tag: 'Upcoming'
+    analysis: 'It was a close fight, but Makhachev showed why he is one of the GOATs in UFC history. I think Morales will be a nightmare fight for Makhachev.',
+    outcome: 'loss',
+    tag: 'Main card'
   },
   {
     id: 'u1',
