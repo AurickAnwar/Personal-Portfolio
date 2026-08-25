@@ -7,7 +7,7 @@ const Projects = () => {
   const basketballShooter = {
     title: 'Robot Basketball Shooter',
     status: 'Currently Building',
-    progressPercent: 45,
+    progressPercent: 60,
     description:
       'A MuJoCo humanoid robot that computes basketball shots at different distances, uses ROS2 to connect the shot planning to joint commands in sim.',
     bullets: [
