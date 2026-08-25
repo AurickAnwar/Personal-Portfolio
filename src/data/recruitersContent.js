@@ -168,7 +168,7 @@ export const RECRUITER_IN_PROGRESS = [
   {
     id: 'robot-basketball-shooter',
     title: 'Robot Basketball Shooter',
-    progressPercent: 45,
+    progressPercent: 60,
     technologies: ['MuJoCo', 'ROS2', 'Python'],
     description:
       'A MuJoCo humanoid robot that computes basketball shots at different distances. Uses ROS2 to connect the shot planning to joint commands in sim.',
