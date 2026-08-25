@@ -991,7 +991,7 @@ export default function RecruitersPage() {
             </div>
           ) : (
             <p className="recruiters-in-progress-empty">
-              Nothing cooking right now — last ship was TeleARM.
+              Nothing cooking right now. Last ship was Robot Basketball Shooter.
             </p>
           )}
         </section>

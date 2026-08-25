@@ -105,9 +105,10 @@ export const RECRUITER_WORK = [
 
 const RECRUITER_PROJECT_SLUGS = [
   'autonomous-self-driving-carla',
-  'telearm',
+  'robot-basketball-shooter',
   'breast-cancer-cell-detection',
   'vent-buddy',
+  'telearm',
   'hand-gesture-computer-control',
   'basketball-shot-predictor',
   'google-home-replica',
@@ -121,6 +122,7 @@ const RECRUITER_PROJECT_SLUGS = [
 const RECRUITER_PROJECT_TITLES = {
   'autonomous-self-driving-carla': 'Autonomous Self-Driving Vehicle',
   telearm: 'TeleARM',
+  'robot-basketball-shooter': 'Robot Basketball Shooter',
 };
 
 function getRecruiterCtaLabel(slug) {
@@ -164,14 +166,4 @@ export const RECRUITER_PROJECTS = RECRUITER_PROJECT_SLUGS.map((slug) => {
   };
 }).filter(Boolean);
 
-export const RECRUITER_IN_PROGRESS = [
-  {
-    id: 'robot-basketball-shooter',
-    title: 'Robot Basketball Shooter',
-    progressPercent: 60,
-    technologies: ['MuJoCo', 'ROS2', 'Python'],
-    description:
-      'A MuJoCo humanoid robot that computes basketball shots at different distances. Uses ROS2 to connect the shot planning to joint commands in sim.',
-    githubUrl: 'https://github.com/007Aurick/Robot-Basketball-Shooter',
-  },
-];
+export const RECRUITER_IN_PROGRESS = [];
